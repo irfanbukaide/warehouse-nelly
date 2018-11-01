@@ -98,7 +98,7 @@ class Category  extends MY_Controller{
         $this->data->id = $id;
 
         // return to view
-        $this->load->view('CRUD_Category', $this->data);
+        $this->template->render('CRUD/CRUD_Category', $this->data);
     }
 
     public function edit($id)

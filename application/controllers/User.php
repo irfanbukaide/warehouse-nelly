@@ -26,7 +26,7 @@ class User  extends MY_Controller{
         $this->data->users = $users;
 
         // return to view
-        $this->load->view('User', $this->data);
+        $this->template->render('User', $this->data);
 
     }
 

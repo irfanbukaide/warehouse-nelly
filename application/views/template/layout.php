@@ -30,8 +30,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" id="main-stylesheet" data-version="1.2.0"
-          href="assets/styles/shards-dashboards.1.2.0.min.css">
-    <link rel="stylesheet" href="assets/styles/extras.1.2.0.min.css">
+          href="<?= base_url('assets/styles/shards-dashboards.1.2.0.min.css'); ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/styles/extras.1.2.0.min.css'); ?>">
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.1/css/responsive.dataTables.min.css"/>
     <!-- JS -->

@@ -28,13 +28,13 @@ class MY_Controller extends CI_Controller{
         $this->template->add_js('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js', TRUE);
         $this->template->add_js('https://unpkg.com/shards-ui@latest/dist/js/shards.min.js', TRUE);
         $this->template->add_js('https://cdnjs.cloudflare.com/ajax/libs/Sharrre/2.0.1/jquery.sharrre.min.js', TRUE);
-        $this->template->add_js('assets/scripts/extras.1.2.0.min.js', TRUE);
-        $this->template->add_js('assets/scripts/shards-dashboards.1.2.0.min.js', TRUE);
+        $this->template->add_js(base_url('assets/scripts/extras.1.2.0.min.js'), TRUE);
+        $this->template->add_js(base_url('assets/scripts/shards-dashboards.1.2.0.min.js'), TRUE);
         $this->template->add_js('https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js', TRUE);
         $this->template->add_js('https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js', TRUE);
         $this->template->add_js('https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.js', TRUE);
-        $this->template->add_js('assets/scripts/app/app-file-manager.1.2.0.min.js', TRUE);
-        $this->template->add_js('assets/scripts/app/app-analytics-overview.1.2.0.min.js', TRUE);
+        $this->template->add_js(base_url('assets/scripts/app/app-file-manager.1.2.0.min.js'), TRUE);
+        $this->template->add_js(base_url('assets/scripts/app/app-analytics-overview.1.2.0.min.js'), TRUE);
 
 		// get session data profile
 		$session_id = $this->session->userdata('user_id');
