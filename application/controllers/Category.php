@@ -49,7 +49,8 @@ class Category  extends MY_Controller{
         if ($category) {
             // validation
             if ($this->form_validation->run() == false && $category_data['category_name'] != $category->category_name) {
-                $this->template->render('CRUD/CRUD_Category', $category_data);
+                echo 'false';
+//                $this->template->render('CRUD/CRUD_Category', $category_data);
             }
 
             // try
@@ -73,7 +74,8 @@ class Category  extends MY_Controller{
         } else {
             // check validation
             if ($this->form_validation->run() == false) {
-                $this->template->render('CRUD/CRUD_Category', $category_data);
+                echo 'false';
+//                $this->template->render('CRUD/CRUD_Category', $category_data);
             }
 
             // try
