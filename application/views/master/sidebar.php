@@ -20,7 +20,7 @@
         <h6 class="main-sidebar__nav-title">Menu</h6>
         <ul class="nav nav--no-borders flex-column">
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('dashboard'); ?>">
+                <a class="nav-link" href="<?= base_url('Analytic'); ?>">
                     <i class="material-icons"></i>
                     <span>Dashboard</span>
                 </a>

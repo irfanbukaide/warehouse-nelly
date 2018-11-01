@@ -60,15 +60,16 @@
             <form action="#" class="main-sidebar__search w-100 border-right d-sm-flex d-md-none d-lg-none">
             </form>
             <div class="nav-wrapper">
-                <h6 class="main-sidebar__nav-title">Menu</h6>
+                <h6 class="main-sidebar__nav-title">Dashboard</h6>
                 <ul class="nav nav--no-borders flex-column">
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('dashboard'); ?>">
+                        <a class="nav-link" href="<?= site_url('analytic'); ?>">
                             <i class="material-icons"></i>
-                            <span>Dashboard</span>
+                            <span>Analytic</span>
                         </a>
                     </li>
                 </ul>
+                <h6 class="main-sidebar__nav-title">Menu</h6>
                 <ul class="nav nav--no-borders flex-column">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
@@ -77,10 +78,10 @@
                             <span>Master</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-small">
-                            <a class="dropdown-item " href="<?= base_url('category'); ?>">Category</a>
-                            <a class="dropdown-item " href="<?= base_url('item'); ?>">Item</a>
-                            <a class="dropdown-item " href="<?= base_url('supplier'); ?>">Supplier</a>
-                            <a class="dropdown-item " href="<?= base_url('user'); ?>">User</a>
+                            <a class="dropdown-item " href="<?= site_url('category'); ?>">Category</a>
+                            <a class="dropdown-item " href="<?= site_url('item'); ?>">Item</a>
+                            <a class="dropdown-item " href="<?= site_url('supplier'); ?>">Supplier</a>
+                            <a class="dropdown-item " href="<?= site_url('user'); ?>">User</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -108,6 +109,10 @@
                             <a class="dropdown-item " href="report-retur.html">Barang Retur</a>
                         </div>
                     </li>
+
+                </ul>
+                <h6 class="main-sidebar__nav-title">Document</h6>
+                <ul class="nav nav--no-borders flex-column">
                     <li class="nav-item">
                         <a class="nav-link " href="dokumentasi.html">
                             <i class="material-icons">help</i>
@@ -176,5 +181,12 @@
 </div>
 
 <?php echo $scripts_footer; ?>
+<script>
+    $(document).ready(function () {
+        setTimeout(function () {
+            $('#message').fadeOut();
+        }, 3000)
+    })
+</script>
 </body>
 </html>

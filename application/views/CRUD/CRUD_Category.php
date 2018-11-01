@@ -14,6 +14,15 @@ if ($mode == 'create') {
 }
 ?>
 
+<?php if (isset($_SESSION['gagal'])): ?>
+    <div id="message" class="alert alert-danger alert-dismissible fade show mb-2" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+        <?= $_SESSION['gagal']; ?>
+    </div>
+<?php endif; ?>
+
 <div class="main-content-container container-fluid px-4 pb-4">
     <!-- Page Header -->
     <div class="page-header row no-gutters py-4">
@@ -23,18 +32,7 @@ if ($mode == 'create') {
         </div>
     </div>
     <!-- End Page Header -->
-    <div class="row">
-        <div class="col">
-            <?php if (isset($_SESSION['gagal'])): ?>
-                <div class="alert alert-danger alert-dismissible fade show mb-2" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                    <?= $_SESSION['gagal']; ?>
-                </div>
-            <?php endif; ?>
-        </div>
-    </div>
+
     <!-- File Manager -->
     <div class="row">
         <div class="col-lg-8">

@@ -18,6 +18,9 @@ class Category  extends MY_Controller{
     {
         $page = array();
 
+        // config page
+        $this->template->add_title_segment('Category');
+
         // get all data
         $page['categories'] = $this->category_model->get_all();
 
@@ -48,7 +51,7 @@ class Category  extends MY_Controller{
         // check if exist
         if ($category) {
             // validation
-            if ($this->form_validation->run() == false && $category_data['category_name'] != $category->category_name) {
+            if ($this->form_validation->run() === false && $category_data['category_name'] != $category->category_name) {
                 echo 'false';
 //                $this->template->render('CRUD/CRUD_Category', $category_data);
             }
@@ -73,7 +76,7 @@ class Category  extends MY_Controller{
 
         } else {
             // check validation
-            if ($this->form_validation->run() == false) {
+            if ($this->form_validation->run() === false) {
                 echo 'false';
 //                $this->template->render('CRUD/CRUD_Category', $category_data);
             }
@@ -127,6 +130,9 @@ class Category  extends MY_Controller{
     public function edit($id)
     {
         $page = array();
+
+        // config page
+        $this->template->add_title_segment('Edit Category');
 
         // set mode
         $page['mode'] = 'edit';

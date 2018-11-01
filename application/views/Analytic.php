@@ -3,7 +3,7 @@
     <div class="page-header row no-gutters py-4">
         <div class="col-12 col-sm-4 text-center text-sm-left mb-4 mb-sm-0">
             <span class="text-uppercase page-subtitle">Overview</span>
-            <h3 class="page-title">Dashboard</h3>
+            <h3 class="page-title">Analytic</h3>
         </div>
         <div class="col-12 col-sm-4 d-flex align-items-center">
         </div>

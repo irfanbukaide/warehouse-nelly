@@ -7,9 +7,6 @@ class User  extends MY_Controller{
     {
         parent::__construct();
 
-        // config
-        $this->data->title = 'User';
-
         // load model
         $this->load->model('User_model','user_model');
 
@@ -19,21 +16,26 @@ class User  extends MY_Controller{
 
     public function index()
     {
+        $page = array();
+
+        // config page
+        $this->template->add_title_segment('User');
+
         // get all data
         $users = $this->user_model->get_all();
 
         // inisialisasi struktur
-        $this->data->users = $users;
+        $page['users'] = $users;
 
         // return to view
-        $this->template->render('User', $this->data);
+        $this->template->render('User', $page);
 
     }
 
     public function save()
     {
         // get id from post['id']`
-        $id = $this->input->post('id');
+        $id = $this->input->post('user_id');
 
         // store result query
         $user = $this->user_model->where('user_id', $id)->get();
@@ -41,13 +43,14 @@ class User  extends MY_Controller{
         // store post[] into array
         $user_data = array(
                 'user_id'       => $id,
+            'user_fullname' => $this->input->post('user_fullname'),
                 'user_name'     => $this->input->post('user_name'),
                 'user_password' => $this->input->post('user_password'),
                 'user_admin'    => $this->input->post('user_admin')
         );
 
         // check if exist
-        if ($user) {
+        if ($user != NULL) {
             try {
                 // store proses kedalam variabel
                 $user_update = $this->user_model->update($user_data,'user_id');
@@ -92,23 +95,35 @@ class User  extends MY_Controller{
 
     public function add()
     {
+        $page = array();
+        $page['mode'] = 'create';
+
+        // config page
+        $this->template->add_title_segment('Add User');
+
         // create guid()
         $id = $this->user_model->guid();
 
         // inisialisasi struktur
-        $this->data->id = $id;
+        $page['id'] = $id;
 
         // return to view
-        $this->load->view('CRUD_User', $this->data);
+        $this->template->render('CRUD/CRUD_User', $page);
     }
 
     public function edit($id)
     {
+        $page = array();
+        $page['mode'] = 'edit';
+
+        // config page
+        $this->template->add_title_segment('Edit User');
+
         // get data from param id
         $user = $this->user_model->where('user_id', $id)->get();
 
         // cek if not exists
-        if (! $user) {
+        if ($user == NULL) {
             // set session temp message
             $this->pesan->gagal('Mohon maaf data tidak ditemukan.');
 
@@ -116,10 +131,10 @@ class User  extends MY_Controller{
         }
 
         // inisialisasi struktur
-        $this->data->user = $user;
+        $page['user'] = $user;
 
         // return to view
-        $this->load->view('CRUD_User', $this->data);
+        $this->template->render('CRUD/CRUD_User', $page);
 
     }
 
@@ -129,7 +144,7 @@ class User  extends MY_Controller{
         $user = $this->user_model->where('user_id', $id)->get();
 
         // cek if not exists
-        if (! $user) {
+        if ($user == NULL) {
             // set session temp message
             $this->pesan->gagal('Mohon maaf data tidak ditemukan.');
 
