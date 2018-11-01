@@ -7,9 +7,6 @@ class Category  extends MY_Controller{
     {
         parent::__construct();
 
-        // config
-        $this->data->title = 'Category';
-
         // load model
         $this->load->model('Category_model','category_model');
 
@@ -19,34 +16,43 @@ class Category  extends MY_Controller{
 
     public function index()
     {
-        // get all data
-        $categorys = $this->category_model->get_all();
+        $page = array();
 
-        // inisialisasi struktur
-        $this->data->categorys = $categorys;
+        // get all data
+        $page['categories'] = $this->category_model->get_all();
 
         // return to view
-        $this->template->render('Category', $this->data);
+        $this->template->render('Category', $page);
 
     }
 
     public function save()
     {
+        // form validation
+        $this->form_validation->set_rules('category_name', 'Category Name', 'required|is_unique[category.category_name]');
+
         // get id from post['id']`
-        $id = $this->input->post('id');
+        $id = $this->input->post('category_id');
 
         // store result query
         $category = $this->category_model->where('category_id', $id)->get();
 
         // store post[] into array
         $category_data = array(
-                'category_id'       => $id,
-                'category_name'     => $this->input->post('category_name'),
-                'category_active'   => $this->input->post('category_active')
+            'category_id' => $id,
+            'category_name' => $this->input->post('category_name'),
+            'category_description' => $this->input->post('category_description'),
+            'category_active' => $this->input->post('category_active')
         );
 
         // check if exist
         if ($category) {
+            // validation
+            if ($this->form_validation->run() == false && $category_data['category_name'] != $category->category_name) {
+                $this->template->render('CRUD/CRUD_Category', $category_data);
+            }
+
+            // try
             try {
                 // store proses kedalam variabel
                 $category_update = $this->category_model->update($category_data,'category_id');
@@ -65,6 +71,12 @@ class Category  extends MY_Controller{
             }
 
         } else {
+            // check validation
+            if ($this->form_validation->run() == false) {
+                $this->template->render('CRUD/CRUD_Category', $category_data);
+            }
+
+            // try
             try {
                 // store proses kedalam variabel
                 $category_create = $this->category_model->insert($category_data);
@@ -77,6 +89,7 @@ class Category  extends MY_Controller{
                     // set session temp message
                     $this->pesan->gagal('Data Category gagal dibuat.');
                 }
+
             } catch (\Exception $e) {
                 // set session temp message
                 $this->pesan->gagal('ERROR : ' . $e);
@@ -91,34 +104,45 @@ class Category  extends MY_Controller{
 
     public function add()
     {
+        $page = array();
+
+        // set mode
+        $page['mode'] = 'create';
+
+        // config page
+        $this->template->add_title_segment('Add Category');
+
         // create guid()
         $id = $this->category_model->guid();
 
         // inisialisasi struktur
-        $this->data->id = $id;
+        $page['id'] = $id;
 
         // return to view
-        $this->template->render('CRUD/CRUD_Category', $this->data);
+        $this->template->render('CRUD/CRUD_Category', $page);
     }
 
     public function edit($id)
     {
+        $page = array();
+
+        // set mode
+        $page['mode'] = 'edit';
+
         // get data from param id
-        $category = $this->category_model->where('category_id', $id)->get();
+        $page['category'] = $this->category_model->where('category_id', $id)->get();
 
         // cek if not exists
-        if (! $category) {
+        if ($page['category'] == NULL) {
             // set session temp message
             $this->pesan->gagal('Mohon maaf data tidak ditemukan.');
 
+            // redirect to category url
             redirect('category');
         }
 
-        // inisialisasi struktur
-        $this->data->category = $category;
-
         // return to view
-        $this->load->view('CRUD_Category', $this->data);
+        $this->template->render('CRUD/CRUD_Category', $page);
 
     }
 
@@ -128,7 +152,7 @@ class Category  extends MY_Controller{
         $category = $this->category_model->where('category_id', $id)->get();
 
         // cek if not exists
-        if (! $category) {
+        if ($category == NULL) {
             // set session temp message
             $this->pesan->gagal('Mohon maaf data tidak ditemukan.');
 

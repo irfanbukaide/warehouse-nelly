@@ -7,8 +7,8 @@ class MY_Controller extends CI_Controller{
 	{
 		parent::__construct();
 
-		// set as object
-		$this->data = new stdClass();
+        // set as array
+        $this->data = array();
 
 		// load library
         $this->load->library('session');
@@ -17,6 +17,7 @@ class MY_Controller extends CI_Controller{
         $this->load->helper('url');
 
 		// load custom library
+        $this->load->library('form_validation');
 		$this->load->library('Pesan');
 		$this->load->library('Template');
 

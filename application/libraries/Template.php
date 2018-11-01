@@ -326,9 +326,6 @@ class Template
         $this->set('lang', str_replace('_', '-', $this->_ci->config->item('language')));
         $this->set('meta_charset', strtolower($this->_ci->config->item('charset')));
         $this->set('content', $this->_ci->load->view($view, $data, TRUE));
-        $this->set('sidebar', $this->_ci->load->view('master/sidebar', $data, TRUE));
-        $this->set('top_menu', $this->_ci->load->view('master/top_menu', $data, TRUE));
-        $this->set('footer', $this->_ci->load->view('master/footer', $data, TRUE));
 
         // handle site title
         $this->_data['site_title'] = '';

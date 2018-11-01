@@ -381,7 +381,7 @@ class MY_Model extends CI_Model
         }
         elseif(!isset($data))
         {
-            return FALSE;
+            return 0;
         }
         $data = $this->_prep_before_write($data);
 
@@ -401,9 +401,8 @@ class MY_Model extends CI_Model
                 $this->_prep_after_write();
                 $id = $this->_database->insert_id();
                 $return = $this->trigger('after_create',$id);
-                return $return;
+                return 1;
             }
-            return FALSE;
         }
         // else...
         else
@@ -427,9 +426,8 @@ class MY_Model extends CI_Model
             {
                 $after_create[] = $this->trigger('after_create', $id);
             }
-            return $after_create;
+            return 1;
         }
-        return FALSE;
     }
 
     /*

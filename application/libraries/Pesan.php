@@ -6,16 +6,17 @@ class Pesan {
     public function __construct()
     {
         $this->CI =& get_instance();
+        $this->CI->load->library('session');
     }
 
     public function berhasil($msg = '')
     {
-        return $this->session->set_flashdata('berhasil', $msg);
+        return $this->CI->session->set_flashdata('berhasil', $msg);
     }
 
     public function gagal($msg = '')
     {
-        return $this->session->set_flashdata('gagal', $msg);
+        return $this->CI->session->set_flashdata('gagal', $msg);
     }
 }
 ?>
