@@ -8,7 +8,8 @@ class Supplier  extends MY_Controller{
         parent::__construct();
 
         // load model
-        $this->load->model('User_model','supplier_model');
+        $this->load->model('Supplier_model', 'supplier_model');
+        $this->load->model('Provinces_model', 'provinces_model');
 
         // save session url
         $this->save_session_url(current_url());
@@ -102,9 +103,11 @@ class Supplier  extends MY_Controller{
 
         // create guid()
         $id = $this->supplier_model->guid();
+        $provinces = $this->provinces_model->get_all();
 
         // inisialisasi struktur
         $page['id'] = $id;
+        $page['provinces'] = $provinces;
 
         // return to view
         $this->template->render('CRUD/CRUD_Supplier', $page);

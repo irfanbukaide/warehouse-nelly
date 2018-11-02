@@ -56,9 +56,13 @@ if ($mode == 'create') {
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="province_id">Province</label>
-                                            <select id="province_id" class="form-control">
+                                            <select name="province_id" id="province_id" class="form-control">
                                                 <option value="">Select Province</option>
-                                                <option>...</option>
+                                                <?php if ($provinces != NULL): ?>
+                                                    <?php foreach ($provinces as $province): ?>
+                                                        <option value="<?= $province->id; ?>"><?= $province->name; ?></option>
+                                                    <?php endforeach; ?>
+                                                <?php endif; ?>
                                             </select>
                                         </div>
                                     </div>
