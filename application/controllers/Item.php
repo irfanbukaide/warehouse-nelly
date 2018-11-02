@@ -9,6 +9,8 @@ class Item  extends MY_Controller{
 
         // load model
         $this->load->model('Item_model','item_model');
+        $this->load->model('Category_model', 'category_model');
+        $this->load->model('Item_category_model', 'item_category_model');
 
         // save session url
         $this->save_session_url(current_url());
@@ -28,27 +30,52 @@ class Item  extends MY_Controller{
         $page['items'] = $items;
 
         // return to view
-        $this->template->render('Item', $this->data);
+        $this->template->render('Item', $page);
 
     }
 
     public function save()
     {
         // get id from post['id']`
-        $id = $this->input->post('id');
+        $id = $this->input->post('item_id');
+        $category_id = $this->input->post('category_id');
 
         // store result query
         $item = $this->item_model->where('item_id', $id)->get();
+        $item_category = $this->item_category_model->where(array('item_id' => $id, 'category_id' => $category_id))->get();
 
         // store post[] into array
         $item_data = array(
                 'item_id'       => $id,
-                'item_paloma'     => $this->input->post('item_paloma'),
-                'item_fast'     => $this->input->post('item_fast'),
+            'item_code' => $this->input->post('item_code'),
+            'item_type' => $this->input->post('item_type'),
                 'item_name' => $this->input->post('item_name'),
                 'item_hrg_modal'    => $this->input->post('item_hrg_modal'),
                 'item_hrg_jual'    => $this->input->post('item_hrg_jual'),
+            'item_status' => $this->input->post('item_status'),
         );
+
+        $item_category_data = array(
+            'item_id' => $id,
+            'category_id' => $category_id
+        );
+
+        // check relasi
+        if ($item_category) {
+            try {
+                $this->item_category_model->update($item_category_data);
+            } catch (\Exception $e) {
+                // set session temp message
+                $this->pesan->gagal('ERROR : ' . $e);
+            }
+        } else {
+            try {
+                $this->item_category_model->insert($item_category_data);
+            } catch (\Exception $e) {
+                // set session temp message
+                $this->pesan->gagal('ERROR : ' . $e);
+            }
+        }
 
         // check if exist
         if ($item) {
@@ -104,9 +131,11 @@ class Item  extends MY_Controller{
 
         // create guid()
         $id = $this->item_model->guid();
+        $categories = $this->category_model->get_all();
 
         // inisialisasi struktur
         $page['id'] = $id;
+        $page['categories'] = $categories;
 
         // return to view
         $this->template->render('CRUD/CRUD_Item', $page);

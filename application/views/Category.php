@@ -38,12 +38,12 @@
     <table class="file-manager file-manager-list table-responsive">
         <thead>
         <tr>
-            <th class="text-left">Category Name</th>
-            <th class="text-left">Category Description</th>
-            <th class="text-left">Category Status</th>
-            <th class="text-left">Created at</th>
-            <th class="text-left">Updated at</th>
-            <th class="text-left">Actions</th>
+            <th>Category Name</th>
+            <th>Category Description</th>
+            <th>Category Status</th>
+            <th>Created at</th>
+            <th>Updated at</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -51,11 +51,11 @@
         <?php if ($categories != NULL): ?>
             <?php foreach ($categories as $category): ?>
                 <tr>
-                    <td class="text-left"><?= $category->category_name; ?></td>
-                    <td class="text-left"><?= $category->category_description != NULL ? $category->category_description : '-'; ?></td>
-                    <td class="text-left"><?= $category->category_active == 1 ? '<div class="text-success">Active</div>' : '<div class="text-default">Disabled</div>'; ?></td>
-                    <td class="text-left"><?= $category->created_at; ?></td>
-                    <td class="text-left"><?= $category->updated_at != NULL ? $category->updated_at : '-'; ?></td>
+                    <td><?= $category->category_name; ?></td>
+                    <td><?= $category->category_description != NULL ? $category->category_description : '-'; ?></td>
+                    <td><?= $category->category_active == 1 ? '<div class="text-success">Active</div>' : '<div class="text-default">Disabled</div>'; ?></td>
+                    <td><?= $category->created_at; ?></td>
+                    <td><?= $category->updated_at != NULL ? $category->updated_at : '-'; ?></td>
                     <td class="file-manager__item-actions">
                         <div class="btn-group btn-group-sm d-flex" role="group"
                              aria-label="Table row actions">

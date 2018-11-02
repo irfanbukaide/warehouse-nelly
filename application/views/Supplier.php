@@ -38,26 +38,26 @@
     <table class="file-manager file-manager-list table-responsive">
         <thead>
         <tr>
-            <th class="text-left">Supplier Name</th>
-            <th class="text-left">Supplier Contact</th>
-            <th class="text-left">Supplier Email</th>
-            <th class="text-left">Province</th>
-            <th class="text-left">Created at</th>
-            <th class="text-left">Updated at</th>
-            <th class="text-left">Actions</th>
+            <th>Supplier Name</th>
+            <th>Supplier Contact</th>
+            <th>Supplier Email</th>
+            <th>Province</th>
+            <th>Created at</th>
+            <th>Updated at</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
         <?php if ($suppliers != NULL): ?>
             <?php foreach ($suppliers as $supplier): ?>
                 <tr>
-                    <td class="text-left"><?= $supplier->supplier_name; ?></td>
-                    <td class="text-left"><?= $supplier->supplier_contact; ?></td>
-                    <td class="text-left"><?= $supplier->supplier_email; ?></td>
-                    <td class="text-left"><?= $supplier->provinces->name; ?></td>
-                    <td class="text-left"><?= $supplier->created_at; ?></td>
-                    <td class="text-left"><?= $supplier->updated_at != NULL ? $supplier->updated_at : '-'; ?></td>
-                    <td class="text-left">
+                    <td><?= $supplier->supplier_name; ?></td>
+                    <td><?= $supplier->supplier_contact; ?></td>
+                    <td><?= $supplier->supplier_email; ?></td>
+                    <td><?= $supplier->provinces->name; ?></td>
+                    <td><?= $supplier->created_at; ?></td>
+                    <td><?= $supplier->updated_at != NULL ? $supplier->updated_at : '-'; ?></td>
+                    <td>
                         <div class="btn-group btn-group-sm d-flex" role="group"
                              aria-label="Table row actions">
                             <a href="<?= site_url('supplier/edit/' . $supplier->supplier_id); ?>"

@@ -37,23 +37,23 @@
     <table class="file-manager file-manager-list table-responsive">
         <thead>
         <tr>
-            <th class="text-left">Fullname</th>
-            <th class="text-left">Username</th>
-            <th class="text-left">User Role</th>
-            <th class="text-left">Created at</th>
-            <th class="text-left">Updated at</th>
-            <th class="text-left">Actions</th>
+            <th>Fullname</th>
+            <th>Username</th>
+            <th>User Role</th>
+            <th>Created at</th>
+            <th>Updated at</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
         <?php if ($users != NULL): ?>
             <?php foreach ($users as $user): ?>
                 <tr>
-                    <td class="text-left"><?= $user->user_fullname; ?></td>
-                    <td class="text-left"><?= $user->user_name; ?></td>
-                    <td class="text-left"><?= $user->user_admin == 1 ? 'Admin' : 'User'; ?></td>
-                    <td class="text-left"><?= $user->created_at; ?></td>
-                    <td class="text-left"><?= $user->updated_at; ?></td>
+                    <td><?= $user->user_fullname; ?></td>
+                    <td><?= $user->user_name; ?></td>
+                    <td><?= $user->user_admin == 1 ? 'Admin' : 'User'; ?></td>
+                    <td><?= $user->created_at; ?></td>
+                    <td><?= $user->updated_at; ?></td>
                     <td class="file-manager__item-actions">
                         <div class="btn-group btn-group-sm d-flex" role="group"
                              aria-label="Table row actions">

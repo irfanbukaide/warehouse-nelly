@@ -1,3 +1,26 @@
+<?php
+// inisialisasi
+if ($mode == 'create') {
+    $item_id = $id;
+    $item_code = '';
+    $item_type = '';
+    $item_name = '';
+    $item_cost = '';
+    $item_price = '';
+    $item_status = 'checked="checked"';
+    $category_id = '';
+} elseif ($mode == 'edit') {
+    $item_id = $item->item_id;
+    $item_code = $item->item_code;
+    $item_type = $item->item_type;
+    $item_name = $item->item_name;
+    $item_cost = $item->item_cost;
+    $item_price = $item->item_price;
+    $item_status = 'checked="checked"';
+    $category_id = '';
+}
+
+?>
 <div class="main-content-container container-fluid px-4 pb-4">
     <!-- Page Header -->
     <div class="page-header row no-gutters py-4">
@@ -18,7 +41,8 @@
                     <li class="list-group-item p-3">
                         <div class="row">
                             <div class="col">
-                                <form>
+                                <form action="<?= site_url('item/save'); ?>" method="post">
+                                    <input type="hidden" name="item_id" value="<?= $item_id; ?>">
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="item_code">Item Code</label>
@@ -27,11 +51,18 @@
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="item_type">Item Type</label>
-                                            <select id="item_type" class="form-control">
+                                            <select name="item_type" id="item_type" class="form-control">
                                                 <option selected>Select Type ...</option>
                                                 <option value="fast">Fast</option>
                                                 <option value="paloma">Paloma</option>
                                             </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="item_name">Item Name</label>
+                                            <input type="text" class="form-control" name="item_name"
+                                                   id="item_name" placeholder="Name" value="">
                                         </div>
                                     </div>
                                     <div class="form-row">
@@ -48,18 +79,21 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label for="category">Category</label>
-                                            <select id="category" class="form-control">
+                                            <label for="category_id">Category</label>
+                                            <select name="category_id" id="category_id" class="form-control">
                                                 <option selected>Select Category ...</option>
-                                                <option>...</option>
+                                                <?php if ($categories != NULL): ?>
+                                                    <?php foreach ($categories as $category): ?>
+                                                        <option value="<?= $category->category_id; ?>"><?= $category->category_name; ?></option>
+                                                    <?php endforeach; ?>
+                                                <?php endif; ?>
                                             </select>
                                         </div>
                                         <div class="form-group col-md-6">
 
                                             <label for="item_img">Image</label>
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="item_img"
-                                                       required="">
+                                                <input type="file" class="custom-file-input" id="item_img">
                                                 <label class="custom-file-label" for="item_img">Select Image ...</label>
                                             </div>
                                         </div>
@@ -70,7 +104,7 @@
                                             <label for="item_status">Item Status</label>
                                             <div class="custom-control custom-toggle custom-toggle-sm">
                                                 <input type="checkbox" id="item_status" name="item_status"
-                                                       class="custom-control-input" checked="checked">
+                                                       class="custom-control-input" <?= $item_status; ?>>
                                                 <label class="custom-control-label" for="item_status">Available</label>
                                             </div>
                                         </div>
