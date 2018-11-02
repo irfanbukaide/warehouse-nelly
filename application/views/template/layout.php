@@ -73,25 +73,25 @@
                 <ul class="nav nav--no-borders flex-column">
                     <li class="nav-item">
                         <a class="nav-link" href="<?= site_url('category'); ?>">
-                            <i class="material-icons">local_offer</i>
+                            <i class="material-icons">category</i>
                             <span>Category</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?= site_url('item'); ?>">
-                            <i class="material-icons">local_offer</i>
+                            <i class="material-icons">layers</i>
                             <span>Item</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?= site_url('supplier'); ?>">
-                            <i class="material-icons">local_offer</i>
+                            <i class="material-icons">contacts</i>
                             <span>Supplier</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?= site_url('user'); ?>">
-                            <i class="material-icons">local_offer</i>
+                            <i class="material-icons">account_circle</i>
                             <span>User</span>
                         </a>
                     </li>

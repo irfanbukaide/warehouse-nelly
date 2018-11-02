@@ -1,4 +1,4 @@
-<div class="main-content-container container-fluid px-4 pb-4">
+<div class="main-content-container container-fluid px-4">
     <!-- Page Header -->
     <div class="page-header row no-gutters py-4">
         <div class="col">
@@ -7,9 +7,9 @@
         </div>
         <div class="col d-flex">
             <div class="btn-primary rounded d-inline-flex ml-auto my-auto" role="group" aria-label="Table row actions">
-                <a href="tambah_barang.html" class="btn btn-white">
+                <a href="<?= site_url('item/add'); ?>" class="btn btn-white">
                     <i class="material-icons">local_hospital</i>
-                    <span>Tambah Data</span>
+                    <span>Add Item</span>
                 </a>
             </div>
         </div>

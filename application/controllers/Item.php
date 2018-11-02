@@ -96,14 +96,20 @@ class Item  extends MY_Controller{
 
     public function add()
     {
+        $page = array();
+        $page['mode'] = 'create';
+
+        // config page
+        $this->template->add_title_segment('Add Item');
+
         // create guid()
         $id = $this->item_model->guid();
 
         // inisialisasi struktur
-        $this->data->id = $id;
+        $page['id'] = $id;
 
         // return to view
-        $this->load->view('CRUD_Item', $this->data);
+        $this->template->render('CRUD/CRUD_Item', $page);
     }
 
     public function edit($id)

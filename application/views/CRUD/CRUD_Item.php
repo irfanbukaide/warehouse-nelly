@@ -1,0 +1,90 @@
+<div class="main-content-container container-fluid px-4 pb-4">
+    <!-- Page Header -->
+    <div class="page-header row no-gutters py-4">
+        <div class="col">
+            <span class="text-uppercase page-subtitle">Master</span>
+            <h3 class="page-title">
+                <i class="material-icons">layers</i>
+                Item
+            </h3>
+        </div>
+    </div>
+    <!-- End Page Header -->
+    <!-- File Manager -->
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card card-small mb-4">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item p-3">
+                        <div class="row">
+                            <div class="col">
+                                <form>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="customFile2"
+                                                       required="">
+                                                <label class="custom-file-label" for="customFile2">Pilih gambar
+                                                    ...</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="item_code">Item Code</label>
+                                            <input type="text" class="form-control" name="item_code" id="item_code"
+                                                   placeholder="Item Code" value="">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="item_type">Item Type</label>
+                                            <select id="item_type" class="form-control">
+                                                <option selected>Select Type ...</option>
+                                                <option value="fast">Fast</option>
+                                                <option value="paloma">Paloma</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="item_hrg_modal">Item Cost</label>
+                                            <input type="text" class="form-control" name="item_hrg_modal"
+                                                   id="item_hrg_modal" placeholder="Cost" value="">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="item_hrg_jual">Item Price</label>
+                                            <input type="text" class="form-control" name="item_hrg_jual"
+                                                   id="item_hrg_jual" placeholder="Price" value="">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="category">Category</label>
+                                            <select id="category" class="form-control">
+                                                <option selected>Select Category ...</option>
+                                                <option>...</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <label for="item_status">Item Status</label>
+                                            <div class="custom-control custom-toggle custom-toggle-sm">
+                                                <input type="checkbox" id="item_status" name="item_status"
+                                                       class="custom-control-input" checked="checked">
+                                                <label class="custom-control-label" for="item_status">Available</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-accent">Save</button>
+                                    <a href="<?= site_url('item'); ?>" class="btn btn-danger">Return to Item</a>
+                                </form>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- End Default Light Table -->
+</div>

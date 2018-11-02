@@ -20,7 +20,10 @@
     <div class="page-header row no-gutters py-4">
         <div class="col-12 col-sm-4 text-center text-sm-left mb-4 mb-sm-0">
             <span class="text-uppercase page-subtitle">Master</span>
-            <h3 class="page-title">User</h3>
+            <h3 class="page-title">
+                <i class="material-icons">account_circle</i>
+                User
+            </h3>
         </div>
         <div class="col d-flex">
             <div class="btn-primary rounded d-inline-flex ml-auto my-auto" role="group" aria-label="Table row actions">
