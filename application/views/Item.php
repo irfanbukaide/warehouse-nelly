@@ -46,6 +46,8 @@
             <th>Item Cost</th>
             <th>Item Price</th>
             <th>Item Status</th>
+            <th>Created at</th>
+            <th>Updated at</th>
             <th>Actions</th>
         </tr>
         </thead>
@@ -60,10 +62,12 @@
                     </td>
                     <td><?= $item->item_type; ?></td>
                     <td><?= $item->item_code; ?></td>
-                    <td></td>
+                    <td><?= $item->category; ?></td>
                     <td><?= $item->item_hrg_modal; ?></td>
                     <td><?= $item->item_hrg_jual; ?></td>
                     <td><?= $item->item_status == 1 ? 'Available' : 'Empty'; ?></td>
+                    <td><?= $item->created_at; ?></td>
+                    <td><?= $item->updated_at != NULL ? $item->updated_at : '-'; ?></td>
                     <td class="file-manager__item-actions">
                         <div class="btn-group btn-group-sm d-flex justify-content-end" role="group"
                              aria-label="Table row actions">

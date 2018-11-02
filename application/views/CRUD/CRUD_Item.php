@@ -14,10 +14,10 @@ if ($mode == 'create') {
     $item_code = $item->item_code;
     $item_type = $item->item_type;
     $item_name = $item->item_name;
-    $item_cost = $item->item_cost;
-    $item_price = $item->item_price;
+    $item_cost = $item->item_hrg_modal;
+    $item_price = $item->item_hrg_jual;
     $item_status = 'checked="checked"';
-    $category_id = '';
+    $category_id = $item->category_id;
 }
 
 ?>
@@ -47,14 +47,18 @@ if ($mode == 'create') {
                                         <div class="form-group col-md-6">
                                             <label for="item_code">Item Code</label>
                                             <input type="text" class="form-control" name="item_code" id="item_code"
-                                                   placeholder="Item Code" value="">
+                                                   placeholder="Item Code" value="<?= $item_code; ?>">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="item_type">Item Type</label>
                                             <select name="item_type" id="item_type" class="form-control">
                                                 <option selected>Select Type ...</option>
-                                                <option value="fast">Fast</option>
-                                                <option value="paloma">Paloma</option>
+                                                <option value="fast" <?= $item_type == 'fast' ? 'selected' : ''; ?>>
+                                                    Fast
+                                                </option>
+                                                <option value="paloma" <?= $item_type == 'paloma' ? 'selected' : ''; ?>>
+                                                    Paloma
+                                                </option>
                                             </select>
                                         </div>
                                     </div>
@@ -62,19 +66,19 @@ if ($mode == 'create') {
                                         <div class="form-group col-md-6">
                                             <label for="item_name">Item Name</label>
                                             <input type="text" class="form-control" name="item_name"
-                                                   id="item_name" placeholder="Name" value="">
+                                                   id="item_name" placeholder="Name" value="<?= $item_name; ?>">
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="item_hrg_modal">Item Cost</label>
                                             <input type="text" class="form-control" name="item_hrg_modal"
-                                                   id="item_hrg_modal" placeholder="Cost" value="">
+                                                   id="item_hrg_modal" placeholder="Cost" value="<?= $item_cost; ?>">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="item_hrg_jual">Item Price</label>
                                             <input type="text" class="form-control" name="item_hrg_jual"
-                                                   id="item_hrg_jual" placeholder="Price" value="">
+                                                   id="item_hrg_jual" placeholder="Price" value="<?= $item_price; ?>">
                                         </div>
                                     </div>
                                     <div class="form-row">
@@ -84,7 +88,7 @@ if ($mode == 'create') {
                                                 <option selected>Select Category ...</option>
                                                 <?php if ($categories != NULL): ?>
                                                     <?php foreach ($categories as $category): ?>
-                                                        <option value="<?= $category->category_id; ?>"><?= $category->category_name; ?></option>
+                                                        <option value="<?= $category->category_id; ?>" <?= $category->category_id == $category_id ? 'selected' : ''; ?>><?= $category->category_name; ?></option>
                                                     <?php endforeach; ?>
                                                 <?php endif; ?>
                                             </select>

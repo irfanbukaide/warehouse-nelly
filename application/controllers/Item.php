@@ -25,6 +25,10 @@ class Item  extends MY_Controller{
 
         // get all data
         $items = $this->item_model->get_all();
+        foreach ($items as $item) {
+            $item_category = $this->item_category_model->with_category()->where('item_id', $item->item_id)->get();
+            $item->category = $item_category->category->category_name;
+        }
 
         // inisialisasi struktur
         $page['items'] = $items;
@@ -143,8 +147,17 @@ class Item  extends MY_Controller{
 
     public function edit($id)
     {
+        $page = array();
+        $page['mode'] = 'edit';
+
+        // config page
+        $this->template->add_title_segment('Edit Item');
+
         // get data from param id
         $item = $this->item_model->where('item_id', $id)->get();
+        $item->category_id = $this->item_category_model->where('item_id', $id)->get()->category_id;
+
+        $categories = $this->category_model->get_all();
 
         // cek if not exists
         if (! $item) {
@@ -155,10 +168,11 @@ class Item  extends MY_Controller{
         }
 
         // inisialisasi struktur
-        $this->data->item = $item;
+        $page['item'] = $item;
+        $page['categories'] = $categories;
 
         // return to view
-        $this->load->view('CRUD_Item', $this->data);
+        $this->template->render('CRUD/CRUD_Item', $page);
 
     }
 
