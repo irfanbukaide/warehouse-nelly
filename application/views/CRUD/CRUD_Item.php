@@ -21,16 +21,6 @@
                                 <form>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="customFile2"
-                                                       required="">
-                                                <label class="custom-file-label" for="customFile2">Pilih gambar
-                                                    ...</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
                                             <label for="item_code">Item Code</label>
                                             <input type="text" class="form-control" name="item_code" id="item_code"
                                                    placeholder="Item Code" value="">
@@ -64,6 +54,15 @@
                                                 <option>...</option>
                                             </select>
                                         </div>
+                                        <div class="form-group col-md-6">
+
+                                            <label for="item_img">Image</label>
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="item_img"
+                                                       required="">
+                                                <label class="custom-file-label" for="item_img">Select Image ...</label>
+                                            </div>
+                                        </div>
 
                                     </div>
                                     <div class="form-row">
@@ -75,6 +74,7 @@
                                                 <label class="custom-control-label" for="item_status">Available</label>
                                             </div>
                                         </div>
+
                                     </div>
                                     <button type="submit" class="btn btn-accent">Save</button>
                                     <a href="<?= site_url('item'); ?>" class="btn btn-danger">Return to Item</a>

@@ -29,7 +29,7 @@
             <div class="btn-primary rounded d-inline-flex ml-auto my-auto" role="group" aria-label="Table row actions">
                 <a href="<?= site_url('user/add'); ?>" class="btn btn-white">
                     <i class="material-icons">local_hospital</i>
-                    <span>Tambah Data</span>
+                    <span>Add User</span>
                 </a>
             </div>
         </div>

@@ -20,7 +20,7 @@ if ($mode == 'create') {
     <div class="page-header row no-gutters py-4">
         <div class="col">
             <span class="text-uppercase page-subtitle">Master</span>
-            <h3 class="page-title">User</h3>
+            <h3 class="page-title"><i class="material-icons">account_circle</i>User</h3>
         </div>
     </div>
     <!-- End Page Header -->

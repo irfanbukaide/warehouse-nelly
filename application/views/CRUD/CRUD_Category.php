@@ -28,7 +28,10 @@ if ($mode == 'create') {
     <div class="page-header row no-gutters py-4">
         <div class="col">
             <span class="text-uppercase page-subtitle">Master</span>
-            <h3 class="page-title">Category</h3>
+            <h3 class="page-title">
+                <i class="material-icons">category</i>
+                Category
+            </h3>
         </div>
     </div>
     <!-- End Page Header -->

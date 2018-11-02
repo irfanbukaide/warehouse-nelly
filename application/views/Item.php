@@ -3,7 +3,10 @@
     <div class="page-header row no-gutters py-4">
         <div class="col">
             <span class="text-uppercase page-subtitle">Master</span>
-            <h3 class="page-title">Item</h3>
+            <h3 class="page-title">
+                <i class="material-icons">layers</i>
+                Item
+            </h3>
         </div>
         <div class="col d-flex">
             <div class="btn-primary rounded d-inline-flex ml-auto my-auto" role="group" aria-label="Table row actions">
