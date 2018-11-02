@@ -72,12 +72,12 @@ if ($mode == 'create') {
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="item_hrg_modal">Item Cost</label>
-                                            <input type="text" class="form-control" name="item_hrg_modal"
+                                            <input type="number" class="form-control" name="item_hrg_modal"
                                                    id="item_hrg_modal" placeholder="Cost" value="<?= $item_cost; ?>">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="item_hrg_jual">Item Price</label>
-                                            <input type="text" class="form-control" name="item_hrg_jual"
+                                            <input type="number" class="form-control" name="item_hrg_jual"
                                                    id="item_hrg_jual" placeholder="Price" value="<?= $item_price; ?>">
                                         </div>
                                     </div>
