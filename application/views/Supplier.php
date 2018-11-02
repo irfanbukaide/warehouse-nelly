@@ -7,9 +7,9 @@
         </div>
         <div class="col d-flex">
             <div class="btn-primary rounded d-inline-flex ml-auto my-auto" role="group" aria-label="Table row actions">
-                <a href="tambah_suplier.html" class="btn btn-white">
+                <a href="<?= site_url('supplier/add'); ?>" class="btn btn-white">
                     <i class="material-icons">local_hospital</i>
-                    <span>Tambah Data</span>
+                    <span>Add Supplier</span>
                 </a>
             </div>
         </div>
@@ -27,42 +27,11 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td class="text-left">ABC Online Shop</td>
-            <td>082112931123</td>
-            <td>Nancy</td>
-            <td>nancy@abc-online.com</td>
-            <td>Bandung</td>
-            <td>Jl. Sukarno Hatta No.57, Metro</td>
-            <td class="file-manager__item-actions">
-                <div class="btn-group btn-group-sm d-flex justify-content-end" role="group" aria-label="Table row actions">
-                    <button type="button" class="btn btn-white active-light">
-                        <i class="material-icons">&#xE254;</i>
-                    </button>
-                    <button type="button" class="btn btn-danger">
-                        <i class="material-icons">&#xE872;</i>
-                    </button>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td class="text-left">Fashion Jakarta</td>
-            <td>082112552123</td>
-            <td>Agus</td>
-            <td>agus@fashion.com</td>
-            <td>Jakarta</td>
-            <td>Jl. Kuningan Raya No.147, JakSel</td>
-            <td class="file-manager__item-actions">
-                <div class="btn-group btn-group-sm d-flex justify-content-end" role="group" aria-label="Table row actions">
-                    <button type="button" class="btn btn-white active-light">
-                        <i class="material-icons">&#xE254;</i>
-                    </button>
-                    <button type="button" class="btn btn-danger">
-                        <i class="material-icons">&#xE872;</i>
-                    </button>
-                </div>
-            </td>
-        </tr>
+        <?php if ($suppliers != NULL): ?>
+            <?php foreach ($suppliers as $supplier): ?>
+
+            <?php endforeach; ?>
+        <?php endif; ?>
         </tbody>
     </table>
     <!-- End Page Header -->

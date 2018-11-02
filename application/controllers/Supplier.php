@@ -7,9 +7,6 @@ class Supplier  extends MY_Controller{
     {
         parent::__construct();
 
-        // config
-        $this->data->title = 'Supplier';
-
         // load model
         $this->load->model('User_model','supplier_model');
 
@@ -19,14 +16,19 @@ class Supplier  extends MY_Controller{
 
     public function index()
     {
+        $page = array();
+
+        // config page
+        $this->template->add_title_segment('Supplier');
+
         // get all data
         $suppliers = $this->supplier_model->get_all();
 
         // inisialisasi struktur
-        $this->data->suppliers = $suppliers;
+        $page['suppliers'] = $suppliers;
 
         // return to view
-        $this->template->render('Supplier', $this->data);
+        $this->template->render('Supplier', $page);
 
     }
 
@@ -92,14 +94,20 @@ class Supplier  extends MY_Controller{
 
     public function add()
     {
+        $page = array();
+        $page['mode'] = 'create';
+
+        // config page
+        $this->template->add_title_segment('Add Supplier');
+
         // create guid()
         $id = $this->supplier_model->guid();
 
         // inisialisasi struktur
-        $this->data->id = $id;
+        $page['id'] = $id;
 
         // return to view
-        $this->load->view('CRUD_Supplier', $this->data);
+        $this->template->render('CRUD/CRUD_Supplier', $page);
     }
 
     public function edit($id)

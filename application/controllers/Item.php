@@ -7,9 +7,6 @@ class Item  extends MY_Controller{
     {
         parent::__construct();
 
-        // config
-        $this->data->title = 'Item';
-
         // load model
         $this->load->model('Item_model','item_model');
 
@@ -19,11 +16,16 @@ class Item  extends MY_Controller{
 
     public function index()
     {
+        $page = array();
+
+        // config page
+        $this->template->add_title_segment('Item');
+
         // get all data
         $items = $this->item_model->get_all();
 
         // inisialisasi struktur
-        $this->data->items = $items;
+        $page['items'] = $items;
 
         // return to view
         $this->template->render('Item', $this->data);
