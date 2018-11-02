@@ -36,7 +36,7 @@ class Supplier  extends MY_Controller{
     public function save()
     {
         // get id from post['id']`
-        $id = $this->input->post('id');
+        $id = $this->input->post('supplier_id');
 
         // store result query
         $supplier = $this->supplier_model->where('supplier_id', $id)->get();
@@ -45,8 +45,10 @@ class Supplier  extends MY_Controller{
         $supplier_data = array(
                 'supplier_id'       => $id,
                 'supplier_name'     => $this->input->post('supplier_name'),
-                'supplier_password' => $this->input->post('supplier_password'),
-                'supplier_admin'    => $this->input->post('supplier_admin')
+            'supplier_contact' => $this->input->post('supplier_contact'),
+            'supplier_email' => $this->input->post('supplier_email'),
+            'supplier_address' => $this->input->post('supplier_address'),
+            'province_id' => $this->input->post('province_id')
         );
 
         // check if exist
@@ -115,8 +117,15 @@ class Supplier  extends MY_Controller{
 
     public function edit($id)
     {
+        $page = array();
+        $page['mode'] = 'edit';
+
+        // config page
+        $this->template->add_title_segment('Edit Supplier');
+
         // get data from param id
-        $supplier = $this->supplier_model->where('supplier_id', $id)->get();
+        $supplier = $this->supplier_model->with_province()->where('supplier_id', $id)->get();
+        $provinces = $this->provinces_model->get_all();
 
         // cek if not exists
         if (! $supplier) {
@@ -127,10 +136,11 @@ class Supplier  extends MY_Controller{
         }
 
         // inisialisasi struktur
-        $this->data->supplier = $supplier;
+        $page['supplier'] = $supplier;
+        $page['provinces'] = $provinces;
 
         // return to view
-        $this->load->view('CRUD_Supplier', $this->data);
+        $this->template->render('CRUD/CRUD_Supplier', $page);
 
     }
 

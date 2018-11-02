@@ -10,6 +10,12 @@ class Supplier_model extends MY_Model
         $this->protected = array('created_at', 'update_at', 'deleted_at');
         $this->timestamps = TRUE;
         $this->soft_deletes = FALSE;
+        $this->has_one['province'] = array(
+            'foreign_model' => 'Province_model',
+            'foreign_table' => 'province',
+            'foreign_key' => 'id',
+            'local_key' => 'province_id'
+        );
         parent::__construct();
     }
 

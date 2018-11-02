@@ -6,6 +6,7 @@ if ($mode == 'create') {
     $supplier_contact = '';
     $supplier_email = '';
     $supplier_address = '';
+    $province_id = '';
 
 } elseif ($mode == 'edit') {
     $supplier_id = $supplier->supplier_id;
@@ -13,6 +14,7 @@ if ($mode == 'create') {
     $supplier_contact = $supplier->supplier_contact;
     $supplier_email = $supplier->supplier_email;
     $supplier_address = $supplier->supplier_address;
+    $province_id = $supplier->province_id;
 }
 ?>
 <div class="main-content-container container-fluid px-4 pb-4">
@@ -60,7 +62,7 @@ if ($mode == 'create') {
                                                 <option value="">Select Province</option>
                                                 <?php if ($provinces != NULL): ?>
                                                     <?php foreach ($provinces as $province): ?>
-                                                        <option value="<?= $province->id; ?>"><?= $province->name; ?></option>
+                                                        <option value="<?= $province->id; ?>" <?= $province->id == $province_id ? 'selected' : ''; ?>><?= $province->name; ?></option>
                                                     <?php endforeach; ?>
                                                 <?php endif; ?>
                                             </select>
