@@ -69,21 +69,35 @@
                         </a>
                     </li>
                 </ul>
-                <h6 class="main-sidebar__nav-title">Menu</h6>
+                <h6 class="main-sidebar__nav-title">Master</h6>
                 <ul class="nav nav--no-borders flex-column">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-                           aria-haspopup="false" aria-expanded="false">
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= site_url('category'); ?>">
                             <i class="material-icons">local_offer</i>
-                            <span>Master</span>
+                            <span>Category</span>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-small">
-                            <a class="dropdown-item " href="<?= site_url('category'); ?>">Category</a>
-                            <a class="dropdown-item " href="<?= site_url('item'); ?>">Item</a>
-                            <a class="dropdown-item " href="<?= site_url('supplier'); ?>">Supplier</a>
-                            <a class="dropdown-item " href="<?= site_url('user'); ?>">User</a>
-                        </div>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= site_url('item'); ?>">
+                            <i class="material-icons">local_offer</i>
+                            <span>Item</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= site_url('supplier'); ?>">
+                            <i class="material-icons">local_offer</i>
+                            <span>Supplier</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= site_url('user'); ?>">
+                            <i class="material-icons">local_offer</i>
+                            <span>User</span>
+                        </a>
+                    </li>
+                </ul>
+                <h6 class="main-sidebar__nav-title">Transaction</h6>
+                <ul class="nav nav--no-borders flex-column">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle " data-toggle="dropdown" href="#" role="button"
                            aria-haspopup="false" aria-expanded="false">
@@ -111,18 +125,12 @@
                     </li>
 
                 </ul>
-                <h6 class="main-sidebar__nav-title">Document</h6>
+                <h6 class="main-sidebar__nav-title">Documentation</h6>
                 <ul class="nav nav--no-borders flex-column">
                     <li class="nav-item">
                         <a class="nav-link " href="dokumentasi.html">
                             <i class="material-icons">help</i>
-                            <span>Bantuan</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="error.html">
-                            <i class="material-icons">error</i>
-                            <span>Errors</span>
+                            <span>Help</span>
                         </a>
                     </li>
                 </ul>

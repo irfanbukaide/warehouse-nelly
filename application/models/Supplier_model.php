@@ -10,9 +10,9 @@ class Supplier_model extends MY_Model
         $this->protected = array('created_at', 'update_at', 'deleted_at');
         $this->timestamps = TRUE;
         $this->soft_deletes = FALSE;
-        $this->has_one['province'] = array(
-            'foreign_model' => 'Province_model',
-            'foreign_table' => 'province',
+        $this->has_one['provinces'] = array(
+            'foreign_model' => 'Provinces_model',
+            'foreign_table' => 'provinces',
             'foreign_key' => 'id',
             'local_key' => 'province_id'
         );

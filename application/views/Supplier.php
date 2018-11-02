@@ -31,9 +31,6 @@
             </div>
         </div>
     </div>
-    <pre>
-        <?= var_dump($suppliers); ?>
-    </pre>
 
     <table class="file-manager file-manager-list table-responsive">
         <thead>
@@ -54,7 +51,7 @@
                     <td class="text-left"><?= $supplier->supplier_name; ?></td>
                     <td class="text-left"><?= $supplier->supplier_contact; ?></td>
                     <td class="text-left"><?= $supplier->supplier_email; ?></td>
-                    <td class="text-left"><?= $supplier->province->name; ?></td>
+                    <td class="text-left"><?= $supplier->provinces->name; ?></td>
                     <td class="text-left"><?= $supplier->created_at; ?></td>
                     <td class="text-left"><?= $supplier->updated_at != NULL ? $supplier->updated_at : '-'; ?></td>
                     <td class="text-left">

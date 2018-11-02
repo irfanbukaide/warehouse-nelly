@@ -23,7 +23,7 @@ class Supplier  extends MY_Controller{
         $this->template->add_title_segment('Supplier');
 
         // get all data
-        $suppliers = $this->supplier_model->get_all();
+        $suppliers = $this->supplier_model->with_provinces()->get_all();
 
         // inisialisasi struktur
         $page['suppliers'] = $suppliers;
@@ -124,7 +124,7 @@ class Supplier  extends MY_Controller{
         $this->template->add_title_segment('Edit Supplier');
 
         // get data from param id
-        $supplier = $this->supplier_model->with_province()->where('supplier_id', $id)->get();
+        $supplier = $this->supplier_model->where('supplier_id', $id)->get();
         $provinces = $this->provinces_model->get_all();
 
         // cek if not exists
