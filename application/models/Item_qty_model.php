@@ -1,23 +1,18 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Item_model extends MY_Model{
+class Item_qty_model extends MY_Model
+{
     public function __construct()
     {
-        $this->table = 'item';
-        $this->primary_key = 'item_id';
-        $this->protected = array('created_at', 'update_at','deleted_at');
+        $this->table = 'item_qty';
+        $this->primary_key = 'item_qty_id';
+        $this->protected = array('created_at', 'update_at', 'deleted_at');
         $this->timestamps = TRUE;
         $this->soft_deletes = FALSE;
-        $this->has_many['item_category'] = array(
-            'foreign_model'=>'Item_category_model',
-            'foreign_table'=>'item_category',
-            'foreign_key'=>'item_id',
-            'local_key'=>'item_id'
-        );
-        $this->has_many['item_qty'] = array(
-            'foreign_model' => 'Item_qty_model',
-            'foreign_table' => 'item_qty',
+        $this->has_one['item'] = array(
+            'foreign_model' => 'Item_model',
+            'foreign_table' => 'item',
             'foreign_key' => 'item_id',
             'local_key' => 'item_id'
         );
@@ -36,4 +31,5 @@ class Item_model extends MY_Model{
     }
 
 }
+
 ?>
