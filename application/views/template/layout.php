@@ -34,7 +34,9 @@
     <link rel="stylesheet" href="<?= base_url('assets/styles/extras.1.2.0.min.css'); ?>">
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.1/css/responsive.dataTables.min.css"/>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+
+    <link href="<?= base_url('assets/vendor/select2/css/select2-bootstrap.min.css'); ?>" rel="stylesheet"/>
+    <link href="<?= base_url('assets/vendor/select2/css/select2.min.css'); ?>" rel="stylesheet"/>
     <!-- JS -->
     <?php echo $scripts_header; ?>
 </head>

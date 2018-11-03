@@ -34,7 +34,7 @@ class MY_Controller extends CI_Controller{
         $this->template->add_js('https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js', TRUE);
         $this->template->add_js('https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js', TRUE);
         $this->template->add_js('https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.js', TRUE);
-        $this->template->add_js('https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js');
+        $this->template->add_js(base_url('assets/vendor/select2/js/select2.min.js'));
         $this->template->add_js(base_url('assets/scripts/app/app-file-manager.1.2.0.min.js'), TRUE);
         $this->template->add_js(base_url('assets/scripts/app/app-analytics-overview.1.2.0.min.js'), TRUE);
 
