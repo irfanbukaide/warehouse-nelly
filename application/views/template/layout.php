@@ -93,7 +93,13 @@
                 <h6 class="main-sidebar__nav-title">Transaction</h6>
                 <ul class="nav nav--no-borders flex-column">
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= site_url('in_out'); ?>">
+                        <a class="nav-link" href="<?= site_url('transaction/qty'); ?>">
+                            <i class="material-icons">swap_horiz</i>
+                            <span>QTY</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= site_url('transaction'); ?>">
                             <i class="material-icons">swap_horiz</i>
                             <span>In & Out</span>
                         </a>
