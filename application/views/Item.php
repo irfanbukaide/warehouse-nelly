@@ -62,7 +62,7 @@
                     </td>
                     <td><?= $item->item_type; ?></td>
                     <td><?= $item->item_code; ?></td>
-                    <td><?= $item->category; ?></td>
+                    <td><?= isset($item->category) ? $item->category : '-'; ?></td>
                     <td><?= $item->item_hrg_modal; ?></td>
                     <td><?= $item->item_hrg_jual; ?></td>
                     <td><?= $item->item_status == 1 ? 'Available' : 'Empty'; ?></td>

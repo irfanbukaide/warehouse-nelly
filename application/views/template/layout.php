@@ -89,6 +89,25 @@
                             <span>Supplier</span>
                         </a>
                     </li>
+                </ul>
+                <h6 class="main-sidebar__nav-title">Transaction</h6>
+                <ul class="nav nav--no-borders flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= site_url('in_out'); ?>">
+                            <i class="material-icons">swap_horiz</i>
+                            <span>In & Out</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= site_url('in_out'); ?>">
+                            <i class="material-icons">local_shipping</i>
+                            <span>Delivery Order</span>
+                        </a>
+                    </li>
+                </ul>
+                <h6 class="main-sidebar__nav-title">Report</h6>
+                <h6 class="main-sidebar__nav-title">Setting</h6>
+                <ul class="nav nav--no-borders flex-column">
                     <li class="nav-item">
                         <a class="nav-link" href="<?= site_url('user'); ?>">
                             <i class="material-icons">account_circle</i>
@@ -96,35 +115,7 @@
                         </a>
                     </li>
                 </ul>
-                <h6 class="main-sidebar__nav-title">Transaction</h6>
-                <ul class="nav nav--no-borders flex-column">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle " data-toggle="dropdown" href="#" role="button"
-                           aria-haspopup="false" aria-expanded="false">
-                            <i class="material-icons"></i>
-                            <span>Transaction</span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-small">
-                            <a class="dropdown-item " href="transaksi-masuk.html">Income Order</a>
-                            <a class="dropdown-item " href="transaksi-keluar.html">Outcome Order</a>
-                            <a class="dropdown-item " href="transaksi-retur.html">Return Order</a>
-                            <a class="dropdown-item " href="delivery-order.html">Delivery Order</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle " data-toggle="dropdown" href="#" role="button"
-                           aria-haspopup="false" aria-expanded="false">
-                            <i class="material-icons">print</i>
-                            <span>Report</span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-small">
-                            <a class="dropdown-item " href="report-masuk.html">Barang Masuk</a>
-                            <a class="dropdown-item " href="report-keluar.html">Barang Keluar</a>
-                            <a class="dropdown-item " href="report-retur.html">Barang Retur</a>
-                        </div>
-                    </li>
 
-                </ul>
                 <h6 class="main-sidebar__nav-title">Documentation</h6>
                 <ul class="nav nav--no-borders flex-column">
                     <li class="nav-item">

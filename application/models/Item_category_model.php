@@ -6,7 +6,7 @@ class Item_category_model extends MY_Model{
     {
         $this->table = 'item_category';
         $this->primary_key = 'item_category_id';
-        $this->protected = array('item_category_id', 'created_at', 'update_at', 'deleted_at');
+        $this->protected = array('created_at', 'update_at', 'deleted_at');
         $this->timestamps = TRUE;
         $this->soft_deletes = FALSE;
         $this->has_one['item'] = array(

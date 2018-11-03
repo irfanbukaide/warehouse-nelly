@@ -1,14 +1,15 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Item  extends MY_Controller{
+class Item extends MY_Controller
+{
 
     public function __construct()
     {
         parent::__construct();
 
         // load model
-        $this->load->model('Item_model','item_model');
+        $this->load->model('Item_model', 'item_model');
         $this->load->model('Category_model', 'category_model');
         $this->load->model('Item_category_model', 'item_category_model');
 
@@ -27,7 +28,9 @@ class Item  extends MY_Controller{
         $items = $this->item_model->get_all();
         foreach ($items as $item) {
             $item_category = $this->item_category_model->with_category()->where('item_id', $item->item_id)->get();
-            $item->category = $item_category->category->category_name;
+            if (isset($item_category->category)) {
+                $item->category = $item_category->category->category_name;
+            }
         }
 
         // inisialisasi struktur
@@ -50,16 +53,17 @@ class Item  extends MY_Controller{
 
         // store post[] into array
         $item_data = array(
-                'item_id'       => $id,
+            'item_id' => $id,
             'item_code' => $this->input->post('item_code'),
             'item_type' => $this->input->post('item_type'),
-                'item_name' => $this->input->post('item_name'),
-                'item_hrg_modal'    => $this->input->post('item_hrg_modal'),
-                'item_hrg_jual'    => $this->input->post('item_hrg_jual'),
+            'item_name' => $this->input->post('item_name'),
+            'item_hrg_modal' => $this->input->post('item_hrg_modal'),
+            'item_hrg_jual' => $this->input->post('item_hrg_jual'),
             'item_status' => $this->input->post('item_status'),
         );
 
         $item_category_data = array(
+            'item_category_id' => $this->item_category_model->guid(),
             'item_id' => $id,
             'category_id' => $category_id
         );
@@ -67,7 +71,7 @@ class Item  extends MY_Controller{
         // check relasi
         if ($item_category) {
             try {
-                $this->item_category_model->update($item_category_data);
+                $this->item_category_model->update($item_category_data, 'item_category_id');
             } catch (\Exception $e) {
                 // set session temp message
                 $this->pesan->gagal('ERROR : ' . $e);
@@ -85,7 +89,7 @@ class Item  extends MY_Controller{
         if ($item) {
             try {
                 // store proses kedalam variabel
-                $item_update = $this->item_model->update($item_data,'item_id');
+                $item_update = $this->item_model->update($item_data, 'item_id');
 
                 // cek jika berhasil diupdate
                 if ($item_update) {
@@ -154,13 +158,19 @@ class Item  extends MY_Controller{
         $this->template->add_title_segment('Edit Item');
 
         // get data from param id
+
         $item = $this->item_model->where('item_id', $id)->get();
-        $item->category_id = $this->item_category_model->where('item_id', $id)->get()->category_id;
+        $category = $this->item_category_model->where('item_id', $id)->get();
+        if ($category) {
+            $item->category_id = $category->category_id;
+        } else {
+            $item->category_id = '';
+        }
 
         $categories = $this->category_model->get_all();
 
         // cek if not exists
-        if (! $item) {
+        if (!$item) {
             // set session temp message
             $this->pesan->gagal('Mohon maaf data tidak ditemukan.');
 
@@ -182,7 +192,7 @@ class Item  extends MY_Controller{
         $item = $this->item_model->where('item_id', $id)->get();
 
         // cek if not exists
-        if (! $item) {
+        if (!$item) {
             // set session temp message
             $this->pesan->gagal('Mohon maaf data tidak ditemukan.');
 
@@ -211,4 +221,5 @@ class Item  extends MY_Controller{
     }
 
 }
+
 ?>

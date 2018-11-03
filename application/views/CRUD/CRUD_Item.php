@@ -17,7 +17,7 @@ if ($mode == 'create') {
     $item_cost = $item->item_hrg_modal;
     $item_price = $item->item_hrg_jual;
     $item_status = 'checked="checked"';
-    $category_id = $item->category_id;
+    $category_id = isset($item->category_id) ? $item->category_id : '';
 }
 
 ?>
@@ -108,7 +108,7 @@ if ($mode == 'create') {
                                             <label for="item_status">Item Status</label>
                                             <div class="custom-control custom-toggle custom-toggle-sm">
                                                 <input type="checkbox" id="item_status" name="item_status"
-                                                       class="custom-control-input" <?= $item_status; ?>>
+                                                       class="custom-control-input" <?= $item_status; ?> value="1">
                                                 <label class="custom-control-label" for="item_status">Available</label>
                                             </div>
                                         </div>
