@@ -70,7 +70,7 @@ if ($mode == 'create') {
                                     </div>
                                     <div class="form-group">
                                         <label for="supplier_address">Supplier Address</label>
-                                        <textarea type="text" class="form-control" name="supplier_address"
+                                        <textarea class="form-control" name="supplier_address"
                                                   id="supplier_address"
                                                   placeholder="Address"><?= $supplier_address; ?></textarea>
                                     </div>
@@ -87,3 +87,10 @@ if ($mode == 'create') {
     </div>
     <!-- End Default Light Table -->
 </div>
+<script>
+    $(document).ready(function () {
+        $('#province_id').select2({
+            theme: 'bootstrap4'
+        });
+    })
+</script>

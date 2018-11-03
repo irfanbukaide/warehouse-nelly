@@ -16,6 +16,13 @@ class Item_qty_model extends MY_Model
             'foreign_key' => 'item_id',
             'local_key' => 'item_id'
         );
+
+//        $this->has_one['item_qty_type'] = array(
+//            'foreign_model' => 'Item_qty_type_model',
+//            'foreign_table' => 'item_qty_type',
+//            'foreign_key' => 'type_id',
+//            'local_key' => 'item_qty_type'
+//        );
         parent::__construct();
     }
 

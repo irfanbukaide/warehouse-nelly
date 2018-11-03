@@ -26,10 +26,12 @@ class Item extends MY_Controller
 
         // get all data
         $items = $this->item_model->get_all();
-        foreach ($items as $item) {
-            $item_category = $this->item_category_model->with_category()->where('item_id', $item->item_id)->get();
-            if (isset($item_category->category)) {
-                $item->category = $item_category->category->category_name;
+        if ($items != NULL) {
+            foreach ($items as $item) {
+                $item_category = $this->item_category_model->with_category()->where('item_id', $item->item_id)->get();
+                if (isset($item_category->category)) {
+                    $item->category = $item_category->category->category_name;
+                }
             }
         }
 

@@ -50,9 +50,29 @@ if ($mode == 'create') {
                                                    placeholder="Item Code" value="<?= $item_code; ?>">
                                         </div>
                                         <div class="form-group col-md-6">
+                                            <label for="item_name">Item Name</label>
+                                            <input type="text" class="form-control" name="item_name"
+                                                   id="item_name" placeholder="Name" value="<?= $item_name; ?>">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="category_id">Category</label>
+                                            <select name="category_id" id="category_id" class="form-control">
+                                                <option selected>Select Category</option>
+                                                <?php if ($categories != NULL): ?>
+                                                    <?php foreach ($categories as $category): ?>
+                                                        <option value="<?= $category->category_id; ?>" <?= $category->category_id == $category_id ? 'selected' : ''; ?>><?= $category->category_name; ?></option>
+                                                    <?php endforeach; ?>
+                                                <?php endif; ?>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group col-md-6">
+
                                             <label for="item_type">Item Type</label>
                                             <select name="item_type" id="item_type" class="form-control">
-                                                <option selected>Select Type ...</option>
+                                                <option selected>Select Type</option>
                                                 <option value="fast" <?= $item_type == 'fast' ? 'selected' : ''; ?>>
                                                     Fast
                                                 </option>
@@ -60,13 +80,6 @@ if ($mode == 'create') {
                                                     Paloma
                                                 </option>
                                             </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for="item_name">Item Name</label>
-                                            <input type="text" class="form-control" name="item_name"
-                                                   id="item_name" placeholder="Name" value="<?= $item_name; ?>">
                                         </div>
                                     </div>
                                     <div class="form-row">
@@ -82,17 +95,7 @@ if ($mode == 'create') {
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for="category_id">Category</label>
-                                            <select name="category_id" id="category_id" class="form-control">
-                                                <option selected>Select Category ...</option>
-                                                <?php if ($categories != NULL): ?>
-                                                    <?php foreach ($categories as $category): ?>
-                                                        <option value="<?= $category->category_id; ?>" <?= $category->category_id == $category_id ? 'selected' : ''; ?>><?= $category->category_name; ?></option>
-                                                    <?php endforeach; ?>
-                                                <?php endif; ?>
-                                            </select>
-                                        </div>
+
                                         <div class="form-group col-md-6">
 
                                             <label for="item_img">Image</label>
@@ -126,3 +129,14 @@ if ($mode == 'create') {
     </div>
     <!-- End Default Light Table -->
 </div>
+<script>
+    $(document).ready(function () {
+        $('#category_id').select2({
+            theme: 'bootstrap4'
+        });
+
+        $('#item_type').select2({
+            theme: 'bootstrap4'
+        });
+    })
+</script>

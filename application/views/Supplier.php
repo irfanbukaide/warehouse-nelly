@@ -55,8 +55,8 @@
                     <td><?= $supplier->supplier_contact; ?></td>
                     <td><?= $supplier->supplier_email; ?></td>
                     <td><?= $supplier->provinces->name; ?></td>
-                    <td><?= $supplier->created_at; ?></td>
-                    <td><?= $supplier->updated_at != NULL ? $supplier->updated_at : '-'; ?></td>
+                    <td><?= date_format(date_create($supplier->created_at), 'd-M-Y H:i'); ?></td>
+                    <td><?= $supplier->updated_at != NULL ? date_format(date_create($supplier->updated_at), 'd-M-Y H:i') : '-'; ?></td>
                     <td>
                         <div class="btn-group btn-group-sm d-flex" role="group"
                              aria-label="Table row actions">

@@ -54,8 +54,8 @@
                     <td><?= $category->category_name; ?></td>
                     <td><?= $category->category_description != NULL ? $category->category_description : '-'; ?></td>
                     <td><?= $category->category_active == 1 ? '<div class="text-success">Active</div>' : '<div class="text-default">Disabled</div>'; ?></td>
-                    <td><?= $category->created_at; ?></td>
-                    <td><?= $category->updated_at != NULL ? $category->updated_at : '-'; ?></td>
+                    <td><?= date_format(date_create($category->created_at), 'd-M-Y H:i'); ?></td>
+                    <td><?= $category->updated_at != NULL ? date_format(date_create($category->updated_at), 'd-M-Y H:i') : '-'; ?></td>
                     <td class="file-manager__item-actions">
                         <div class="btn-group btn-group-sm d-flex" role="group"
                              aria-label="Table row actions">
