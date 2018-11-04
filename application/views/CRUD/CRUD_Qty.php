@@ -21,9 +21,22 @@ $item_qty_id = $id;
 <?php endif; ?>
 <div class="main-content-container container-fluid px-4 pb-4">
     <div class="page-header row no-gutters py-4">
-        <div class="col">
+        <div class="col-12 col-sm-4 text-center text-sm-left mb-4 mb-sm-0">
             <span class="text-uppercase page-subtitle">Transaction</span>
             <h3 class="page-title"><i class="material-icons">swap_horiz</i>QTY</h3>
+        </div>
+        <div class="offset-sm-4 col-4 d-flex col-12 col-sm-4 d-flex align-items-center">
+            <div id="transaction-history-date-range" class="input-daterange input-group input-group-sm ml-auto">
+                <input type="text" class="input-sm form-control" name="start" placeholder="Start Date"
+                       id="analytics-overview-date-range-1">
+                <input type="text" class="input-sm form-control" name="end" placeholder="End Date"
+                       id="analytics-overview-date-range-2">
+                <span class="input-group-append">
+                    <span class="input-group-text">
+                      <i class="material-icons"></i>
+                    </span>
+                  </span>
+            </div>
         </div>
     </div>
     <!-- File Manager -->
@@ -44,27 +57,30 @@ $item_qty_id = $id;
                 <?php if ($qtys != NULL): ?>
                     <?php foreach ($qtys as $qty): ?>
                         <tr>
-                            <td class="text-left"><?= date_format(date_create($qty->created_at), 'd-M-Y'); ?></td>
+                            <td class="text-left"><?= date_format(date_create($qty->created_at), 'd-M-Y H:i'); ?></td>
                             <td class="text-left"><?= $qty->item->item_name; ?></td>
                             <td><?= $qty->item_qty_bahan; ?></td>
                             <td><?= $qty->item_qty_sablon; ?> / <span
-                                        class="text-danger"><?= $qty->item_qty_bahan - $qty->item_qty_sablon; ?></span>
-                            </td>
+                                        class="text-danger"><?= $qty->sablon_rusak; ?></span></td>
                             <td><?= $qty->item_qty_jahit; ?> / <span
-                                        class="text-danger"><?= $qty->item_qty_sablon - $qty->item_qty_jahit; ?></span>
-                            </td>
+                                        class="text-danger"><?= $qty->jahit_rusak; ?></span></td>
                             <td><span class="text-success"><?= $qty->item_qty_jahit; ?></span></td>
                         </tr>
                     <?php endforeach; ?>
                 <?php endif; ?>
-                <!--                <tr role="row">-->
-                <!--                    <td colspan="2">Total</td>-->
-                <!--                    <td>Bahan</td>-->
-                <!--                    <td>Sablon</td>-->
-                <!--                    <td>Jahit</td>-->
-                <!--                    <td>Grand</td>-->
-                <!--                </tr>-->
                 </tbody>
+                <tfoot>
+                <tr>
+                    <th colspan="2"></th>
+                    <th class="text-center"><?= isset($bahan_total) ? $bahan_total : '-'; ?></th>
+                    <th class="text-center"><?= isset($sablon_total) ? $sablon_total : '-'; ?> / <span
+                                class="text-danger"><?= isset($sablon_rusak) ? $sablon_rusak : '-'; ?></span></th>
+                    <th class="text-center"><?= isset($jahit_total) ? $jahit_total : '-'; ?> / <span
+                                class="text-danger"><?= isset($jahit_rusak) ? $jahit_rusak : '-'; ?></span></th>
+                    <th class="text-center"><span
+                                class="text-success"><?= isset($grand_total) ? $grand_total : '-'; ?></span></th>
+                </tr>
+                </tfoot>
             </table>
 
         </div>
@@ -98,21 +114,21 @@ $item_qty_id = $id;
                                         <div class="form-group col">
                                             <label for="item_qty_bahan">Bahan</label>
                                             <input type="number" class="form-control" name="item_qty_bahan"
-                                                   id="item_qty_bahan"
-                                                   placeholder="0">
+                                                   id="item_qty_bahan" min="0"
+                                                   placeholder="0" required>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-8">
                                             <label for="item_qty_sablon">Sablon</label>
                                             <input type="number" class="form-control" name="item_qty_sablon"
-                                                   id="item_qty_sablon"
-                                                   placeholder="0">
+                                                   id="item_qty_sablon" min="0"
+                                                   placeholder="0" required disabled>
                                         </div>
                                         <div class="form-group col-4">
                                             <label for="sablon_rusak">BS</label>
                                             <input type="number" class="form-control" name="sablon_rusak"
-                                                   id="sablon_rusak"
+                                                   id="sablon_rusak" min="0"
                                                    placeholder="0" disabled>
                                         </div>
                                     </div>
@@ -120,13 +136,13 @@ $item_qty_id = $id;
                                         <div class="form-group col-8">
                                             <label for="item_qty_jahit">Jahitan</label>
                                             <input type="number" class="form-control" name="item_qty_jahit"
-                                                   id="item_qty_jahit"
-                                                   placeholder="0">
+                                                   id="item_qty_jahit" min="0"
+                                                   placeholder="0" required disabled>
                                         </div>
                                         <div class="form-group col-4">
                                             <label for="jahit_rusak">BS</label>
                                             <input type="number" class="form-control" name="jahit_rusak"
-                                                   id="jahit_rusak"
+                                                   id="jahit_rusak" min="0"
                                                    placeholder="0" disabled>
                                         </div>
                                     </div>
@@ -148,5 +164,41 @@ $item_qty_id = $id;
         $('#item_id').select2({
             theme: 'bootstrap4'
         });
+    });
+
+    $(function () {
+        var item_qty_bahan = $('#item_qty_bahan'),
+            item_qty_sablon = $('#item_qty_sablon'),
+            sablon_rusak = $('#sablon_rusak'),
+            item_qty_jahit = $('#item_qty_jahit'),
+            jahit_rusak = $('#jahit_rusak');
+
+        item_qty_bahan.keyup(function () {
+            if (item_qty_bahan.val() < 1) {
+                item_qty_sablon.attr('disabled', 'disabled').val(0);
+                item_qty_jahit.attr('disabled', 'disabled').val(0);
+            } else {
+                item_qty_sablon.removeAttr('disabled');
+                item_qty_sablon.attr('max', item_qty_bahan.val())
+
+            }
+        });
+
+        item_qty_sablon.keyup(function () {
+            if (item_qty_sablon.val() < 1) {
+                item_qty_jahit.attr('disabled', 'disabled').val(0);
+            } else {
+                item_qty_jahit.removeAttr('disabled');
+                item_qty_jahit.attr('max', item_qty_sablon.val());
+
+                sablon_rusak.val(item_qty_bahan.val() - item_qty_sablon.val());
+            }
+        });
+
+        item_qty_jahit.keyup(function () {
+            if (item_qty_jahit.val() > 1) {
+                jahit_rusak.val(item_qty_sablon.val() - item_qty_jahit.val());
+            }
+        })
     })
 </script>

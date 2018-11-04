@@ -192,7 +192,14 @@
     $(document).ready(function () {
         setTimeout(function () {
             $('#message').fadeOut();
-        }, 3000)
+        }, 3000);
+
+        $('.navbar-search').keyup(function () {
+            var value = $(this).val().toLowerCase();
+            $('.nav-item').filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            })
+        })
     })
 </script>
 </body>

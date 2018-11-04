@@ -17,23 +17,51 @@ class Qty extends MY_Controller
     {
         $page = array();
 
-        // set mode
-        $page['mode'] = 'create';
-
         // config page
         $this->template->add_title_segment('Input QTY');
+
+        // create guid()
+        $id = $this->item_qty_model->guid();
 
         // get data
         $qtys = $this->item_qty_model->with_item()->get_all();
         $items = $this->item_model->get_all();
 
-        // create guid()
-        $id = $this->item_qty_model->guid();
+        // sum
+        $bahan_total = 0;
+        $jahit_total = 0;
+        $sablon_total = 0;
+        $sablon_rusak = 0;
+        $jahit_rusak = 0;
+        $grand_total = 0;
+        if ($qtys != NULL) {
+            foreach ($qtys as $qty) {
+                $qty->sablon_rusak = $qty->item_qty_bahan - $qty->item_qty_sablon;
+                $qty->jahit_rusak = $qty->item_qty_sablon - $qty->item_qty_jahit;
+                $qty->finish_total = $qty->item_qty_jahit;
+            }
+
+            foreach ($qtys as $qty) {
+                $bahan_total += $qty->item_qty_bahan;
+                $sablon_total += $qty->item_qty_sablon;
+                $jahit_total += $qty->item_qty_jahit;
+                $sablon_rusak += $qty->sablon_rusak;
+                $jahit_rusak += $qty->jahit_rusak;
+                $grand_total += $qty->finish_total;
+            }
+        }
+
 
         // inisialisasi struktur
         $page['id'] = $id;
         $page['qtys'] = $qtys;
         $page['items'] = $items;
+        $page['bahan_total'] = $bahan_total;
+        $page['sablon_total'] = $sablon_total;
+        $page['jahit_total'] = $jahit_total;
+        $page['sablon_rusak'] = $sablon_rusak;
+        $page['jahit_rusak'] = $jahit_rusak;
+        $page['grand_total'] = $grand_total;
 
         // return to view
         $this->template->render('CRUD/CRUD_Qty', $page);
