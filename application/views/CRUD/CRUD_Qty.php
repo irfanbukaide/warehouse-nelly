@@ -25,63 +25,80 @@ $item_qty_id = $id;
             <span class="text-uppercase page-subtitle">Transaction</span>
             <h3 class="page-title"><i class="material-icons">swap_horiz</i>QTY</h3>
         </div>
-        <div class="offset-sm-4 col-4 d-flex col-12 col-sm-4 d-flex align-items-center">
-            <div id="transaction-history-date-range" class="input-daterange input-group input-group-sm ml-auto">
-                <input type="text" class="input-sm form-control" name="start" placeholder="Start Date"
-                       id="analytics-overview-date-range-1">
-                <input type="text" class="input-sm form-control" name="end" placeholder="End Date"
-                       id="analytics-overview-date-range-2">
-                <span class="input-group-append">
-                    <span class="input-group-text">
-                      <i class="material-icons"></i>
-                    </span>
-                  </span>
-            </div>
-        </div>
     </div>
     <!-- File Manager -->
     <div class="row">
         <div class="col-9">
-            <table class="transaction-history d-none">
-                <thead>
-                <tr>
-                    <th class="text-left">Date</th>
-                    <th class="text-left">Item</th>
-                    <th>Bahan</th>
-                    <th>Sablon / BS</th>
-                    <th>Jahitan / BS</th>
-                    <th>Total</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php if ($qtys != NULL): ?>
-                    <?php foreach ($qtys as $qty): ?>
+            <div class="row mb-2">
+                <div class="col">
+                    <div class="card card-small">
+                        <div class="card-header border-bottom">
+                            <h6 class="m-0">Filter</h6>
+                        </div>
+                        <div class="card-body">
+                            <form action="<?= site_url('qty/search'); ?>" method="post">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="item_id">Item</label>
+                                        <select name="item_id" id="item_id" class="form-control">
+                                            <option value="">All</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6">
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <table class="transaction-history d-none">
+                        <thead>
                         <tr>
-                            <td class="text-left"><?= date_format(date_create($qty->created_at), 'd-M-Y H:i'); ?></td>
-                            <td class="text-left"><?= $qty->item->item_name; ?></td>
-                            <td><?= $qty->item_qty_bahan; ?></td>
-                            <td><?= $qty->item_qty_sablon; ?> / <span
-                                        class="text-danger"><?= $qty->sablon_rusak; ?></span></td>
-                            <td><?= $qty->item_qty_jahit; ?> / <span
-                                        class="text-danger"><?= $qty->jahit_rusak; ?></span></td>
-                            <td><span class="text-success"><?= $qty->item_qty_jahit; ?></span></td>
+                            <th class="text-left">Date</th>
+                            <th class="text-left">Item</th>
+                            <th>Bahan</th>
+                            <th>Sablon / BS</th>
+                            <th>Jahitan / BS</th>
+                            <th>Total</th>
                         </tr>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-                </tbody>
-                <tfoot>
-                <tr>
-                    <th colspan="2"></th>
-                    <th class="text-center"><?= isset($bahan_total) ? $bahan_total : '-'; ?></th>
-                    <th class="text-center"><?= isset($sablon_total) ? $sablon_total : '-'; ?> / <span
-                                class="text-danger"><?= isset($sablon_rusak) ? $sablon_rusak : '-'; ?></span></th>
-                    <th class="text-center"><?= isset($jahit_total) ? $jahit_total : '-'; ?> / <span
-                                class="text-danger"><?= isset($jahit_rusak) ? $jahit_rusak : '-'; ?></span></th>
-                    <th class="text-center"><span
-                                class="text-success"><?= isset($grand_total) ? $grand_total : '-'; ?></span></th>
-                </tr>
-                </tfoot>
-            </table>
+                        </thead>
+                        <tbody>
+                        <?php if ($qtys != NULL): ?>
+                            <?php foreach ($qtys as $qty): ?>
+                                <tr>
+                                    <td class="text-left"><?= date_format(date_create($qty->created_at), 'd-M-Y H:i'); ?></td>
+                                    <td class="text-left"><?= $qty->item->item_name; ?></td>
+                                    <td><?= $qty->item_qty_bahan; ?></td>
+                                    <td><?= $qty->item_qty_sablon; ?> / <span
+                                                class="text-danger"><?= $qty->sablon_rusak; ?></span></td>
+                                    <td><?= $qty->item_qty_jahit; ?> / <span
+                                                class="text-danger"><?= $qty->jahit_rusak; ?></span></td>
+                                    <td><span class="text-success"><?= $qty->item_qty_jahit; ?></span></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th colspan="2"></th>
+                            <th class="text-center"><?= isset($bahan_total) ? $bahan_total : '-'; ?></th>
+                            <th class="text-center"><?= isset($sablon_total) ? $sablon_total : '-'; ?> / <span
+                                        class="text-danger"><?= isset($sablon_rusak) ? $sablon_rusak : '-'; ?></span>
+                            </th>
+                            <th class="text-center"><?= isset($jahit_total) ? $jahit_total : '-'; ?> / <span
+                                        class="text-danger"><?= isset($jahit_rusak) ? $jahit_rusak : '-'; ?></span></th>
+                            <th class="text-center"><span
+                                        class="text-success"><?= isset($grand_total) ? $grand_total : '-'; ?></span>
+                            </th>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
 
         </div>
         <div class="col-3">
