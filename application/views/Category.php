@@ -35,13 +35,13 @@
         </div>
     </div>
 
-    <table class="file-manager file-manager-list table-responsive">
+    <table class="transaction-history d-none">
         <thead>
         <tr>
             <th>Category Name</th>
             <th>Category Status</th>
-            <th>Created at</th>
-            <th>Updated at</th>
+            <!--            <th>Created at</th>-->
+            <!--            <th>Updated at</th>-->
             <th>Actions</th>
         </tr>
         </thead>
@@ -52,8 +52,6 @@
                 <tr>
                     <td><?= $category->category_name; ?></td>
                     <td><?= $category->category_active == 1 ? '<div class="text-success">Active</div>' : '<div class="text-default">Disabled</div>'; ?></td>
-                    <td><?= date_format(date_create($category->created_at), 'd-M-Y H:i'); ?></td>
-                    <td><?= $category->updated_at != NULL ? date_format(date_create($category->updated_at), 'd-M-Y H:i') : '-'; ?></td>
                     <td class="file-manager__item-actions">
                         <div class="btn-group btn-group-sm d-flex" role="group"
                              aria-label="Table row actions">

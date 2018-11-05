@@ -36,18 +36,19 @@
     </div>
     <!-- End Page Header -->
     <!-- File Manager -->
-    <table class="file-manager file-manager-list d-none table-responsive">
+    <table class="transaction-history d-none">
         <thead>
         <tr>
             <th class="hide-sort-icons">Item Image</th>
+            <th>Item Name</th>
             <th>Item Type</th>
             <th>Item Code</th>
             <th>Category</th>
             <th>Item Cost</th>
             <th>Item Price</th>
             <th>Item Status</th>
-            <th>Created at</th>
-            <th>Updated at</th>
+            <!--            <th>Created at</th>-->
+            <!--            <th>Updated at</th>-->
             <th>Actions</th>
         </tr>
         </thead>
@@ -60,14 +61,13 @@
                             <img class="border rounded" src="images/sales-overview/product-order-1.jpg">
                         </a>
                     </td>
+                    <td><?= $item->item_name; ?></td>
                     <td><?= $item->item_type; ?></td>
                     <td><?= $item->item_code; ?></td>
                     <td><?= isset($item->category) ? $item->category : '-'; ?></td>
                     <td><?= $item->item_hrg_modal; ?></td>
                     <td><?= $item->item_hrg_jual; ?></td>
                     <td><?= $item->item_status == 1 ? 'Available' : 'Empty'; ?></td>
-                    <td><?= date_format(date_create($item->created_at), 'd-M-Y H:i'); ?></td>
-                    <td><?= $item->updated_at != NULL ? date_format(date_create($item->updated_at), 'd-M-Y H:i') : '-'; ?></td>
                     <td class="file-manager__item-actions">
                         <div class="btn-group btn-group-sm d-flex justify-content-end" role="group"
                              aria-label="Table row actions">

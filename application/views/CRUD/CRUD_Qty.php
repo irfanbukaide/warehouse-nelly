@@ -28,80 +28,7 @@ $item_qty_id = $id;
     </div>
     <!-- File Manager -->
     <div class="row">
-        <div class="col-9">
-            <div class="row mb-2">
-                <div class="col">
-                    <div class="card card-small">
-                        <div class="card-header border-bottom">
-                            <h6 class="m-0">Filter</h6>
-                        </div>
-                        <div class="card-body">
-                            <form action="<?= site_url('qty/search'); ?>" method="post">
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label for="item_id">Item</label>
-                                        <select name="item_id" id="item_id" class="form-control">
-                                            <option value="">All</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group col-md-6">
-
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <table class="transaction-history d-none">
-                        <thead>
-                        <tr>
-                            <th class="text-left">Date</th>
-                            <th class="text-left">Item</th>
-                            <th>Bahan</th>
-                            <th>Sablon / BS</th>
-                            <th>Jahitan / BS</th>
-                            <th>Total</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php if ($qtys != NULL): ?>
-                            <?php foreach ($qtys as $qty): ?>
-                                <tr>
-                                    <td class="text-left"><?= date_format(date_create($qty->created_at), 'd-M-Y H:i'); ?></td>
-                                    <td class="text-left"><?= $qty->item->item_name; ?></td>
-                                    <td><?= $qty->item_qty_bahan; ?></td>
-                                    <td><?= $qty->item_qty_sablon; ?> / <span
-                                                class="text-danger"><?= $qty->sablon_rusak; ?></span></td>
-                                    <td><?= $qty->item_qty_jahit; ?> / <span
-                                                class="text-danger"><?= $qty->jahit_rusak; ?></span></td>
-                                    <td><span class="text-success"><?= $qty->item_qty_jahit; ?></span></td>
-                                </tr>
-                            <?php endforeach; ?>
-                        <?php endif; ?>
-                        </tbody>
-                        <tfoot>
-                        <tr>
-                            <th colspan="2"></th>
-                            <th class="text-center"><?= isset($bahan_total) ? $bahan_total : '-'; ?></th>
-                            <th class="text-center"><?= isset($sablon_total) ? $sablon_total : '-'; ?> / <span
-                                        class="text-danger"><?= isset($sablon_rusak) ? $sablon_rusak : '-'; ?></span>
-                            </th>
-                            <th class="text-center"><?= isset($jahit_total) ? $jahit_total : '-'; ?> / <span
-                                        class="text-danger"><?= isset($jahit_rusak) ? $jahit_rusak : '-'; ?></span></th>
-                            <th class="text-center"><span
-                                        class="text-success"><?= isset($grand_total) ? $grand_total : '-'; ?></span>
-                            </th>
-                        </tr>
-                        </tfoot>
-                    </table>
-                </div>
-            </div>
-
-        </div>
-        <div class="col-3">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-3 mb-2">
             <div class="card card-small">
                 <div class="card-header border-bottom">
                     <h6 class="m-0">Input QTY</h6>
@@ -136,13 +63,13 @@ $item_qty_id = $id;
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-8">
+                                        <div class="form-group col-6">
                                             <label for="item_qty_sablon">Sablon</label>
                                             <input type="number" class="form-control" name="item_qty_sablon"
                                                    id="item_qty_sablon" min="0"
                                                    placeholder="0" required disabled>
                                         </div>
-                                        <div class="form-group col-4">
+                                        <div class="form-group col-6">
                                             <label for="sablon_rusak">BS</label>
                                             <input type="number" class="form-control" name="sablon_rusak"
                                                    id="sablon_rusak" min="0"
@@ -150,13 +77,13 @@ $item_qty_id = $id;
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-8">
+                                        <div class="form-group col-6">
                                             <label for="item_qty_jahit">Jahitan</label>
                                             <input type="number" class="form-control" name="item_qty_jahit"
                                                    id="item_qty_jahit" min="0"
                                                    placeholder="0" required disabled>
                                         </div>
-                                        <div class="form-group col-4">
+                                        <div class="form-group col-6">
                                             <label for="jahit_rusak">BS</label>
                                             <input type="number" class="form-control" name="jahit_rusak"
                                                    id="jahit_rusak" min="0"
@@ -171,6 +98,52 @@ $item_qty_id = $id;
                     </li>
                 </ul>
             </div>
+
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-9">
+            <table class="table table-responsive">
+                <thead>
+                <tr>
+                    <th class="text-left">Date</th>
+                    <th class="text-left">Item</th>
+                    <th>Bahan</th>
+                    <th>Sablon / BS</th>
+                    <th>Jahitan / BS</th>
+                    <th>Total</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php if ($qtys != NULL): ?>
+                    <?php foreach ($qtys as $qty): ?>
+                        <tr>
+                            <td class="text-left"><?= date_format(date_create($qty->item_qty_date), 'd-M-Y'); ?></td>
+                            <td class="text-left"><?= $qty->item_name; ?></td>
+                            <td><?= $qty->item_qty_bahan; ?></td>
+                            <td><?= $qty->item_qty_sablon; ?> / <span
+                                        class="text-danger"><?= $qty->sablon_rusak; ?></span></td>
+                            <td><?= $qty->item_qty_jahit; ?> / <span
+                                        class="text-danger"><?= $qty->jahit_rusak; ?></span></td>
+                            <td><span class="text-success"><?= $qty->item_qty_jahit; ?></span></td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <th colspan="2"></th>
+                    <th class="text-center"><?= isset($bahan_total) ? $bahan_total : '-'; ?></th>
+                    <th class="text-center"><?= isset($sablon_total) ? $sablon_total : '-'; ?> / <span
+                                class="text-danger"><?= isset($sablon_rusak) ? $sablon_rusak : '-'; ?></span>
+                    </th>
+                    <th class="text-center"><?= isset($jahit_total) ? $jahit_total : '-'; ?> / <span
+                                class="text-danger"><?= isset($jahit_rusak) ? $jahit_rusak : '-'; ?></span></th>
+                    <th class="text-center"><span
+                                class="text-success"><?= isset($grand_total) ? $grand_total : '-'; ?></span>
+                    </th>
+                </tr>
+                </tfoot>
+            </table>
+
         </div>
 
     </div>
@@ -178,8 +151,15 @@ $item_qty_id = $id;
 </div>
 <script>
     $(document).ready(function () {
-        $('#item_id').select2({
+        $('[id^=item_id]').select2({
             theme: 'bootstrap4'
+        });
+
+        $('.table').DataTable({
+            "order": [[0, "desc"]],
+            "paging": false,
+            "searching": false,
+            "info": false
         });
     });
 
@@ -205,6 +185,8 @@ $item_qty_id = $id;
             if (item_qty_sablon.val() < 1) {
                 item_qty_jahit.attr('disabled', 'disabled').val(0);
             } else {
+                item_qty_sablon.attr('max', item_qty_bahan.val());
+
                 item_qty_jahit.removeAttr('disabled');
                 item_qty_jahit.attr('max', item_qty_sablon.val());
 
@@ -214,6 +196,8 @@ $item_qty_id = $id;
 
         item_qty_jahit.keyup(function () {
             if (item_qty_jahit.val() > 1) {
+                item_qty_jahit.attr('max', item_qty_sablon.val());
+
                 jahit_rusak.val(item_qty_sablon.val() - item_qty_jahit.val());
             }
         })

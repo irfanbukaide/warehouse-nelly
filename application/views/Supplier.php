@@ -35,15 +35,15 @@
         </div>
     </div>
 
-    <table class="file-manager file-manager-list table-responsive">
+    <table class="transaction-history d-none">
         <thead>
         <tr>
             <th>Supplier Name</th>
             <th>Supplier Contact</th>
             <th>Supplier Email</th>
             <th>Province</th>
-            <th>Created at</th>
-            <th>Updated at</th>
+            <!--            <th>Created at</th>-->
+            <!--            <th>Updated at</th>-->
             <th>Actions</th>
         </tr>
         </thead>
@@ -55,8 +55,6 @@
                     <td><?= $supplier->supplier_contact; ?></td>
                     <td><?= $supplier->supplier_email; ?></td>
                     <td><?= $supplier->provinces->name; ?></td>
-                    <td><?= date_format(date_create($supplier->created_at), 'd-M-Y H:i'); ?></td>
-                    <td><?= $supplier->updated_at != NULL ? date_format(date_create($supplier->updated_at), 'd-M-Y H:i') : '-'; ?></td>
                     <td>
                         <div class="btn-group btn-group-sm d-flex" role="group"
                              aria-label="Table row actions">

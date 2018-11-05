@@ -18,13 +18,14 @@ class Qty extends MY_Controller
         $page = array();
 
         // config page
-        $this->template->add_title_segment('Input QTY');
+        $this->template->add_title_segment('QTY');
 
         // create guid()
         $id = $this->item_qty_model->guid();
 
         // get data
-        $qtys = $this->item_qty_model->with_item()->get_all();
+//        $qtys = $this->item_qty_model->with_item()->where('item_qty_date', date('Y-m-d'))->get_all();
+        $qtys = $this->item_qty_model->counters();
         $items = $this->item_model->get_all();
 
         // sum
@@ -67,6 +68,7 @@ class Qty extends MY_Controller
         $this->template->render('CRUD/CRUD_Qty', $page);
     }
 
+
     public function save()
     {
         // form validation
@@ -82,6 +84,7 @@ class Qty extends MY_Controller
         // store post[] into array
         $item_qty_data = array(
             'item_qty_id' => $id,
+            'item_qty_date' => date('Y-m-d'),
             'item_id' => $this->input->post('item_id'),
             'item_qty_bahan' => $this->input->post('item_qty_bahan'),
             'item_qty_sablon' => $this->input->post('item_qty_sablon'),

@@ -37,6 +37,16 @@ class Item_qty_model extends MY_Model
         return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
     }
 
+    public function counters()
+    {
+        $query = $this->db->query('select item_qty_date, item.item_name, sum(item_qty_bahan) as item_qty_bahan, sum(item_qty_sablon) as item_qty_sablon, sum(item_qty_jahit) as item_qty_jahit
+                          from item_qty
+                          left join item
+                          on item_qty.item_id = item.item_id
+                          group by item_qty.item_id; ');
+        return $query->result();
+    }
+
 }
 
 ?>
