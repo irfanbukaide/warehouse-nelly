@@ -33,6 +33,7 @@ class MY_Controller extends CI_Controller
         $this->template->add_css(base_url('assets/vendor/select2/css/select2.min.css'));
         $this->template->add_css(base_url('assets/vendor/select2/css/select2-bootstrap4.min.css'));
         $this->template->add_css(base_url('assets/vendor/croppie/croppie.css'));
+        $this->template->add_css(base_url('assets/vendor/fancy/jquery.fancybox.min.css'));
 
         // load js
         $this->template->add_js('https://www.gstatic.com/charts/loader.js', TRUE);
@@ -50,6 +51,7 @@ class MY_Controller extends CI_Controller
         $this->template->add_js('https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.js', TRUE);
         $this->template->add_js(base_url('assets/vendor/select2/js/select2.min.js'));
         $this->template->add_js(base_url('assets/vendor/croppie/croppie.min.js'));
+        $this->template->add_js(base_url('assets/vendor/fancy/jquery.fancybox.min.js'));
         $this->template->add_js(base_url('assets/scripts/app/app-file-manager.1.2.0.min.js'), TRUE);
 //        $this->template->add_js(base_url('assets/scripts/app/app-analytics-overview.1.2.0.min.js'), TRUE);
         $this->template->add_js("assets/scripts/app/app-transaction-history.1.2.0.min.js", TRUE);

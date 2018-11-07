@@ -25,7 +25,7 @@ class Qty extends MY_Controller
 
         // get data
 //        $qtys = $this->item_qty_model->with_item()->where('item_qty_date', date('Y-m-d'))->get_all();
-        $qtys = $this->item_qty_model->counters();
+        $qtys = $this->item_qty_model->get_all();
         $items = $this->item_model->get_all();
 
         // sum
@@ -37,6 +37,15 @@ class Qty extends MY_Controller
         $grand_total = 0;
         if ($qtys != NULL) {
             foreach ($qtys as $qty) {
+                $item = $this->item_model->where('item_id', $qty->item_id)->get();
+
+                if ($item) {
+                    $qty->item_name = $item->item_code;
+
+                    if (isset($item->item_code2) && $item->item_code) {
+                        $qty->item_name = $qty->item_name . ' (' . $item->item_code2 . ')';
+                    }
+                }
                 $qty->sablon_rusak = $qty->item_qty_bahan - $qty->item_qty_sablon;
                 $qty->jahit_rusak = $qty->item_qty_sablon - $qty->item_qty_jahit;
                 $qty->finish_total = $qty->item_qty_jahit;
@@ -49,6 +58,16 @@ class Qty extends MY_Controller
                 $sablon_rusak += $qty->sablon_rusak;
                 $jahit_rusak += $qty->jahit_rusak;
                 $grand_total += $qty->finish_total;
+            }
+        }
+
+        if ($items) {
+            foreach ($items as $item) {
+                if (isset($item->item_code2) && $item->item_code2) {
+                    $item->item_name = $item->item_code . ' (' . $item->item_code2 . ')';
+                } else {
+                    $item->item_name = $item->item_code;
+                }
             }
         }
 

@@ -46,8 +46,7 @@ $item_qty_id = $id;
                                                 <option value="">Select Item</option>
                                                 <?php if ($items != NULL): ?>
                                                     <?php foreach ($items as $item): ?>
-                                                        <option value="<?= $item->item_id; ?>"><?= $item->item_code; ?>
-                                                            (<?= $item->item_code2; ?>)
+                                                        <option value="<?= $item->item_id; ?>"><?= $item->item_name; ?>
                                                         </option>
                                                     <?php endforeach; ?>
                                                 <?php endif; ?>
@@ -116,8 +115,8 @@ $item_qty_id = $id;
                 <?php if ($qtys != NULL): ?>
                     <?php foreach ($qtys as $qty): ?>
                         <tr>
-                            <td class="text-left"><?= date_format(date_create($qty->item_qty_date), 'd-M-Y'); ?></td>
-                            <td class="text-left"><?= $qty->item_code; ?> (<?= $qty->item_code2; ?>)</td>
+                            <td class="text-left"><?= date_format(date_create($qty->created_at), 'd-M-Y H:i'); ?></td>
+                            <td class="text-left"><?= $qty->item_name; ?></td>
                             <td><?= $qty->item_qty_bahan; ?></td>
                             <td><?= $qty->item_qty_sablon; ?> / <span
                                         class="text-danger"><?= $qty->sablon_rusak; ?></span></td>

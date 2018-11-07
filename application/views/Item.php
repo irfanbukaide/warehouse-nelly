@@ -55,7 +55,8 @@
                 <tr>
                     <td class="lo-stats__image">
                         <?php if ($item->item_image != NULL): ?>
-                            <a id="btnshowimage" href="<?= $item->item_image; ?>">
+                            <a id="btnshowimage" href="<?= $item->item_image; ?>" data-fancybox
+                               data-caption="<?= $item->item_code; ?>">
                                 <img class="border rounded" src="<?= $item->item_image; ?>">
                             </a>
                         <?php else: ?>
@@ -64,7 +65,7 @@
 
                     </td>
                     <td><?= $item->item_code; ?></td>
-                    <td><?= $item->item_code2; ?></td>
+                    <td><?= isset($item->item_code2) ? $item->item_code2 : '-'; ?></td>
                     <td><?= isset($item->category) ? $item->category : '-'; ?></td>
                     <td><?= $item->item_status == 1 ? 'Available' : 'Empty'; ?></td>
                     <td class="file-manager__item-actions">
@@ -123,6 +124,8 @@
             modalbody.load(url);
 
         });
+
+        $('[id^=btnshowimage]').fancybox();
 
 
     })
