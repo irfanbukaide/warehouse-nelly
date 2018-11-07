@@ -9,7 +9,7 @@ class Transaction extends MY_Controller
 
         //load model
         $this->load->model('Item_model', 'item_model');
-        $this->load->model('Item_qty_model', 'item_qty_model');
+        $this->load->model('Item_prd_model', 'item_prd_model');
         $this->load->model('Transaction_model', 'transaction_model');
 
     }
@@ -42,7 +42,7 @@ class Transaction extends MY_Controller
 
             if ($items) {
                 foreach ($items as $item) {
-                    $item_qty = $this->item_qty_model->where('item_id', $item->item_id)->get();
+                    $item_qty = $this->item_prd_model->where('item_id', $item->item_id)->get();
 
                     if ($item_qty) {
                         $hasil[] = $item;

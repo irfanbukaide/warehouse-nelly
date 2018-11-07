@@ -38,7 +38,7 @@ $item_qty_id = $id;
                         <div class="row">
                             <div class="col">
                                 <form action="<?= site_url('qty/save'); ?>" method="post">
-                                    <input type="hidden" name="item_qty_id" value="<?= $item_qty_id; ?>">
+                                    <input type="hidden" name="item_prd_id" value="<?= $item_qty_id; ?>">
                                     <div class="form-row">
                                         <div class="form-group col-md-12">
                                             <label for="item_id">Item</label>
@@ -55,17 +55,17 @@ $item_qty_id = $id;
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col">
-                                            <label for="item_qty_bahan">Bahan</label>
-                                            <input type="number" class="form-control" name="item_qty_bahan"
-                                                   id="item_qty_bahan" min="0"
+                                            <label for="item_prd_bahan">Bahan</label>
+                                            <input type="number" class="form-control" name="item_prd_bahan"
+                                                   id="item_prd_bahan" min="0"
                                                    placeholder="0" required>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-6">
-                                            <label for="item_qty_sablon">Sablon</label>
-                                            <input type="number" class="form-control" name="item_qty_sablon"
-                                                   id="item_qty_sablon" min="0"
+                                            <label for="item_prd_sablon">Sablon</label>
+                                            <input type="number" class="form-control" name="item_prd_sablon"
+                                                   id="item_prd_sablon" min="0"
                                                    placeholder="0" required disabled>
                                         </div>
                                         <div class="form-group col-6">
@@ -77,9 +77,9 @@ $item_qty_id = $id;
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-6">
-                                            <label for="item_qty_jahit">Jahitan</label>
-                                            <input type="number" class="form-control" name="item_qty_jahit"
-                                                   id="item_qty_jahit" min="0"
+                                            <label for="item_prd_jahit">Jahitan</label>
+                                            <input type="number" class="form-control" name="item_prd_jahit"
+                                                   id="item_prd_jahit" min="0"
                                                    placeholder="0" required disabled>
                                         </div>
                                         <div class="form-group col-6">
@@ -117,12 +117,12 @@ $item_qty_id = $id;
                         <tr>
                             <td class="text-left"><?= date_format(date_create($qty->created_at), 'd-M-Y H:i'); ?></td>
                             <td class="text-left"><?= $qty->item_name; ?></td>
-                            <td><?= $qty->item_qty_bahan; ?></td>
-                            <td><?= $qty->item_qty_sablon; ?> / <span
+                            <td><?= $qty->item_prd_bahan; ?></td>
+                            <td><?= $qty->item_prd_sablon; ?> / <span
                                         class="text-danger"><?= $qty->sablon_rusak; ?></span></td>
-                            <td><?= $qty->item_qty_jahit; ?> / <span
+                            <td><?= $qty->item_prd_jahit; ?> / <span
                                         class="text-danger"><?= $qty->jahit_rusak; ?></span></td>
-                            <td><span class="text-success"><?= $qty->item_qty_jahit; ?></span></td>
+                            <td><span class="text-success"><?= $qty->item_prd_jahit; ?></span></td>
                         </tr>
                     <?php endforeach; ?>
                 <?php endif; ?>
@@ -163,41 +163,41 @@ $item_qty_id = $id;
     });
 
     $(function () {
-        var item_qty_bahan = $('#item_qty_bahan'),
-            item_qty_sablon = $('#item_qty_sablon'),
+        var item_prd_bahan = $('#item_prd_bahan'),
+            item_prd_sablon = $('#item_prd_sablon'),
             sablon_rusak = $('#sablon_rusak'),
-            item_qty_jahit = $('#item_qty_jahit'),
+            item_prd_jahit = $('#item_prd_jahit'),
             jahit_rusak = $('#jahit_rusak');
 
-        item_qty_bahan.keyup(function () {
-            if (item_qty_bahan.val() < 1) {
-                item_qty_sablon.attr('disabled', 'disabled').val(0);
-                item_qty_jahit.attr('disabled', 'disabled').val(0);
+        item_prd_bahan.keyup(function () {
+            if (item_prd_bahan.val() < 1) {
+                item_prd_sablon.attr('disabled', 'disabled').val(0);
+                item_prd_jahit.attr('disabled', 'disabled').val(0);
             } else {
-                item_qty_sablon.removeAttr('disabled');
-                item_qty_sablon.attr('max', item_qty_bahan.val())
+                item_prd_sablon.removeAttr('disabled');
+                item_prd_sablon.attr('max', item_prd_bahan.val())
 
             }
         });
 
-        item_qty_sablon.keyup(function () {
-            if (item_qty_sablon.val() < 1) {
-                item_qty_jahit.attr('disabled', 'disabled').val(0);
+        item_prd_sablon.keyup(function () {
+            if (item_prd_sablon.val() < 1) {
+                item_prd_jahit.attr('disabled', 'disabled').val(0);
             } else {
-                item_qty_sablon.attr('max', item_qty_bahan.val());
+                item_prd_sablon.attr('max', item_prd_bahan.val());
 
-                item_qty_jahit.removeAttr('disabled');
-                item_qty_jahit.attr('max', item_qty_sablon.val());
+                item_prd_jahit.removeAttr('disabled');
+                item_prd_jahit.attr('max', item_prd_sablon.val());
 
-                sablon_rusak.val(item_qty_bahan.val() - item_qty_sablon.val());
+                sablon_rusak.val(item_prd_bahan.val() - item_prd_sablon.val());
             }
         });
 
-        item_qty_jahit.keyup(function () {
-            if (item_qty_jahit.val() > 1) {
-                item_qty_jahit.attr('max', item_qty_sablon.val());
+        item_prd_jahit.keyup(function () {
+            if (item_prd_jahit.val() > 1) {
+                item_prd_jahit.attr('max', item_prd_sablon.val());
 
-                jahit_rusak.val(item_qty_sablon.val() - item_qty_jahit.val());
+                jahit_rusak.val(item_prd_sablon.val() - item_prd_jahit.val());
             }
         })
     })

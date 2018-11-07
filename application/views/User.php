@@ -34,10 +34,11 @@
             </div>
         </div>
     </div>
-    <table class="transaction-history d-none">
+    <table class="file-manager file-manager-list table-responsive">
         <thead>
         <tr>
-            <th>Fullname</th>
+            <th>User ID</th>
+            <th>User</th>
             <th>Username</th>
             <th>User Role</th>
             <!--            <th>Created at</th>-->
@@ -49,11 +50,12 @@
         <?php if ($users != NULL): ?>
             <?php foreach ($users as $user): ?>
                 <tr>
+                    <td><?= $user->user_id; ?></td>
                     <td><?= $user->user_fullname; ?></td>
                     <td><?= $user->user_name; ?></td>
                     <td><?= $user->user_admin == 1 ? 'Admin' : 'User'; ?></td>
                     <td class="file-manager__item-actions">
-                        <div class="btn-group btn-group-sm d-flex" role="group"
+                        <div class="btn-group btn-group-sm d-flex justify-content-center" role="group"
                              aria-label="Table row actions">
                             <a href="<?= site_url('user/edit/' . $user->user_id); ?>"
                                class="btn btn-white active-light">

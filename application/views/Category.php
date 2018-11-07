@@ -35,9 +35,10 @@
         </div>
     </div>
 
-    <table class="transaction-history d-none">
+    <table class="file-manager file-manager-list table-responsive">
         <thead>
         <tr>
+            <th>Category ID</th>
             <th>Category Name</th>
             <th>Category Status</th>
             <!--            <th>Created at</th>-->
@@ -50,10 +51,11 @@
         <?php if ($categories != NULL): ?>
             <?php foreach ($categories as $category): ?>
                 <tr>
+                    <td><?= $category->category_id; ?></td>
                     <td><?= $category->category_name; ?></td>
                     <td><?= $category->category_active == 1 ? '<div class="text-success">Active</div>' : '<div class="text-default">Disabled</div>'; ?></td>
                     <td class="file-manager__item-actions">
-                        <div class="btn-group btn-group-sm d-flex" role="group"
+                        <div class="btn-group btn-group-sm d-flex justify-content-center" role="group"
                              aria-label="Table row actions">
                             <a href="<?= site_url('category/edit/' . $category->category_id); ?>"
                                class="btn btn-white active-light">

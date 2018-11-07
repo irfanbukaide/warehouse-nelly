@@ -1,12 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Item_qty_model extends MY_Model
+class Item_prd_model extends MY_Model
 {
     public function __construct()
     {
-        $this->table = 'item_qty';
-        $this->primary_key = 'item_qty_id';
+        $this->table = 'item_prd';
+        $this->primary_key = 'item_prd_id';
         $this->protected = array('created_at', 'update_at', 'deleted_at');
         $this->timestamps = TRUE;
         $this->soft_deletes = FALSE;
@@ -39,11 +39,11 @@ class Item_qty_model extends MY_Model
 
     public function counters()
     {
-        $query = $this->db->query('select item_qty_date, item.item_code, item.item_code2, sum(item_qty_bahan) as item_qty_bahan, sum(item_qty_sablon) as item_qty_sablon, sum(item_qty_jahit) as item_qty_jahit
-                          from item_qty
+        $query = $this->db->query('select item_prd_date, item.item_code, item.item_code2, sum(item_prd_bahan) as item_prd_bahan, sum(item_prd_sablon) as item_prd_sablon, sum(item_prd_jahit) as item_prd_jahit
+                          from item_prd
                           left join item
-                          on item_qty.item_id = item.item_id
-                          group by item_qty.item_id; ');
+                          on item_prd.item_id = item.item_id
+                          group by item_prd.item_id; ');
         return $query->result();
     }
 

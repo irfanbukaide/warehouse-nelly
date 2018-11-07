@@ -58,7 +58,7 @@
                     <td><?= $customer->customer_email; ?></td>
                     <td><?= $customer->provinces->name; ?></td>
                     <td>
-                        <div class="btn-group btn-group-sm d-flex" role="group"
+                        <div class="btn-group btn-group-sm d-flex justify-content-center" role="group"
                              aria-label="Table row actions">
                             <a href="<?= site_url('customer/edit/' . $customer->customer_id); ?>"
                                class="btn btn-white active-light">

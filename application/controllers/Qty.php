@@ -9,7 +9,7 @@ class Qty extends MY_Controller
 
         // load library
         $this->load->model('Item_model', 'item_model');
-        $this->load->model('Item_qty_model', 'item_qty_model');
+        $this->load->model('Item_prd_model', 'item_prd_model');
         $this->load->model('Item_qty_type_model', 'item_qty_type_model');
     }
 
@@ -24,8 +24,8 @@ class Qty extends MY_Controller
         $id = 'PRD-' . date('ymd-hi-s');;
 
         // get data
-//        $qtys = $this->item_qty_model->with_item()->where('item_qty_date', date('Y-m-d'))->get_all();
-        $qtys = $this->item_qty_model->get_all();
+//        $qtys = $this->item_prd_model->with_item()->where('item_prd_date', date('Y-m-d'))->get_all();
+        $qtys = $this->item_prd_model->get_all();
         $items = $this->item_model->get_all();
 
         // sum
@@ -46,15 +46,15 @@ class Qty extends MY_Controller
                         $qty->item_name = $qty->item_name . ' (' . $item->item_code2 . ')';
                     }
                 }
-                $qty->sablon_rusak = $qty->item_qty_bahan - $qty->item_qty_sablon;
-                $qty->jahit_rusak = $qty->item_qty_sablon - $qty->item_qty_jahit;
-                $qty->finish_total = $qty->item_qty_jahit;
+                $qty->sablon_rusak = $qty->item_prd_bahan - $qty->item_prd_sablon;
+                $qty->jahit_rusak = $qty->item_prd_sablon - $qty->item_prd_jahit;
+                $qty->finish_total = $qty->item_prd_jahit;
             }
 
             foreach ($qtys as $qty) {
-                $bahan_total += $qty->item_qty_bahan;
-                $sablon_total += $qty->item_qty_sablon;
-                $jahit_total += $qty->item_qty_jahit;
+                $bahan_total += $qty->item_prd_bahan;
+                $sablon_total += $qty->item_prd_sablon;
+                $jahit_total += $qty->item_prd_jahit;
                 $sablon_rusak += $qty->sablon_rusak;
                 $jahit_rusak += $qty->jahit_rusak;
                 $grand_total += $qty->finish_total;
@@ -95,19 +95,19 @@ class Qty extends MY_Controller
         $this->form_validation->set_rules('item_qty_type', 'Item Type', 'required');
 
         // get id from post['id']`
-        $id = $this->input->post('item_qty_id');
+        $id = $this->input->post('item_prd_id');
 
         // store result query
-        $item_qty = $this->item_qty_model->where('item_qty_id', $id)->get();
+        $item_qty = $this->item_prd_model->where('item_prd_id', $id)->get();
 
         // store post[] into array
         $item_qty_data = array(
-            'item_qty_id' => $id,
-            'item_qty_date' => date('Y-m-d'),
+            'item_prd_id' => $id,
+            'item_prd_date' => date('Y-m-d'),
             'item_id' => $this->input->post('item_id'),
-            'item_qty_bahan' => $this->input->post('item_qty_bahan'),
-            'item_qty_sablon' => $this->input->post('item_qty_sablon'),
-            'item_qty_jahit' => $this->input->post('item_qty_jahit')
+            'item_prd_bahan' => $this->input->post('item_prd_bahan'),
+            'item_prd_sablon' => $this->input->post('item_prd_sablon'),
+            'item_prd_jahit' => $this->input->post('item_prd_jahit')
         );
 
         // check if exist
@@ -121,7 +121,7 @@ class Qty extends MY_Controller
             // try
             try {
                 // store proses kedalam variabel
-                $item_qty_update = $this->item_qty_model->update($item_qty_data, 'item_qty_id');
+                $item_qty_update = $this->item_prd_model->update($item_qty_data, 'item_prd_id');
 
                 // cek jika berhasil diupdate
                 if ($item_qty_update) {
@@ -146,7 +146,7 @@ class Qty extends MY_Controller
             // try
             try {
                 // store proses kedalam variabel
-                $item_qty_create = $this->item_qty_model->insert($item_qty_data);
+                $item_qty_create = $this->item_prd_model->insert($item_qty_data);
 
                 // check jika berhasil dibuat
                 if ($item_qty_create) {

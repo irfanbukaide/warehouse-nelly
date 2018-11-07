@@ -36,9 +36,10 @@
     </div>
     <!-- End Page Header -->
     <!-- File Manager -->
-    <table class="transaction-history d-none">
+    <table class="file-manager file-manager-list table-responsive">
         <thead>
         <tr>
+            <th>Item ID</th>
             <th class="hide-sort-icons">Item Image</th>
             <th>Item Code</th>
             <th>Item Code2</th>
@@ -53,6 +54,7 @@
         <?php if ($items != NULL): ?>
             <?php foreach ($items as $item): ?>
                 <tr>
+                    <td><?= $item->item_id; ?></td>
                     <td class="lo-stats__image">
                         <?php if ($item->item_image != NULL): ?>
                             <a id="btnshowimage" href="<?= $item->item_image; ?>" data-fancybox
@@ -67,9 +69,9 @@
                     <td><?= $item->item_code; ?></td>
                     <td><?= isset($item->item_code2) ? $item->item_code2 : '-'; ?></td>
                     <td><?= isset($item->category) ? $item->category : '-'; ?></td>
-                    <td><?= $item->item_status == 1 ? 'Available' : 'Empty'; ?></td>
+                    <td><?= $item->item_status == 1 ? '<div class="text-success">Available</div>' : '<div class="text-danger">Disabled</div>'; ?></td>
                     <td class="file-manager__item-actions">
-                        <div class="btn-group btn-group-sm d-flex" role="group"
+                        <div class="btn-group btn-group-sm d-flex justify-content-center" role="group"
                              aria-label="Table row actions">
                             <a id="btnupload" href="<?= site_url('image/item_upload/' . $item->item_id); ?>"
                                data-remote="false" data-toggle="modal" data-target="#modalupload"

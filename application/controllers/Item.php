@@ -151,7 +151,7 @@ class Item extends MY_Controller
         $this->template->add_title_segment('Add Item');
 
         // create guid()
-        $id = 'I-' . date('ymd-hi-s');
+        $id = 'IEM-' . date('ymd-hi-s');
         $categories = $this->category_model->get_all();
 
         // inisialisasi struktur
