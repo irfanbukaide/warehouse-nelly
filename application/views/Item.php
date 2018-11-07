@@ -70,7 +70,8 @@
                     <td class="file-manager__item-actions">
                         <div class="btn-group btn-group-sm d-flex" role="group"
                              aria-label="Table row actions">
-                            <a href="#" class="btn btn-sm btn-success">
+                            <a href="<?= site_url('image/item_upload/' . $item->item_id); ?>"
+                               class="btn btn-sm btn-success">
                                 <i class="material-icons">
                                     add_photo_alternate
                                 </i>
@@ -95,3 +96,8 @@
     </table>
     <!-- End File Manager -->
 </div>
+<script>
+    $(document).ready(function () {
+        $()
+    })
+</script>
