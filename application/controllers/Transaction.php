@@ -8,9 +8,13 @@ class Transaction extends MY_Controller
         parent::__construct();
     }
 
-    public function qty()
+    public function index()
     {
+        $page = array();
 
+        $page['mode'] = 'list';
+
+        $transactions = $this->transaction->get_all();
     }
 
     public function in()

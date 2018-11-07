@@ -39,7 +39,7 @@ class Item_qty_model extends MY_Model
 
     public function counters()
     {
-        $query = $this->db->query('select item_qty_date, item.item_name, sum(item_qty_bahan) as item_qty_bahan, sum(item_qty_sablon) as item_qty_sablon, sum(item_qty_jahit) as item_qty_jahit
+        $query = $this->db->query('select item_qty_date, item.item_code, item.item_code2, sum(item_qty_bahan) as item_qty_bahan, sum(item_qty_sablon) as item_qty_sablon, sum(item_qty_jahit) as item_qty_jahit
                           from item_qty
                           left join item
                           on item_qty.item_id = item.item_id

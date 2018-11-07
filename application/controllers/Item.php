@@ -57,11 +57,9 @@ class Item extends MY_Controller
         $item_data = array(
             'item_id' => $id,
             'item_code' => $this->input->post('item_code'),
-            'item_type' => $this->input->post('item_type'),
-            'item_name' => $this->input->post('item_name'),
-            'item_hrg_modal' => $this->input->post('item_hrg_modal'),
-            'item_hrg_jual' => $this->input->post('item_hrg_jual'),
+            'item_code2' => $this->input->post('item_code2'),
             'item_status' => $this->input->post('item_status'),
+            'item_description' => $this->input->post('item_description'),
         );
 
         $item_category_data = array(

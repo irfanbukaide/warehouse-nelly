@@ -40,12 +40,9 @@
         <thead>
         <tr>
             <th class="hide-sort-icons">Item Image</th>
-            <th>Item Name</th>
-            <th>Item Type</th>
             <th>Item Code</th>
+            <th>Item Code2</th>
             <th>Category</th>
-            <th>Item Cost</th>
-            <th>Item Price</th>
             <th>Item Status</th>
             <!--            <th>Created at</th>-->
             <!--            <th>Updated at</th>-->
@@ -61,15 +58,12 @@
                             <img class="border rounded" src="images/sales-overview/product-order-1.jpg">
                         </a>
                     </td>
-                    <td><?= $item->item_name; ?></td>
-                    <td><?= $item->item_type; ?></td>
                     <td><?= $item->item_code; ?></td>
+                    <td><?= $item->item_code2; ?></td>
                     <td><?= isset($item->category) ? $item->category : '-'; ?></td>
-                    <td><?= $item->item_hrg_modal; ?></td>
-                    <td><?= $item->item_hrg_jual; ?></td>
                     <td><?= $item->item_status == 1 ? 'Available' : 'Empty'; ?></td>
                     <td class="file-manager__item-actions">
-                        <div class="btn-group btn-group-sm d-flex justify-content-end" role="group"
+                        <div class="btn-group btn-group-sm d-flex" role="group"
                              aria-label="Table row actions">
                             <a href="<?= site_url('item/edit/' . $item->item_id); ?>"
                                class="btn btn-white active-light">

@@ -3,20 +3,16 @@
 if ($mode == 'create') {
     $item_id = $id;
     $item_code = '';
-    $item_type = '';
-    $item_name = '';
-    $item_cost = '';
-    $item_price = '';
+    $item_code2 = '';
     $item_status = 'checked="checked"';
+    $item_description = '';
     $category_id = '';
 } elseif ($mode == 'edit') {
     $item_id = $item->item_id;
     $item_code = $item->item_code;
-    $item_type = $item->item_type;
-    $item_name = $item->item_name;
-    $item_cost = $item->item_hrg_modal;
-    $item_price = $item->item_hrg_jual;
-    $item_status = 'checked="checked"';
+    $item_code2 = $item->item_code2;
+    $item_status = $item->item_status == 1 ? 'checked="checked"' : '';
+    $item_description = $item->item_description;
     $category_id = isset($item->category_id) ? $item->category_id : '';
 }
 
@@ -50,9 +46,9 @@ if ($mode == 'create') {
                                                    placeholder="Item Code" value="<?= $item_code; ?>">
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="item_name">Item Name</label>
-                                            <input type="text" class="form-control" name="item_name"
-                                                   id="item_name" placeholder="Name" value="<?= $item_name; ?>">
+                                            <label for="item_code2">Item Code2</label>
+                                            <input type="text" class="form-control" name="item_code2" id="item_code2"
+                                                   placeholder="Item Code2" value="<?= $item_code2; ?>">
                                         </div>
                                     </div>
                                     <div class="form-row">
@@ -69,35 +65,6 @@ if ($mode == 'create') {
                                         </div>
 
                                         <div class="form-group col-md-6">
-
-                                            <label for="item_type">Item Type</label>
-                                            <select name="item_type" id="item_type" class="form-control">
-                                                <option selected>Select Type</option>
-                                                <option value="fast" <?= $item_type == 'fast' ? 'selected' : ''; ?>>
-                                                    Fast
-                                                </option>
-                                                <option value="paloma" <?= $item_type == 'paloma' ? 'selected' : ''; ?>>
-                                                    Paloma
-                                                </option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for="item_hrg_modal">Item Cost</label>
-                                            <input type="number" class="form-control" name="item_hrg_modal"
-                                                   id="item_hrg_modal" placeholder="Cost" value="<?= $item_cost; ?>">
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="item_hrg_jual">Item Price</label>
-                                            <input type="number" class="form-control" name="item_hrg_jual"
-                                                   id="item_hrg_jual" placeholder="Price" value="<?= $item_price; ?>">
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-
-                                        <div class="form-group col-md-6">
-
                                             <label for="item_img">Image</label>
                                             <div class="custom-file">
                                                 <input type="file" class="custom-file-input" id="item_img">
@@ -106,7 +73,7 @@ if ($mode == 'create') {
                                         </div>
 
                                     </div>
-                                    <div class="form-row">
+                                    <div class="form-row ">
                                         <div class="form-group col-md-12">
                                             <label for="item_status">Item Status</label>
                                             <div class="custom-control custom-toggle custom-toggle-sm">
@@ -117,8 +84,19 @@ if ($mode == 'create') {
                                         </div>
 
                                     </div>
-                                    <button type="submit" class="btn btn-accent">Save</button>
-                                    <a href="<?= site_url('item'); ?>" class="btn btn-danger">Return to Item</a>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <label for="item_description">Description</label>
+                                            <textarea name="item_description" id="item_description"
+                                                      class="form-control"><?= $item_description; ?></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <button type="submit" class="btn btn-accent">Save</button>
+                                            <a href="<?= site_url('item'); ?>" class="btn btn-danger">Return to Item</a>
+                                        </div>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -135,7 +113,7 @@ if ($mode == 'create') {
             theme: 'bootstrap4'
         });
 
-        $('#item_type').select2({
+        $('#item_code2').select2({
             theme: 'bootstrap4'
         });
     })

@@ -46,8 +46,8 @@ $item_qty_id = $id;
                                                 <option value="">Select Item</option>
                                                 <?php if ($items != NULL): ?>
                                                     <?php foreach ($items as $item): ?>
-                                                        <option value="<?= $item->item_id; ?>"><?= $item->item_name; ?>
-                                                            (<?= $item->item_code; ?>)
+                                                        <option value="<?= $item->item_id; ?>"><?= $item->item_code; ?>
+                                                            (<?= $item->item_code2; ?>)
                                                         </option>
                                                     <?php endforeach; ?>
                                                 <?php endif; ?>
@@ -101,7 +101,7 @@ $item_qty_id = $id;
 
         </div>
         <div class="col-12 col-sm-12 col-md-12 col-lg-9">
-            <table class="table table-responsive">
+            <table class="transaction-history d-none">
                 <thead>
                 <tr>
                     <th class="text-left">Date</th>
@@ -117,7 +117,7 @@ $item_qty_id = $id;
                     <?php foreach ($qtys as $qty): ?>
                         <tr>
                             <td class="text-left"><?= date_format(date_create($qty->item_qty_date), 'd-M-Y'); ?></td>
-                            <td class="text-left"><?= $qty->item_name; ?></td>
+                            <td class="text-left"><?= $qty->item_code; ?> (<?= $qty->item_code2; ?>)</td>
                             <td><?= $qty->item_qty_bahan; ?></td>
                             <td><?= $qty->item_qty_sablon; ?> / <span
                                         class="text-danger"><?= $qty->sablon_rusak; ?></span></td>
