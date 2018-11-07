@@ -92,7 +92,7 @@ class Customer extends MY_Controller
         }
 
         // redirect to Index
-        redirect('Customer');
+        redirect('customer');
 
     }
 
@@ -105,7 +105,7 @@ class Customer extends MY_Controller
         $this->template->add_title_segment('Add Customer');
 
         // create guid()
-        $id = $this->customer_model->guid();
+        $id = 'CTM-' . date('ymd-hi-s');
         $provinces = $this->provinces_model->get_all();
 
         // inisialisasi struktur
@@ -133,7 +133,7 @@ class Customer extends MY_Controller
             // set session temp message
             $this->pesan->gagal('Mohon maaf data tidak ditemukan.');
 
-            redirect('Customer');
+            redirect('customer');
         }
 
         // inisialisasi struktur
@@ -155,7 +155,7 @@ class Customer extends MY_Controller
             // set session temp message
             $this->pesan->gagal('Mohon maaf data tidak ditemukan.');
 
-            redirect('Customer');
+            redirect('customer');
         }
 
         try {
@@ -176,7 +176,7 @@ class Customer extends MY_Controller
         }
 
         //redirect
-        redirect('Customer');
+        redirect('customer');
     }
 
 }

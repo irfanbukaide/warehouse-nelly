@@ -21,7 +21,7 @@ class Qty extends MY_Controller
         $this->template->add_title_segment('QTY');
 
         // create guid()
-        $id = $this->item_qty_model->guid();
+        $id = 'PRD-' . date('ymd-hi-s');;
 
         // get data
 //        $qtys = $this->item_qty_model->with_item()->where('item_qty_date', date('Y-m-d'))->get_all();

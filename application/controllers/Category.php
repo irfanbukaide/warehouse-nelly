@@ -119,7 +119,7 @@ class Category extends MY_Controller
         $this->template->add_title_segment('Add Category');
 
         // create guid()
-        $id = $this->category_model->guid();
+        $id = 'CAT-' . date('ymd-hi-s');;
 
         // inisialisasi struktur
         $page['id'] = $id;

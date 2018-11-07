@@ -38,6 +38,7 @@
     <table class="transaction-history d-none">
         <thead>
         <tr>
+            <th>Customer ID</th>
             <th>Customer Name</th>
             <th>Customer Contact</th>
             <th>Customer Email</th>
@@ -51,6 +52,7 @@
         <?php if ($customers != NULL): ?>
             <?php foreach ($customers as $customer): ?>
                 <tr>
+                    <td><?= $customer->customer_id; ?></td>
                     <td><?= $customer->customer_name; ?></td>
                     <td><?= $customer->customer_contact; ?></td>
                     <td><?= $customer->customer_email; ?></td>

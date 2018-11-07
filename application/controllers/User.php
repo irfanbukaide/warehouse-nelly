@@ -102,7 +102,7 @@ class User  extends MY_Controller{
         $this->template->add_title_segment('Add User');
 
         // create guid()
-        $id = $this->user_model->guid();
+        $id = 'USR-' . date('ymd-hi-s');;
 
         // inisialisasi struktur
         $page['id'] = $id;
