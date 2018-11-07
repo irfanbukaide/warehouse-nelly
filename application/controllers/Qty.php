@@ -18,7 +18,7 @@ class Qty extends MY_Controller
         $page = array();
 
         // config page
-        $this->template->add_title_segment('QTY');
+        $this->template->add_title_segment('Production');
 
         // create guid()
         $id = 'PRD-' . date('ymd-hi-s');;
@@ -103,7 +103,7 @@ class Qty extends MY_Controller
         // store post[] into array
         $item_qty_data = array(
             'item_prd_id' => $id,
-            'item_prd_date' => date('Y-m-d'),
+            'item_prd_date' => date('Y-m-d H:i:s'),
             'item_id' => $this->input->post('item_id'),
             'item_prd_bahan' => $this->input->post('item_prd_bahan'),
             'item_prd_sablon' => $this->input->post('item_prd_sablon'),

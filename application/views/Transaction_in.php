@@ -36,7 +36,7 @@
             <th>Transaction ID</th>
 
             <th>Item</th>
-            <th>Item QTY</th>
+            <th>Item Production</th>
             <th>Cost / Price</th>
             <th>Date</th>
             <th>Status</th>

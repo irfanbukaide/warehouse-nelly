@@ -87,7 +87,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="<?= site_url('qty'); ?>">
                             <i class="material-icons">swap_horiz</i>
-                            <span>QTY</span>
+                            <span>Production</span>
                         </a>
                     </li>
                     <li class="nav-item">

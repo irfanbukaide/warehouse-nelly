@@ -23,7 +23,7 @@ $item_qty_id = $id;
     <div class="page-header row no-gutters py-4">
         <div class="col-12 col-sm-4 text-center text-sm-left mb-4 mb-sm-0">
             <span class="text-uppercase page-subtitle">Transaction</span>
-            <h3 class="page-title"><i class="material-icons">swap_horiz</i>QTY</h3>
+            <h3 class="page-title"><i class="material-icons">swap_horiz</i>Production</h3>
         </div>
     </div>
     <!-- File Manager -->
@@ -31,7 +31,7 @@ $item_qty_id = $id;
         <div class="col-12 col-sm-12 col-md-12 col-lg-3 mb-2">
             <div class="card card-small">
                 <div class="card-header border-bottom">
-                    <h6 class="m-0">Input QTY</h6>
+                    <h6 class="m-0">Input Production</h6>
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item p-3">
