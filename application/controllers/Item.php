@@ -36,9 +36,9 @@ class Item extends MY_Controller
                 }
 
                 if ($item_img) {
-                    $item->item_images = $item_img;
+                    $item->item_image = 'data:' . $item_img->item_img_type . ';base64, ' . ((base64_encode($item_img->item_img_data)));
                 } else {
-                    $item->item_images = NULL;
+                    $item->item_image = NULL;
                 }
             }
         }

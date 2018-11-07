@@ -54,9 +54,9 @@
             <?php foreach ($items as $item): ?>
                 <tr>
                     <td class="lo-stats__image">
-                        <?php if ($item->item_images != NULL): ?>
+                        <?php if ($item->item_image != NULL): ?>
                             <a href="#">
-                                <img class="border rounded" src="images/sales-overview/product-order-1.jpg">
+                                <img class="border rounded" src="<?= $item->item_image; ?>">
                             </a>
                         <?php else: ?>
                             <img class="border rounded" src="<?= base_url('assets/images/notfound.png'); ?>">
@@ -70,19 +70,19 @@
                     <td class="file-manager__item-actions">
                         <div class="btn-group btn-group-sm d-flex" role="group"
                              aria-label="Table row actions">
-                            <a href="<?= site_url('image/item_upload/' . $item->item_id); ?>"
-                               class="btn btn-sm btn-success">
-                                <i class="material-icons">
-                                    add_photo_alternate
-                                </i>
+                            <a id="btnupload" href="<?= site_url('image/item_upload/' . $item->item_id); ?>"
+                               data-remote="false" data-toggle="modal" data-target="#modalupload"
+                               class="btn btn-white active-light">
+                                <i class="material-icons">add_photo_alternate</i>
                                 Upload
                             </a>
-                            <a href="<?= site_url('item/edit/' . $item->item_id); ?>"
+                            <a id="btnedit" href="<?= site_url('item/edit/' . $item->item_id); ?>"
                                class="btn btn-white active-light">
                                 <i class="material-icons">&#xE254;</i>
                                 Edit
                             </a>
-                            <a href="<?= site_url('item/delete/' . $item->item_id); ?>" class="btn btn-danger">
+                            <a id="btndelete" href="<?= site_url('item/delete/' . $item->item_id); ?>"
+                               class="btn btn-danger">
                                 <i class="material-icons">&#xE872;</i>
                                 Delete
                             </a>
@@ -96,8 +96,32 @@
     </table>
     <!-- End File Manager -->
 </div>
+<div class="modal fade" id="modalupload" tabindex="-1" role="dialog" aria-labelledby="modalupload_title"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalupload_title">Picture</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="modalupload_body" class="modal-body">
+                ...
+            </div>
+        </div>
+    </div>
+</div>
 <script>
     $(document).ready(function () {
-        $()
+        $('[id^=btnupload]').click(function (e) {
+            e.preventDefault();
+            var url = $(this).attr('href'),
+                modal = $('#modalupload'),
+                modalbody = $('#modalupload_body');
+            modal.modal('show');
+            modalbody.load(url);
+
+        })
     })
 </script>

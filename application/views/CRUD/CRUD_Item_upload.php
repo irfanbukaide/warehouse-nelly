@@ -24,7 +24,7 @@ $item_id = $id;
             <div class="input-group">
                 <div class="custom-file">
                     <input type="file" name="upload_image" id="upload_image" class="custom-file-input" required>
-                    <label class="custom-file-label">Pilih gambar</label>
+                    <label class="custom-file-label">Select picture</label>
                 </div>
             </div>
         </div>
