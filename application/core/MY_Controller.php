@@ -23,9 +23,21 @@ class MY_Controller extends CI_Controller
         $this->load->library('Pesan');
         $this->load->library('Template');
 
+        // load css
+        $this->template->add_css('https://use.fontawesome.com/releases/v5.0.6/css/all.css');
+        $this->template->add_css('https://fonts.googleapis.com/icon?family=Material+Icons');
+        $this->template->add_css('https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css');
+        $this->template->add_css(base_url('assets/styles/shards-dashboards.1.2.0.min.css'));
+        $this->template->add_css(base_url('assets/styles/extras.1.2.0.min.css'));
+        $this->template->add_css('https://cdn.datatables.net/responsive/2.2.1/css/responsive.dataTables.min.css');
+        $this->template->add_css(base_url('assets/vendor/select2/css/select2.min.css'));
+        $this->template->add_css(base_url('assets/vendor/select2/css/select2-bootstrap4.min.css'));
+        $this->template->add_css(base_url('assets/vendor/croppie/croppie.css'));
+
         // load js
         $this->template->add_js('https://www.gstatic.com/charts/loader.js', TRUE);
         $this->template->add_js('https://code.jquery.com/jquery-3.3.1.min.js');
+        $this->template->add_js('https://buttons.github.io/buttons.js');
         $this->template->add_js('https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js', TRUE);
         $this->template->add_js('https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js', TRUE);
         $this->template->add_js('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js', TRUE);
@@ -37,6 +49,7 @@ class MY_Controller extends CI_Controller
         $this->template->add_js('https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js', TRUE);
         $this->template->add_js('https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.js', TRUE);
         $this->template->add_js(base_url('assets/vendor/select2/js/select2.min.js'));
+        $this->template->add_js(base_url('assets/vendor/croppie/croppie.min.js'));
         $this->template->add_js(base_url('assets/scripts/app/app-file-manager.1.2.0.min.js'), TRUE);
 //        $this->template->add_js(base_url('assets/scripts/app/app-analytics-overview.1.2.0.min.js'), TRUE);
         $this->template->add_js("assets/scripts/app/app-transaction-history.1.2.0.min.js", TRUE);
