@@ -22,14 +22,14 @@
             <span class="text-uppercase page-subtitle">Master</span>
             <h3 class="page-title">
                 <i class="material-icons">contacts</i>
-                Supplier
+                Customer
             </h3>
         </div>
         <div class="col d-flex">
             <div class="btn-primary rounded d-inline-flex ml-auto my-auto" role="group" aria-label="Table row actions">
-                <a href="<?= site_url('supplier/add'); ?>" class="btn btn-white">
+                <a href="<?= site_url('customer/add'); ?>" class="btn btn-white">
                     <i class="material-icons">local_hospital</i>
-                    <span>Add Supplier</span>
+                    <span>Add Customer</span>
                 </a>
             </div>
         </div>
@@ -38,9 +38,9 @@
     <table class="transaction-history d-none">
         <thead>
         <tr>
-            <th>Supplier Name</th>
-            <th>Supplier Contact</th>
-            <th>Supplier Email</th>
+            <th>Customer Name</th>
+            <th>Customer Contact</th>
+            <th>Customer Email</th>
             <th>Province</th>
             <!--            <th>Created at</th>-->
             <!--            <th>Updated at</th>-->
@@ -48,22 +48,22 @@
         </tr>
         </thead>
         <tbody>
-        <?php if ($suppliers != NULL): ?>
-            <?php foreach ($suppliers as $supplier): ?>
+        <?php if ($customers != NULL): ?>
+            <?php foreach ($customers as $customer): ?>
                 <tr>
-                    <td><?= $supplier->supplier_name; ?></td>
-                    <td><?= $supplier->supplier_contact; ?></td>
-                    <td><?= $supplier->supplier_email; ?></td>
-                    <td><?= $supplier->provinces->name; ?></td>
+                    <td><?= $customer->customer_name; ?></td>
+                    <td><?= $customer->customer_contact; ?></td>
+                    <td><?= $customer->customer_email; ?></td>
+                    <td><?= $customer->provinces->name; ?></td>
                     <td>
                         <div class="btn-group btn-group-sm d-flex" role="group"
                              aria-label="Table row actions">
-                            <a href="<?= site_url('supplier/edit/' . $supplier->supplier_id); ?>"
+                            <a href="<?= site_url('customer/edit/' . $customer->customer_id); ?>"
                                class="btn btn-white active-light">
                                 <i class="material-icons">&#xE254;</i>
                                 Edit
                             </a>
-                            <a href="<?= site_url('supplier/delete/' . $supplier->supplier_id); ?>"
+                            <a href="<?= site_url('customer/delete/' . $customer->customer_id); ?>"
                                class="btn btn-danger">
                                 <i class="material-icons">&#xE872;</i>
                                 Delete

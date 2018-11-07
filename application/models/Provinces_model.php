@@ -10,9 +10,9 @@ class Provinces_model extends MY_Model
         $this->protected = array('created_at', 'update_at', 'deleted_at');
         $this->timestamps = TRUE;
         $this->soft_deletes = FALSE;
-        $this->has_many['supplier'] = array(
+        $this->has_many['Customer'] = array(
             'foreign_model' => 'Supplier_model',
-            'foreign_table' => 'supplier',
+            'foreign_table' => 'Customer',
             'foreign_key' => 'province_id',
             'local_key' => 'id'
         );

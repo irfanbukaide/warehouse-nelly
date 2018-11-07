@@ -1,6 +1,7 @@
 <?php
 // inisialisasi
 $transaction_id = $id;
+$transaction_date = date('d/m/Y H:i');
 ?>
 
 <?php if (isset($_SESSION['gagal'])): ?>
@@ -18,7 +19,7 @@ $transaction_id = $id;
         <div class="col">
             <span class="text-uppercase page-subtitle">In & Out</span>
             <h3 class="page-title">
-                <i class="material-icons">category</i>
+                <i class="material-icons">swap_horiz</i>
                 Create Transaction In
             </h3>
         </div>
@@ -33,38 +34,39 @@ $transaction_id = $id;
                     <li class="list-group-item p-3">
                         <div class="row">
                             <div class="col">
-                                <form action="<?= site_url('category/save'); ?>" method="POST">
-                                    <input type="hidden" name="category_id" value="<?= $category_id; ?>">
+                                <form action="<?= site_url('transaction/in/generate'); ?>" method="POST">
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label for="category_name">Category Name</label>
-                                            <input type="text" class="form-control" name="category_name"
-                                                   id="category_name"
-                                                   placeholder="Name" value="<?= $category_name; ?>" required autofocus>
-                                            <div class="invalid-feedback"><?= form_error('category_name'); ?></div>
+                                            <label for="transaction_id">Transaction ID</label>
+                                            <input type="text" class="form-control" name="transaction_id"
+                                                   id="transaction_id"
+                                                   placeholder="ID" value="<?= $transaction_id; ?>">
                                         </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-12">
-                                            <label for="category_description">Category Description</label>
-                                            <textarea class="form-control" name="category_description"
-                                                      id="category_description"
-                                                      rows="5"
-                                                      placeholder="Description"><?= $category_description; ?></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-12">
-                                            <div class="custom-control custom-toggle custom-toggle-sm mb-1">
-                                                <input type="checkbox" id="category_active" name="category_active"
-                                                       class="custom-control-input" <?= $category_active; ?> value="1">
-                                                <label class="custom-control-label" for="category_active">Active</label>
-                                            </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="transaction_date">Transaction Date</label>
+                                            <input type="text" class="form-control" name="transaction_date"
+                                                   id="transaction_date"
+                                                   placeholder="Date" value="<?= $transaction_date; ?>">
                                         </div>
 
                                     </div>
-                                    <button type="submit" class="btn btn-accent">Save</button>
-                                    <a href="<?= base_url('category'); ?>" class="btn btn-danger">Return to Category</a>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <label for="transaction_item">Item</label>
+                                            <select name="transaction_item" id="transaction_item" class="form-control"
+                                                    required>
+                                                <option value="">Select item</option>
+                                                <?php if ($items): ?>
+                                                    <?php foreach ($items as $item): ?>
+                                                        <option value="<?= $item->item_id; ?>"><?= $item->item_name; ?></option>
+                                                    <?php endforeach; ?>
+                                                <?php endif; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-accent">Generate</button>
+                                    <a href="<?= base_url('transaction'); ?>" class="btn btn-danger">Return to In &
+                                        Out</a>
                                 </form>
                             </div>
                         </div>
@@ -75,3 +77,14 @@ $transaction_id = $id;
     </div>
     <!-- End Default Light Table -->
 </div>
+<script>
+    $(document).ready(function () {
+        $('#transaction_id').keydown(function (e) {
+            e.preventDefault();
+        });
+
+        $('#transaction_date').keydown(function (e) {
+            e.preventDefault();
+        });
+    })
+</script>

@@ -1,12 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Supplier_model extends MY_Model
+class Customer_model extends MY_Model
 {
     public function __construct()
     {
-        $this->table = 'supplier';
-        $this->primary_key = 'supplier_id';
+        $this->table = 'Customer';
+        $this->primary_key = 'customer_id';
         $this->protected = array('created_at', 'update_at', 'deleted_at');
         $this->timestamps = TRUE;
         $this->soft_deletes = FALSE;

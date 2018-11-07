@@ -35,7 +35,7 @@
                 <div class="dropdown-menu dropdown-menu-small">
                     <a class="dropdown-item " href="<?= base_url('category'); ?>">Category</a>
                     <a class="dropdown-item " href="<?= base_url('item'); ?>">Item</a>
-                    <a class="dropdown-item " href="<?= base_url('supplier'); ?>">Supplier</a>
+                    <a class="dropdown-item " href="<?= base_url('Customer'); ?>">Supplier</a>
                     <a class="dropdown-item " href="<?= base_url('user'); ?>">User</a>
                 </div>
             </li>

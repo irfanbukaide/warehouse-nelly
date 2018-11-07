@@ -1,14 +1,15 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Supplier  extends MY_Controller{
+class Customer extends MY_Controller
+{
 
     public function __construct()
     {
         parent::__construct();
 
         // load model
-        $this->load->model('Supplier_model', 'supplier_model');
+        $this->load->model('Customer_model', 'customer_model');
         $this->load->model('Provinces_model', 'provinces_model');
 
         // save session url
@@ -20,50 +21,50 @@ class Supplier  extends MY_Controller{
         $page = array();
 
         // config page
-        $this->template->add_title_segment('Supplier');
+        $this->template->add_title_segment('Customer');
 
         // get all data
-        $suppliers = $this->supplier_model->with_provinces()->get_all();
+        $customers = $this->customer_model->with_provinces()->get_all();
 
         // inisialisasi struktur
-        $page['suppliers'] = $suppliers;
+        $page['customers'] = $customers;
 
         // return to view
-        $this->template->render('Supplier', $page);
+        $this->template->render('Customer', $page);
 
     }
 
     public function save()
     {
         // get id from post['id']`
-        $id = $this->input->post('supplier_id');
+        $id = $this->input->post('customer_id');
 
         // store result query
-        $supplier = $this->supplier_model->where('supplier_id', $id)->get();
+        $customer = $this->customer_model->where('customer_id', $id)->get();
 
         // store post[] into array
-        $supplier_data = array(
-                'supplier_id'       => $id,
-                'supplier_name'     => $this->input->post('supplier_name'),
-            'supplier_contact' => $this->input->post('supplier_contact'),
-            'supplier_email' => $this->input->post('supplier_email'),
-            'supplier_address' => $this->input->post('supplier_address'),
+        $customer_data = array(
+            'customer_id' => $id,
+            'customer_name' => $this->input->post('customer_name'),
+            'customer_contact' => $this->input->post('customer_contact'),
+            'customer_email' => $this->input->post('customer_email'),
+            'customer_address' => $this->input->post('customer_address'),
             'province_id' => $this->input->post('province_id')
         );
 
         // check if exist
-        if ($supplier) {
+        if ($customer) {
             try {
                 // store proses kedalam variabel
-                $supplier_update = $this->supplier_model->update($supplier_data,'supplier_id');
+                $customer_update = $this->customer_model->update($customer_data, 'customer_id');
 
                 // cek jika berhasil diupdate
-                if ($supplier_update) {
+                if ($customer_update) {
                     // set session temp message
-                    $this->pesan->berhasil('Data Supplier berhasil diupdate.');
+                    $this->pesan->berhasil('Data Customer berhasil diupdate.');
                 } else {
                     // set session temp message
-                    $this->pesan->gagal('Data Supplier gagal diupdate.');
+                    $this->pesan->gagal('Data Customer gagal diupdate.');
                 }
             } catch (\Exception $e) {
                 // set session temp message
@@ -73,15 +74,15 @@ class Supplier  extends MY_Controller{
         } else {
             try {
                 // store proses kedalam variabel
-                $supplier_create = $this->supplier_model->insert($supplier_data);
+                $customer_create = $this->customer_model->insert($customer_data);
 
                 // check jika berhasil dibuat
-                if ($supplier_create) {
+                if ($customer_create) {
                     // set session temp message
-                    $this->pesan->berhasil('Data Supplier berhasil dibuat.');
+                    $this->pesan->berhasil('Data Customer berhasil dibuat.');
                 } else {
                     // set session temp message
-                    $this->pesan->gagal('Data Supplier gagal dibuat.');
+                    $this->pesan->gagal('Data Customer gagal dibuat.');
                 }
             } catch (\Exception $e) {
                 // set session temp message
@@ -91,7 +92,7 @@ class Supplier  extends MY_Controller{
         }
 
         // redirect to Index
-        redirect('supplier');
+        redirect('Customer');
 
     }
 
@@ -101,10 +102,10 @@ class Supplier  extends MY_Controller{
         $page['mode'] = 'create';
 
         // config page
-        $this->template->add_title_segment('Add Supplier');
+        $this->template->add_title_segment('Add Customer');
 
         // create guid()
-        $id = $this->supplier_model->guid();
+        $id = $this->customer_model->guid();
         $provinces = $this->provinces_model->get_all();
 
         // inisialisasi struktur
@@ -112,7 +113,7 @@ class Supplier  extends MY_Controller{
         $page['provinces'] = $provinces;
 
         // return to view
-        $this->template->render('CRUD/CRUD_Supplier', $page);
+        $this->template->render('CRUD/CRUD_Customer', $page);
     }
 
     public function edit($id)
@@ -121,53 +122,53 @@ class Supplier  extends MY_Controller{
         $page['mode'] = 'edit';
 
         // config page
-        $this->template->add_title_segment('Edit Supplier');
+        $this->template->add_title_segment('Edit Customer');
 
         // get data from param id
-        $supplier = $this->supplier_model->where('supplier_id', $id)->get();
+        $customer = $this->customer_model->where('customer_id', $id)->get();
         $provinces = $this->provinces_model->get_all();
 
         // cek if not exists
-        if (! $supplier) {
+        if (!$customer) {
             // set session temp message
             $this->pesan->gagal('Mohon maaf data tidak ditemukan.');
 
-            redirect('supplier');
+            redirect('Customer');
         }
 
         // inisialisasi struktur
-        $page['supplier'] = $supplier;
+        $page['customer'] = $customer;
         $page['provinces'] = $provinces;
 
         // return to view
-        $this->template->render('CRUD/CRUD_Supplier', $page);
+        $this->template->render('CRUD/CRUD_Customer', $page);
 
     }
 
     public function delete($id)
     {
         // get data from param id
-        $supplier = $this->supplier_model->where('supplier_id', $id)->get();
+        $customer = $this->customer_model->where('customer_id', $id)->get();
 
         // cek if not exists
-        if (! $supplier) {
+        if (!$customer) {
             // set session temp message
             $this->pesan->gagal('Mohon maaf data tidak ditemukan.');
 
-            redirect('supplier');
+            redirect('Customer');
         }
 
         try {
             // store proses kedalam variabel
-            $supplier_delete = $this->supplier_model->where('supplier_id', $id)->delete();
+            $customer_delete = $this->customer_model->where('customer_id', $id)->delete();
 
             // cek jika berhasil dihapus
-            if ($supplier_delete) {
+            if ($customer_delete) {
                 // set session temp message
-                $this->pesan->berhasil('Data Supplier berhasil dihapus.');
+                $this->pesan->berhasil('Data Customer berhasil dihapus.');
             } else {
                 // set session temp message
-                $this->pesan->gagal('Data Supplier gagal dihapus.');
+                $this->pesan->gagal('Data Customer gagal dihapus.');
             }
         } catch (\Exception $e) {
             // set session temp message
@@ -175,7 +176,7 @@ class Supplier  extends MY_Controller{
         }
 
         //redirect
-        redirect('supplier');
+        redirect('Customer');
     }
 
 }
