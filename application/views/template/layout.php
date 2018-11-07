@@ -76,9 +76,9 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= site_url('Customer'); ?>">
+                        <a class="nav-link" href="<?= site_url('customer'); ?>">
                             <i class="material-icons">contacts</i>
-                            <span>Supplier</span>
+                            <span>Customer</span>
                         </a>
                     </li>
                 </ul>

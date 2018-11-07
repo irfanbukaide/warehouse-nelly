@@ -5,7 +5,7 @@ class Customer_model extends MY_Model
 {
     public function __construct()
     {
-        $this->table = 'Customer';
+        $this->table = 'customer';
         $this->primary_key = 'customer_id';
         $this->protected = array('created_at', 'update_at', 'deleted_at');
         $this->timestamps = TRUE;
