@@ -54,9 +54,16 @@
             <?php foreach ($items as $item): ?>
                 <tr>
                     <td class="lo-stats__image">
-                        <a href="#">
-                            <img class="border rounded" src="images/sales-overview/product-order-1.jpg">
-                        </a>
+                        <?php if ($item->item_img != NULL): ?>
+                            <a href="#">
+                                <img class="border rounded" src="images/sales-overview/product-order-1.jpg">
+                            </a>
+                        <?php else: ?>
+                            <a href="#">
+                                <img class="border rounded" src="images/sales-overview/product-order-1.jpg">
+                            </a>
+                        <?php endif; ?>
+
                     </td>
                     <td><?= $item->item_code; ?></td>
                     <td><?= $item->item_code2; ?></td>
@@ -65,6 +72,7 @@
                     <td class="file-manager__item-actions">
                         <div class="btn-group btn-group-sm d-flex" role="group"
                              aria-label="Table row actions">
+                            <button class="btn btn-sm btn-success">Upload</button>
                             <a href="<?= site_url('item/edit/' . $item->item_id); ?>"
                                class="btn btn-white active-light">
                                 <i class="material-icons">&#xE254;</i>
