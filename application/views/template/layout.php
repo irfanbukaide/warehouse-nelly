@@ -85,7 +85,7 @@
                 <h6 class="main-sidebar__nav-title">Transaction</h6>
                 <ul class="nav nav--no-borders flex-column">
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= site_url('qty'); ?>">
+                        <a class="nav-link" href="<?= site_url('production'); ?>">
                             <i class="material-icons">swap_horiz</i>
                             <span>Production</span>
                         </a>

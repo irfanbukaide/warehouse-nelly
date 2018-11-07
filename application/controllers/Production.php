@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Qty extends MY_Controller
+class Production extends MY_Controller
 {
     public function __construct()
     {
@@ -10,7 +10,7 @@ class Qty extends MY_Controller
         // load library
         $this->load->model('Item_model', 'item_model');
         $this->load->model('Item_prd_model', 'item_prd_model');
-        $this->load->model('Item_qty_type_model', 'item_qty_type_model');
+        $this->load->model('Item_production_type_model', 'item_production_type_model');
     }
 
     public function index()
@@ -24,8 +24,8 @@ class Qty extends MY_Controller
         $id = 'PRD-' . date('ymd-hi-s');;
 
         // get data
-//        $qtys = $this->item_prd_model->with_item()->where('item_prd_date', date('Y-m-d'))->get_all();
-        $qtys = $this->item_prd_model->get_all();
+//        $productions = $this->item_prd_model->with_item()->where('item_prd_date', date('Y-m-d'))->get_all();
+        $productions = $this->item_prd_model->get_all();
         $items = $this->item_model->get_all();
 
         // sum
@@ -35,29 +35,29 @@ class Qty extends MY_Controller
         $sablon_rusak = 0;
         $jahit_rusak = 0;
         $grand_total = 0;
-        if ($qtys != NULL) {
-            foreach ($qtys as $qty) {
-                $item = $this->item_model->where('item_id', $qty->item_id)->get();
+        if ($productions != NULL) {
+            foreach ($productions as $production) {
+                $item = $this->item_model->where('item_id', $production->item_id)->get();
 
                 if ($item) {
-                    $qty->item_name = $item->item_code;
+                    $production->item_name = $item->item_code;
 
                     if (isset($item->item_code2) && $item->item_code) {
-                        $qty->item_name = $qty->item_name . ' (' . $item->item_code2 . ')';
+                        $production->item_name = $production->item_name . ' (' . $item->item_code2 . ')';
                     }
                 }
-                $qty->sablon_rusak = $qty->item_prd_bahan - $qty->item_prd_sablon;
-                $qty->jahit_rusak = $qty->item_prd_sablon - $qty->item_prd_jahit;
-                $qty->finish_total = $qty->item_prd_jahit;
+                $production->sablon_rusak = $production->item_prd_bahan - $production->item_prd_sablon;
+                $production->jahit_rusak = $production->item_prd_sablon - $production->item_prd_jahit;
+                $production->finish_total = $production->item_prd_jahit;
             }
 
-            foreach ($qtys as $qty) {
-                $bahan_total += $qty->item_prd_bahan;
-                $sablon_total += $qty->item_prd_sablon;
-                $jahit_total += $qty->item_prd_jahit;
-                $sablon_rusak += $qty->sablon_rusak;
-                $jahit_rusak += $qty->jahit_rusak;
-                $grand_total += $qty->finish_total;
+            foreach ($productions as $production) {
+                $bahan_total += $production->item_prd_bahan;
+                $sablon_total += $production->item_prd_sablon;
+                $jahit_total += $production->item_prd_jahit;
+                $sablon_rusak += $production->sablon_rusak;
+                $jahit_rusak += $production->jahit_rusak;
+                $grand_total += $production->finish_total;
             }
         }
 
@@ -74,7 +74,7 @@ class Qty extends MY_Controller
 
         // inisialisasi struktur
         $page['id'] = $id;
-        $page['qtys'] = $qtys;
+        $page['productions'] = $productions;
         $page['items'] = $items;
         $page['bahan_total'] = $bahan_total;
         $page['sablon_total'] = $sablon_total;
@@ -84,7 +84,7 @@ class Qty extends MY_Controller
         $page['grand_total'] = $grand_total;
 
         // return to view
-        $this->template->render('CRUD/CRUD_Qty', $page);
+        $this->template->render('CRUD/CRUD_Production', $page);
     }
 
 
@@ -92,16 +92,16 @@ class Qty extends MY_Controller
     {
         // form validation
         $this->form_validation->set_rules('item_id', 'Item', 'required');
-        $this->form_validation->set_rules('item_qty_type', 'Item Type', 'required');
+        $this->form_validation->set_rules('item_production_type', 'Item Type', 'required');
 
         // get id from post['id']`
         $id = $this->input->post('item_prd_id');
 
         // store result query
-        $item_qty = $this->item_prd_model->where('item_prd_id', $id)->get();
+        $item_production = $this->item_prd_model->where('item_prd_id', $id)->get();
 
         // store post[] into array
-        $item_qty_data = array(
+        $item_production_data = array(
             'item_prd_id' => $id,
             'item_prd_date' => date('Y-m-d H:i:s'),
             'item_id' => $this->input->post('item_id'),
@@ -111,20 +111,20 @@ class Qty extends MY_Controller
         );
 
         // check if exist
-        if ($item_qty) {
+        if ($item_production) {
             // validation
-            if ($this->form_validation->run() === false && $item_qty_data['item_qty_name'] != $item_qty->item_qty_name) {
+            if ($this->form_validation->run() === false && $item_production_data['item_production_name'] != $item_production->item_production_name) {
                 echo 'false';
-//                $this->template->render('CRUD/CRUD_Category', $item_qty_data);
+//                $this->template->render('CRUD/CRUD_Category', $item_production_data);
             }
 
             // try
             try {
                 // store proses kedalam variabel
-                $item_qty_update = $this->item_prd_model->update($item_qty_data, 'item_prd_id');
+                $item_production_update = $this->item_prd_model->update($item_production_data, 'item_prd_id');
 
                 // cek jika berhasil diupdate
-                if ($item_qty_update) {
+                if ($item_production_update) {
                     // set session temp message
                     $this->pesan->berhasil('Berhasil membuat transaksi.');
                 } else {
@@ -140,16 +140,16 @@ class Qty extends MY_Controller
             // check validation
             if ($this->form_validation->run() === false) {
                 echo 'false';
-//                $this->template->render('CRUD/CRUD_Category', $item_qty_data);
+//                $this->template->render('CRUD/CRUD_Category', $item_production_data);
             }
 
             // try
             try {
                 // store proses kedalam variabel
-                $item_qty_create = $this->item_prd_model->insert($item_qty_data);
+                $item_production_create = $this->item_prd_model->insert($item_production_data);
 
                 // check jika berhasil dibuat
-                if ($item_qty_create) {
+                if ($item_production_create) {
                     // set session temp message
                     $this->pesan->berhasil('Berhasil membuat transaksi.');
                 } else {
@@ -165,6 +165,6 @@ class Qty extends MY_Controller
         }
 
         // redirect to Index
-        redirect('qty');
+        redirect('production');
     }
 }

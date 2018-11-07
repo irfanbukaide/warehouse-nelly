@@ -37,7 +37,7 @@ $item_qty_id = $id;
                     <li class="list-group-item p-3">
                         <div class="row">
                             <div class="col">
-                                <form action="<?= site_url('qty/save'); ?>" method="post">
+                                <form action="<?= site_url('production/save'); ?>" method="post">
                                     <input type="hidden" name="item_prd_id" value="<?= $item_qty_id; ?>">
                                     <div class="form-row">
                                         <div class="form-group col-md-12">
