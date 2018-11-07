@@ -10,6 +10,7 @@ class Item extends MY_Controller
 
         // load model
         $this->load->model('Item_model', 'item_model');
+        $this->load->model('Item_img_model', 'item_img_model');
         $this->load->model('Category_model', 'category_model');
         $this->load->model('Item_category_model', 'item_category_model');
 
@@ -29,8 +30,15 @@ class Item extends MY_Controller
         if ($items != NULL) {
             foreach ($items as $item) {
                 $item_category = $this->item_category_model->with_category()->where('item_id', $item->item_id)->get();
+                $item_img = $this->item_img_model->where('item_id', $item->item_id)->get();
                 if (isset($item_category->category)) {
                     $item->category = $item_category->category->category_name;
+                }
+
+                if ($item_img) {
+                    $item->item_images = $item_img;
+                } else {
+                    $item->item_images = NULL;
                 }
             }
         }
@@ -40,6 +48,11 @@ class Item extends MY_Controller
 
         // return to view
         $this->template->render('Item', $page);
+
+
+//        echo '<pre>';
+//        var_dump($items);
+//        echo '</pre>';
 
     }
 

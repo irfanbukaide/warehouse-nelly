@@ -52,7 +52,7 @@ if ($mode == 'create') {
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-12">
                                             <label for="category_id">Category</label>
                                             <select name="category_id" id="category_id" class="form-control">
                                                 <option selected>Select Category</option>
@@ -63,15 +63,6 @@ if ($mode == 'create') {
                                                 <?php endif; ?>
                                             </select>
                                         </div>
-
-                                        <div class="form-group col-md-6">
-                                            <label for="item_img">Image</label>
-                                            <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="item_img">
-                                                <label class="custom-file-label" for="item_img">Select Image ...</label>
-                                            </div>
-                                        </div>
-
                                     </div>
                                     <div class="form-row ">
                                         <div class="form-group col-md-12">

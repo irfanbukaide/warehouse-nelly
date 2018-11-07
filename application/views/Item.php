@@ -54,14 +54,12 @@
             <?php foreach ($items as $item): ?>
                 <tr>
                     <td class="lo-stats__image">
-                        <?php if ($item->item_img != NULL): ?>
+                        <?php if ($item->item_images != NULL): ?>
                             <a href="#">
                                 <img class="border rounded" src="images/sales-overview/product-order-1.jpg">
                             </a>
                         <?php else: ?>
-                            <a href="#">
-                                <img class="border rounded" src="images/sales-overview/product-order-1.jpg">
-                            </a>
+                            <img class="border rounded" src="<?= base_url('assets/images/notfound.png'); ?>">
                         <?php endif; ?>
 
                     </td>
@@ -72,7 +70,12 @@
                     <td class="file-manager__item-actions">
                         <div class="btn-group btn-group-sm d-flex" role="group"
                              aria-label="Table row actions">
-                            <button class="btn btn-sm btn-success">Upload</button>
+                            <a href="#" class="btn btn-sm btn-success">
+                                <i class="material-icons">
+                                    add_photo_alternate
+                                </i>
+                                Upload
+                            </a>
                             <a href="<?= site_url('item/edit/' . $item->item_id); ?>"
                                class="btn btn-white active-light">
                                 <i class="material-icons">&#xE254;</i>

@@ -13,7 +13,16 @@ class Image extends MY_Controller
 
     }
 
-    public function item_upload()
+    public function item_upload($id = NULL)
+    {
+        $page = array();
+
+        $page['id'] = $id;
+
+        $this->load->view('CRUD/CRUD_Item_upload', $page);
+    }
+
+    public function do_item_upload()
     {
         $item_id = $this->input->post('item_id');
         $imgData = file_get_contents($_FILES['item_img']['tmp_name']);
