@@ -55,7 +55,7 @@
                 <tr>
                     <td class="lo-stats__image">
                         <?php if ($item->item_image != NULL): ?>
-                            <a href="#">
+                            <a id="btnshowimage" href="<?= $item->item_image; ?>">
                                 <img class="border rounded" src="<?= $item->item_image; ?>">
                             </a>
                         <?php else: ?>
@@ -122,6 +122,8 @@
             modal.modal('show');
             modalbody.load(url);
 
-        })
+        });
+
+
     })
 </script>
