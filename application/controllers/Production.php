@@ -10,7 +10,6 @@ class Production extends MY_Controller
         // load library
         $this->load->model('Item_model', 'item_model');
         $this->load->model('Item_prd_model', 'item_prd_model');
-        $this->load->model('Item_production_type_model', 'item_production_type_model');
     }
 
     public function index()

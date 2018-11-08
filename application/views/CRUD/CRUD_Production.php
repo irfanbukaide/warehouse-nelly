@@ -1,6 +1,6 @@
 <?php
 // inisialisasi
-$item_qty_id = $id;
+$item_production_id = $id;
 ?>
 <?php if (isset($_SESSION['berhasil'])): ?>
     <div id="message" class="alert alert-success alert-dismissible fade show mb-2" role="alert">
@@ -38,7 +38,7 @@ $item_qty_id = $id;
                         <div class="row">
                             <div class="col">
                                 <form action="<?= site_url('production/save'); ?>" method="post">
-                                    <input type="hidden" name="item_prd_id" value="<?= $item_qty_id; ?>">
+                                    <input type="hidden" name="item_prd_id" value="<?= $item_production_id; ?>">
                                     <div class="form-row">
                                         <div class="form-group col-md-12">
                                             <label for="item_id">Item</label>
@@ -112,17 +112,17 @@ $item_qty_id = $id;
                 </tr>
                 </thead>
                 <tbody>
-                <?php if ($qtys != NULL): ?>
-                    <?php foreach ($qtys as $qty): ?>
+                <?php if ($productions != NULL): ?>
+                    <?php foreach ($productions as $production): ?>
                         <tr>
-                            <td class="text-left"><?= date_format(date_create($qty->created_at), 'd-M-Y H:i'); ?></td>
-                            <td class="text-left"><?= $qty->item_name; ?></td>
-                            <td><?= $qty->item_prd_bahan; ?></td>
-                            <td><?= $qty->item_prd_sablon; ?> / <span
-                                        class="text-danger"><?= $qty->sablon_rusak; ?></span></td>
-                            <td><?= $qty->item_prd_jahit; ?> / <span
-                                        class="text-danger"><?= $qty->jahit_rusak; ?></span></td>
-                            <td><span class="text-success"><?= $qty->item_prd_jahit; ?></span></td>
+                            <td class="text-left"><?= date_format(date_create($production->created_at), 'd-M-Y H:i'); ?></td>
+                            <td class="text-left"><?= $production->item_name; ?></td>
+                            <td><?= $production->item_prd_bahan; ?></td>
+                            <td><?= $production->item_prd_sablon; ?> / <span
+                                        class="text-danger"><?= $production->sablon_rusak; ?></span></td>
+                            <td><?= $production->item_prd_jahit; ?> / <span
+                                        class="text-danger"><?= $production->jahit_rusak; ?></span></td>
+                            <td><span class="text-success"><?= $production->item_prd_jahit; ?></span></td>
                         </tr>
                     <?php endforeach; ?>
                 <?php endif; ?>
