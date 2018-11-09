@@ -14,6 +14,13 @@ class Transaction extends MY_Controller
         $this->load->model('Transaction_in_hrg_model', 'transaction_in_hrg');
         $this->load->model('Transaction_in_detil_model', 'transaction_in_detil');
 
+
+        // load js
+//        $this->template->add_js('https://cdn.datatables.net/select/1.2.7/js/dataTables.select.min.js');
+
+        // load css
+//        $this->template->add_css('https://cdn.datatables.net/select/1.2.7/css/select.dataTables.min.css');
+
     }
 
     public function index()
@@ -23,8 +30,6 @@ class Transaction extends MY_Controller
         $page = array();
         $page['mode'] = 'list';
 
-        $transactions = $this->transaction_model->get_all();
-        $page['transactions'] = $transactions;
 
 
         $this->template->render('Transaction_in');
@@ -36,7 +41,7 @@ class Transaction extends MY_Controller
         $this->template->add_title_segment('Create Transaction');
         $page = array();
         if ($mode == 'create') {
-            $id = 'IN-' . date('ymdhis');
+            $id = 'IN-' . date('ymd-hi-s');
             $page['id'] = $id;
 
             $items = $this->item_model->with_item_qty()->get_all();
@@ -65,6 +70,50 @@ class Transaction extends MY_Controller
 
             $this->template->render('CRUD/CRUD_In', $page);
         } elseif ($mode == 'generate') {
+            $transactin_id = $this->input->post('transaction_id');
+            $transactin_date = $this->input->post('transaction_date');
+            $transactin_item = $this->input->post('transaction_item');
+            $transactin_qty = $this->input->post('transaction_qty');
+
+            $item_prd_ids = $this->input->post('item_prd_id');
+
+            $transactin_in_data = array(
+                'transactin_id' => $transactin_id,
+                'transactin_date' => date_format(date_create($transactin_date), 'Y-m-d H:i'),
+                'item_id' => $transactin_item,
+                'transactin_qty' => $transactin_qty,
+                'transactin_status' => 0
+            );
+
+            $transactin_in_hrg_data = array(
+                'transactin_id' => $transactin_id,
+                'transactin_cost' => 0,
+                'transactin_price' => 0,
+            );
+
+            try {
+                $transactin_in = $this->transaction_in->insert($transactin_in_data);
+                $transactin_in_hrg = $this->transaction_in_hrg->insert($transactin_in_hrg_data);
+
+                if ($transactin_in && $transactin_in_hrg) {
+                    foreach ($item_prd_ids as $item_prd_id) {
+                        $transactin_in_detil_data = array(
+                            'transactin_id' => $transactin_id,
+                            'item_prd_id' => $item_prd_id,
+                            'transactin_detil_qty' => $item_prd_total = $this->item_prd_model->where('item_prd_id', $item_prd_id)->get()->item_prd_jahit
+                        );
+
+
+                        $this->transaction_in_detil->insert($transactin_in_detil_data);
+                        $this->item_prd_prd_model->where('item_prd_id', $item_prd_id)->update(array('item_prd_stokin' => 1));
+                    }
+                }
+            } catch (\Exception $e) {
+                // set session temp message
+                $this->pesan->gagal('ERROR : ' . $e);
+            }
+//            var_dump($_POST['item_prd_id']);
+
 
         }
     }
@@ -78,6 +127,63 @@ class Transaction extends MY_Controller
     public function delivery_order()
     {
 
+    }
+
+
+    public function api_get_prd($item_id = '')
+    {
+        if ($item_id == '') {
+            $productions = $this->item_prd_model->get_all();
+        } else {
+            $productions = $this->item_prd_model->where('item_id', $item_id)->get_all();
+        }
+
+
+        // sum
+        $bahan_total = 0;
+        $jahit_total = 0;
+        $sablon_total = 0;
+        $sablon_rusak = 0;
+        $jahit_rusak = 0;
+        $grand_total = 0;
+        if ($productions != NULL) {
+            foreach ($productions as $production) {
+                $item = $this->item_model->where('item_id', $production->item_id)->get();
+
+                if ($item) {
+                    $production->item_name = isset($item->item_code2) && $item->item_code2 != '' ? $item->item_code . ' (' . $item->item_code2 . ')' : $item->item_code;
+                }
+                $production->sablon_rusak = $production->item_prd_bahan - $production->item_prd_sablon;
+                $production->jahit_rusak = $production->item_prd_sablon - $production->item_prd_jahit;
+                $production->finish_total = $production->item_prd_jahit;
+            }
+
+            foreach ($productions as $production) {
+                $bahan_total += $production->item_prd_bahan;
+                $sablon_total += $production->item_prd_sablon;
+                $jahit_total += $production->item_prd_jahit;
+                $sablon_rusak += $production->sablon_rusak;
+                $jahit_rusak += $production->jahit_rusak;
+                $grand_total += $production->finish_total;
+            }
+        }
+
+        $hasil = array();
+        $repair = array();
+        foreach ($productions as $k => $v) {
+            $repair[$k]['item_prd_id'] = $v->item_prd_id;
+            $repair[$k]['item'] = $v->item_name;
+            $repair[$k]['bahan'] = $v->item_prd_bahan;
+            $repair[$k]['sablon'] = $v->item_prd_sablon . ' / ' . $v->sablon_rusak;
+            $repair[$k]['jahit'] = $v->item_prd_jahit . ' / ' . $v->jahit_rusak;
+            $repair[$k]['total'] = $v->item_prd_jahit;
+        }
+        foreach ($repair as $k => $v) {
+            $c = (array)$v;
+            $hasil['data'][$k] = array_values($c);
+        }
+
+        echo json_encode($hasil);
     }
 
 

@@ -98,7 +98,8 @@ class Production extends MY_Controller
             'item_id' => $this->input->post('item_id'),
             'item_prd_bahan' => $this->input->post('item_prd_bahan'),
             'item_prd_sablon' => $this->input->post('item_prd_sablon'),
-            'item_prd_jahit' => $this->input->post('item_prd_jahit')
+            'item_prd_jahit' => $this->input->post('item_prd_jahit'),
+            'item_prd_stokin' => 0
         );
 
         // check if exist

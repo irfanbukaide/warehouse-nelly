@@ -8,7 +8,7 @@ class Transaction_in_hrg_model extends MY_Model
         $this->table = 'transaction_in_hrg';
         $this->primary_key = 'transactin_id';
         $this->protected = array('id', 'created_at', 'update_at', 'deleted_at');
-        $this->timestamps = TRUE;
+        $this->timestamps = FALSE;
         $this->soft_deletes = FALSE;
         $this->has_one['transaction_in'] = array(
             'foreign_model' => 'Transaction_in_model',
