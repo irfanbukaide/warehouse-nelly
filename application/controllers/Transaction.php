@@ -44,14 +44,14 @@ class Transaction extends MY_Controller
             $id = 'IN-' . date('ymd-hi-s');
             $page['id'] = $id;
 
-            $items = $this->item_model->with_item_qty()->get_all();
+            $items = $this->item_model->with_item_prd()->get_all();
             $hasil = array();
 
             if ($items) {
                 foreach ($items as $item) {
-                    $item_qty = $this->item_prd_model->where('item_id', $item->item_id)->get();
+                    $item_prd = $this->item_prd_model->where(array('item_id' => $item->item_id, 'item_prd_stokin' => 0))->get();
 
-                    if ($item_qty) {
+                    if ($item_prd) {
                         $hasil[] = $item;
                     }
                 }
@@ -105,7 +105,7 @@ class Transaction extends MY_Controller
 
 
                         $this->transaction_in_detil->insert($transactin_in_detil_data);
-                        $this->item_prd_prd_model->where('item_prd_id', $item_prd_id)->update(array('item_prd_stokin' => 1));
+                        $this->item_prd_model->where('item_prd_id', $item_prd_id)->update(array('item_prd_stokin' => 1));
                     }
                 }
             } catch (\Exception $e) {

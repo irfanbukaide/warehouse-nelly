@@ -24,7 +24,7 @@ class Production extends MY_Controller
 
         // get data
 //        $productions = $this->item_prd_model->with_item()->where('item_prd_date', date('Y-m-d'))->get_all();
-        $productions = $this->item_prd_model->get_all();
+        $productions = $this->item_prd_model->where('item_prd_stokin', 0)->get_all();
         $items = $this->item_model->get_all();
 
         // sum

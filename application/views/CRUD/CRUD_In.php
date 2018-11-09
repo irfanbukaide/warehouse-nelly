@@ -56,7 +56,7 @@ $transaction_date = date('d/m/Y H:i');
                                             <label for="transaction_item">Item</label>
                                             <select name="transaction_item" id="transaction_item" class="form-control"
                                                     required>
-                                                <option value="">Select item</option>
+                                                <option value="">Select Item</option>
                                                 <?php if ($items): ?>
                                                     <?php foreach ($items as $item): ?>
                                                         <option value="<?= $item->item_id; ?>"><?= $item->item_name; ?></option>
