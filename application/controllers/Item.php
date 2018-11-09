@@ -70,7 +70,7 @@ class Item extends MY_Controller
         $item_data = array(
             'item_id' => $id,
             'item_code' => $this->input->post('item_code'),
-            'item_code2' => $this->input->post('item_code2'),
+            'item_code2' => $this->input->post('item_code2') == '' ? '' : $this->input->post('item_code2'),
             'item_status' => $this->input->post('item_status'),
             'item_description' => $this->input->post('item_description'),
         );

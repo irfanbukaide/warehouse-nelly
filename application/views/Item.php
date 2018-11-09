@@ -67,7 +67,7 @@
 
                     </td>
                     <td><?= $item->item_code; ?></td>
-                    <td><?= isset($item->item_code2) ? $item->item_code2 : '-'; ?></td>
+                    <td><?= isset($item->item_code2) && $item->item_code2 != '' ? $item->item_code2 : '-'; ?></td>
                     <td><?= isset($item->category) ? $item->category : '-'; ?></td>
                     <td><?= $item->item_status == 1 ? '<div class="text-success">Available</div>' : '<div class="text-danger">Disabled</div>'; ?></td>
                     <td class="file-manager__item-actions">

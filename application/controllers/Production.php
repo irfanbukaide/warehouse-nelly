@@ -62,7 +62,7 @@ class Production extends MY_Controller
 
         if ($items) {
             foreach ($items as $item) {
-                if (isset($item->item_code2) && $item->item_code2) {
+                if (isset($item->item_code2) && $item->item_code2 != '') {
                     $item->item_name = $item->item_code . ' (' . $item->item_code2 . ')';
                 } else {
                     $item->item_name = $item->item_code;
