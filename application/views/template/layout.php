@@ -90,11 +90,16 @@
                             <span>Production</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= site_url('transaction'); ?>">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                           aria-haspopup="false" aria-expanded="false">
                             <i class="material-icons">swap_horiz</i>
                             <span>In & Out</span>
                         </a>
+                        <div class="dropdown-menu dropdown-menu-small">
+                            <a class="dropdown-item" href="<?= site_url('transaction/in'); ?>">IN</a>
+                            <a class="dropdown-item" href="<?= site_url('transaction/out'); ?>">OUT</a>
+                        </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?= site_url('in_out'); ?>">

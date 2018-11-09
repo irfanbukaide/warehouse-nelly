@@ -42,12 +42,14 @@ if ($mode == 'create') {
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="item_code">Item Code</label>
-                                            <input type="text" class="form-control" name="item_code" id="item_code"
+                                            <input maxlength="10" type="text" class="form-control" name="item_code"
+                                                   id="item_code"
                                                    placeholder="Item Code" value="<?= $item_code; ?>">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="item_code2">Item Code2</label>
-                                            <input type="text" class="form-control" name="item_code2" id="item_code2"
+                                            <input maxlength="10" type="text" class="form-control" name="item_code2"
+                                                   id="item_code2"
                                                    placeholder="Item Code2" value="<?= $item_code2; ?>">
                                         </div>
                                     </div>

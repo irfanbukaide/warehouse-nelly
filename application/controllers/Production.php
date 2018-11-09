@@ -39,11 +39,7 @@ class Production extends MY_Controller
                 $item = $this->item_model->where('item_id', $production->item_id)->get();
 
                 if ($item) {
-                    $production->item_name = $item->item_code;
-
-                    if (isset($item->item_code2) && $item->item_code) {
-                        $production->item_name = $production->item_name . ' (' . $item->item_code2 . ')';
-                    }
+                    $production->item_name = isset($item->item_code2) && $item->item_code2 != '' ? $item->item_code . ' (' . $item->item_code2 . ')' : $item->item_code;
                 }
                 $production->sablon_rusak = $production->item_prd_bahan - $production->item_prd_sablon;
                 $production->jahit_rusak = $production->item_prd_sablon - $production->item_prd_jahit;
@@ -62,11 +58,7 @@ class Production extends MY_Controller
 
         if ($items) {
             foreach ($items as $item) {
-                if (isset($item->item_code2) && $item->item_code2 != '') {
-                    $item->item_name = $item->item_code . ' (' . $item->item_code2 . ')';
-                } else {
-                    $item->item_name = $item->item_code;
-                }
+                $item->item_name = isset($item->item_code2) && $item->item_code2 != '' ? $item->item_code . ' (' . $item->item_code2 . ')' : $item->item_code;
             }
         }
 
