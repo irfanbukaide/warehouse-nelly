@@ -10,7 +10,9 @@ class Transaction extends MY_Controller
         //load model
         $this->load->model('Item_model', 'item_model');
         $this->load->model('Item_prd_model', 'item_prd_model');
-        $this->load->model('Transaction_model', 'transaction_model');
+        $this->load->model('Transaction_in_model', 'transaction_in');
+        $this->load->model('Transaction_in_hrg_model', 'transaction_in_hrg');
+        $this->load->model('Transaction_in_detil_model', 'transaction_in_detil');
 
     }
 
