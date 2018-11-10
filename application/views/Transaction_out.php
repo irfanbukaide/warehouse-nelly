@@ -20,7 +20,7 @@
         </div>
         <div class="col d-flex">
             <div class="btn-primary rounded d-inline-flex ml-auto my-auto" role="group" aria-label="Table row actions">
-                <a href="<?= site_url('transaction/in/create'); ?>" class="btn btn-white">
+                <a href="<?= site_url('transaction/out/create'); ?>" class="btn btn-white">
                     <i class="material-icons">local_hospital</i>
                     <span>Create Transaction</span>
                 </a>

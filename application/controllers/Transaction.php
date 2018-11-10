@@ -8,6 +8,7 @@ class Transaction extends MY_Controller
         parent::__construct();
 
         //load model
+        $this->load->model('Customer_model', 'customer_model');
         $this->load->model('Item_model', 'item_model');
         $this->load->model('Item_prd_model', 'item_prd_model');
         $this->load->model('Transaction_out_model', 'transaction_out');
@@ -142,7 +143,7 @@ class Transaction extends MY_Controller
 
         } elseif ($mode == 'create') {
             $this->template->add_title_segment('Create Transaction IN');
-            $id = 'IN-' . date('ymd-hi-s');
+            $id = 'OT-' . date('ymd-hi-s');
             $page['id'] = $id;
 
             $items = $this->item_model->with_item_prd()->get_all();
@@ -169,7 +170,7 @@ class Transaction extends MY_Controller
 
             $page['items'] = $hasil;
 
-            $this->template->render('CRUD/CRUD_In', $page);
+            $this->template->render('CRUD/CRUD_Out', $page);
         } elseif ($mode == 'generate') {
             $transactin_id = $this->input->post('transaction_id');
             $transactin_date = $this->input->post('transaction_date');
