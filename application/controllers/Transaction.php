@@ -175,7 +175,10 @@ class Transaction extends MY_Controller
                 $hasil = NULL;
             }
 
+            $customers = $this->customer_mode->get_all();
+
             $page['items'] = $hasil;
+            $page['customers'] = $customers;
 
             $this->template->render('CRUD/CRUD_Out', $page);
         } elseif ($mode == 'generate') {
@@ -241,7 +244,7 @@ class Transaction extends MY_Controller
         if ($item_id == '') {
             $productions = $this->item_prd_model->where('item_prd_stokin', 0)->get_all();
         } else {
-            $productions = $this->item_prd_model->where('item_id', $item_id)->get_all();
+            $productions = $this->item_prd_model->where(array('item_id' => $item_id, 'item_prd_stokin' => 0))->get_all();
         }
 
 

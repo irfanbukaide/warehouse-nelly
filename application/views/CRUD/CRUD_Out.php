@@ -53,10 +53,11 @@ $transaction_date = date('d/m/Y H:i');
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-12">
-                                            <label for="transaction_item">Item</label>
-                                            <select name="transaction_item" id="transaction_item" class="form-control"
+                                            <label for="transaction_customer">Item</label>
+                                            <select name="transaction_customer" id="transaction_customer"
+                                                    class="form-control"
                                                     required>
-                                                <option value="">Select Item</option>
+                                                <option value="">Select Customer</option>
                                                 <?php if ($items): ?>
                                                     <?php foreach ($items as $item): ?>
                                                         <option value="<?= $item->item_id; ?>"><?= $item->item_name; ?></option>

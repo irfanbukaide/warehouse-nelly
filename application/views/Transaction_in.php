@@ -66,7 +66,7 @@
                     <td><?= $transaction_in->item->item_code; ?></td>
                     <td><?= $transaction_in->transactin_qty; ?></td>
                     <td><?= $transaction_in->transaction_in_hrg->transactin_cost . ' / ' . $transaction_in->transaction_in_hrg->transactin_price; ?></td>
-                    <td><?= $transaction_in->transactin_date; ?></td>
+                    <td><?= date_format(date_create($transaction_in->transactin_date), 'd-m-Y H:i'); ?></td>
                     <td><?= $transaction_in->transactin_status == 1 ? '<div class="text-success">OK</div>' : '<div class="text-danger">PENDING</div>'; ?></td>
                     <td class="file-manager__item-actions">
                         <div class="btn-group btn-group-sm d-flex justify-content-center" role="group"
