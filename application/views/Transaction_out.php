@@ -33,7 +33,7 @@
         <thead>
         <tr>
             <th>Transaction ID</th>
-            <th>Supplier</th>
+            <th>Customer</th>
             <th>Item</th>
             <th>QTY</th>
             <th>Date</th>
@@ -45,22 +45,22 @@
         <?php if ($transaction_outs): ?>
             <?php foreach ($transaction_outs as $transaction_out): ?>
                 <tr>
-                    <td><?= $transaction_out->transactin_id; ?></td>
-                    <td><?= $transaction_out->transactin_id; ?></td>
+                    <td><?= $transaction_out->transactout_id; ?></td>
+                    <td><?= $transaction_out->customer->customer_name; ?></td>
                     <td><?= $transaction_out->item->item_code; ?></td>
-                    <td><?= $transaction_out->transactin_qty; ?></td>
-                    <td><?= $transaction_out->transactin_date; ?></td>
-                    <td><?= $transaction_out->transactin_status == 1 ? '<div class="text-success">OK</div>' : '<div class="text-danger">PENDING</div>'; ?></td>
+                    <td><?= $transaction_out->transactout_qty; ?></td>
+                    <td><?= $transaction_out->transactout_date; ?></td>
+                    <td><?= $transaction_out->transactout_status == 1 ? '<div class="text-success">OK</div>' : '<div class="text-danger">PENDING</div>'; ?></td>
                     <td class="file-manager__item-actions">
                         <div class="btn-group btn-group-sm d-flex justify-content-center" role="group"
                              aria-label="Table row actions">
-                            <?php if ($transaction_out->transactin_status == 1): ?>
+                            <?php if ($transaction_out->transactout_status == 1): ?>
                                 <button disabled type="button" class="btn btn-white active-light">
                                     Approved
                                 </button>
                             <?php else: ?>
                                 <a class="btn btn-white active-light"
-                                   href="<?php site_url('transaction/approve/' . $transaction_out->transactin_id); ?>">
+                                   href="<?php site_url('transaction/approve/' . $transaction_out->transactout_id); ?>">
                                     Approve
                                 </a>
                             <?php endif; ?>

@@ -10,6 +10,7 @@ class Transaction extends MY_Controller
         //load model
         $this->load->model('Item_model', 'item_model');
         $this->load->model('Item_prd_model', 'item_prd_model');
+        $this->load->model('Transaction_out_model', 'transaction_out');
         $this->load->model('Transaction_in_model', 'transaction_in');
         $this->load->model('Transaction_in_hrg_model', 'transaction_in_hrg');
         $this->load->model('Transaction_in_detil_model', 'transaction_in_detil');
@@ -133,11 +134,11 @@ class Transaction extends MY_Controller
         $page = array();
         if ($mode == 'index') {
             $this->template->add_title_segment('List Transaction IN');
-            $transaction_ins = $this->transaction_in->with_item()->with_transaction_in_hrg()->with_transaction_in_detil()->get_all();
-            $page['transaction_ins'] = $transaction_ins;
+            $transaction_outs = $this->transaction_out->with_item()->with_customer()->get_all();
+            $page['transaction_outs'] = $transaction_outs;
 
 
-            $this->template->render('Transaction_in', $page);
+            $this->template->render('Transaction_out', $page);
 
         } elseif ($mode == 'create') {
             $this->template->add_title_segment('Create Transaction IN');
