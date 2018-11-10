@@ -27,6 +27,12 @@ class Item_model extends MY_Model{
             'foreign_key' => 'item_id',
             'local_key' => 'item_id'
         );
+        $this->has_many['transaction_in'] = array(
+            'foreign_model' => 'Transaction_in_model',
+            'foreign_table' => 'transaction_in',
+            'foreign_key' => 'item_id',
+            'local_key' => 'item_id'
+        );
         parent::__construct();
     }
 

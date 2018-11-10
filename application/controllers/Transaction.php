@@ -36,11 +36,20 @@ class Transaction extends MY_Controller
 
     }
 
-    public function in($mode = 'create')
+    public function in($mode = 'index')
     {
-        $this->template->add_title_segment('Create Transaction');
+
         $page = array();
-        if ($mode == 'create') {
+        if ($mode == 'index') {
+            $this->template->add_title_segment('List Transaction IN');
+            $transaction_ins = $this->transaction_in->with_transaction_in_hrg()->with_transaction_in_detil()->get_all();
+            $page['transaction_ins'] = $transaction_ins;
+
+
+            $this->template->render('Transaction_in', $page);
+
+        } elseif ($mode == 'create') {
+            $this->template->add_title_segment('Create Transaction IN');
             $id = 'IN-' . date('ymd-hi-s');
             $page['id'] = $id;
 
@@ -108,13 +117,14 @@ class Transaction extends MY_Controller
                         $this->item_prd_model->where('item_prd_id', $item_prd_id)->update(array('item_prd_stokin' => 1));
                     }
                 }
+
+                $this->pesan->berhasil('Transaksi IN telah berhasil');
             } catch (\Exception $e) {
                 // set session temp message
                 $this->pesan->gagal('ERROR : ' . $e);
             }
 //            var_dump($_POST['item_prd_id']);
-
-
+            redirect('transaction/in/index');
         }
     }
 

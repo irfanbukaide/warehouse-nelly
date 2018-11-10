@@ -10,6 +10,12 @@ class Transaction_in_model extends MY_Model
         $this->protected = array('created_at', 'update_at', 'deleted_at');
         $this->timestamps = TRUE;
         $this->soft_deletes = FALSE;
+        $this->has_one['item'] = array(
+            'foreign_model' => 'Item_model',
+            'foreign_table' => 'item',
+            'foreign_key' => 'item_id',
+            'local_key' => 'item'
+        );
         $this->has_one['transaction_in_hrg'] = array(
             'foreign_model' => 'Transaction_in_hrg_model',
             'foreign_table' => 'transaction_in_hrg',

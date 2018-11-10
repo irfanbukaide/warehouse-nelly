@@ -20,7 +20,7 @@ $transaction_date = date('d/m/Y H:i');
             <span class="text-uppercase page-subtitle">In & Out</span>
             <h3 class="page-title">
                 <i class="material-icons">swap_horiz</i>
-                Create Transaction In
+                Transaction In
             </h3>
         </div>
     </div>
