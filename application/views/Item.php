@@ -39,7 +39,6 @@
     <table class="file-manager file-manager-list table-responsive">
         <thead>
         <tr>
-            <th>Item ID</th>
             <th class="hide-sort-icons">Item Image</th>
             <th>Item Code</th>
             <th>Item Code2</th>
@@ -54,7 +53,6 @@
         <?php if ($items != NULL): ?>
             <?php foreach ($items as $item): ?>
                 <tr>
-                    <td><?= $item->item_id; ?></td>
                     <td class="lo-stats__image">
                         <?php if ($item->item_image != NULL): ?>
                             <a id="btnshowimage" href="<?= $item->item_image; ?>" data-fancybox

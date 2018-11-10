@@ -3,7 +3,7 @@
     <div class="page-header row no-gutters py-4">
         <div class="col">
             <span class="text-uppercase page-subtitle">Transaction</span>
-            <h3 class="page-title">IN</h3>
+            <h3 class="page-title">OUT</h3>
         </div>
         <div class="col-12 col-sm-4 d-flex align-items-center">
             <div id="analytics-overview-date-range" class="input-daterange input-group input-group-sm ml-auto">
