@@ -33,34 +33,34 @@
         <thead>
         <tr>
             <th>Transaction ID</th>
+            <th>Supplier</th>
             <th>Item</th>
             <th>QTY</th>
-            <th>Cost / Price</th>
             <th>Date</th>
             <th>Status</th>
             <th>Actions</th>
         </tr>
         </thead>
         <tbody>
-        <?php if ($transaction_ins): ?>
-            <?php foreach ($transaction_ins as $transaction_in): ?>
+        <?php if ($transaction_outs): ?>
+            <?php foreach ($transaction_outs as $transaction_out): ?>
                 <tr>
-                    <td><?= $transaction_in->transactin_id; ?></td>
-                    <td><?= $transaction_in->item->item_code; ?></td>
-                    <td><?= $transaction_in->transactin_qty; ?></td>
-                    <td><?= $transaction_in->transaction_in_hrg->transactin_cost . ' / ' . $transaction_in->transaction_in_hrg->transactin_price; ?></td>
-                    <td><?= $transaction_in->transactin_date; ?></td>
-                    <td><?= $transaction_in->transactin_status == 1 ? '<div class="text-success">OK</div>' : '<div class="text-danger">PENDING</div>'; ?></td>
+                    <td><?= $transaction_out->transactin_id; ?></td>
+                    <td><?= $transaction_out->transactin_id; ?></td>
+                    <td><?= $transaction_out->item->item_code; ?></td>
+                    <td><?= $transaction_out->transactin_qty; ?></td>
+                    <td><?= $transaction_out->transactin_date; ?></td>
+                    <td><?= $transaction_out->transactin_status == 1 ? '<div class="text-success">OK</div>' : '<div class="text-danger">PENDING</div>'; ?></td>
                     <td class="file-manager__item-actions">
                         <div class="btn-group btn-group-sm d-flex justify-content-center" role="group"
                              aria-label="Table row actions">
-                            <?php if ($transaction_in->transactin_status == 1): ?>
+                            <?php if ($transaction_out->transactin_status == 1): ?>
                                 <button disabled type="button" class="btn btn-white active-light">
                                     Approved
                                 </button>
                             <?php else: ?>
                                 <a class="btn btn-white active-light"
-                                   href="<?php site_url('transaction/approve/' . $transaction_in->transactin_id); ?>">
+                                   href="<?php site_url('transaction/approve/' . $transaction_out->transactin_id); ?>">
                                     Approve
                                 </a>
                             <?php endif; ?>

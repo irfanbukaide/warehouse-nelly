@@ -128,8 +128,95 @@ class Transaction extends MY_Controller
         }
     }
 
-    public function out()
+    public function out($mode = 'index')
     {
+        $page = array();
+        if ($mode == 'index') {
+            $this->template->add_title_segment('List Transaction IN');
+            $transaction_ins = $this->transaction_in->with_item()->with_transaction_in_hrg()->with_transaction_in_detil()->get_all();
+            $page['transaction_ins'] = $transaction_ins;
+
+
+            $this->template->render('Transaction_in', $page);
+
+        } elseif ($mode == 'create') {
+            $this->template->add_title_segment('Create Transaction IN');
+            $id = 'IN-' . date('ymd-hi-s');
+            $page['id'] = $id;
+
+            $items = $this->item_model->with_item_prd()->get_all();
+            $hasil = array();
+
+            if ($items) {
+                foreach ($items as $item) {
+                    $item_prd = $this->item_prd_model->where(array('item_id' => $item->item_id, 'item_prd_stokin' => 0))->get();
+
+                    if ($item_prd) {
+                        $hasil[] = $item;
+                    }
+                }
+                foreach ($hasil as $item) {
+                    if (isset($item->item_code2) && $item->item_code2) {
+                        $item->item_name = $item->item_code . ' (' . $item->item_code2 . ')';
+                    } else {
+                        $item->item_name = $item->item_code;
+                    }
+                }
+            } else {
+                $hasil = NULL;
+            }
+
+            $page['items'] = $hasil;
+
+            $this->template->render('CRUD/CRUD_In', $page);
+        } elseif ($mode == 'generate') {
+            $transactin_id = $this->input->post('transaction_id');
+            $transactin_date = $this->input->post('transaction_date');
+            $transactin_item = $this->input->post('transaction_item');
+            $transactin_qty = $this->input->post('transaction_qty');
+
+            $item_prd_ids = $this->input->post('item_prd_id');
+
+            $transactin_in_data = array(
+                'transactin_id' => $transactin_id,
+                'transactin_date' => date_format(date_create($transactin_date), 'Y-m-d H:i'),
+                'item_id' => $transactin_item,
+                'transactin_qty' => $transactin_qty,
+                'transactin_status' => 0
+            );
+
+            $transactin_in_hrg_data = array(
+                'transactin_id' => $transactin_id,
+                'transactin_cost' => 0,
+                'transactin_price' => 0,
+            );
+
+            try {
+                $transactin_in = $this->transaction_in->insert($transactin_in_data);
+                $transactin_in_hrg = $this->transaction_in_hrg->insert($transactin_in_hrg_data);
+
+                if ($transactin_in && $transactin_in_hrg) {
+                    foreach ($item_prd_ids as $item_prd_id) {
+                        $transactin_in_detil_data = array(
+                            'transactin_id' => $transactin_id,
+                            'item_prd_id' => $item_prd_id,
+                            'transactin_detil_qty' => $item_prd_total = $this->item_prd_model->where('item_prd_id', $item_prd_id)->get()->item_prd_jahit
+                        );
+
+
+                        $this->transaction_in_detil->insert($transactin_in_detil_data);
+                        $this->item_prd_model->where('item_prd_id', $item_prd_id)->update(array('item_prd_stokin' => 1));
+                    }
+                }
+
+                $this->pesan->berhasil('Transaksi IN telah berhasil');
+            } catch (\Exception $e) {
+                // set session temp message
+                $this->pesan->gagal('ERROR : ' . $e);
+            }
+//            var_dump($_POST['item_prd_id']);
+            redirect('transaction/in/index');
+        }
 
     }
 
