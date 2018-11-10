@@ -239,7 +239,7 @@ class Transaction extends MY_Controller
     public function api_get_prd($item_id = '')
     {
         if ($item_id == '') {
-            $productions = $this->item_prd_model->get_all();
+            $productions = $this->item_prd_model->where('item_prd_stokin', 0)->get_all();
         } else {
             $productions = $this->item_prd_model->where('item_id', $item_id)->get_all();
         }
