@@ -11,6 +11,7 @@ class Transaction extends MY_Controller
         $this->load->model('Customer_model', 'customer_model');
         $this->load->model('Item_model', 'item_model');
         $this->load->model('Item_prd_model', 'item_prd_model');
+        $this->load->model('Item_qty_model', 'item_qty_model');
         $this->load->model('Transaction_out_model', 'transaction_out');
         $this->load->model('Transaction_in_model', 'transaction_in');
         $this->load->model('Transaction_in_hrg_model', 'transaction_in_hrg');
@@ -102,11 +103,18 @@ class Transaction extends MY_Controller
                 'transactin_price' => 0,
             );
 
+            $item_qty_data = array(
+                'transactin_id' => $transactin_id,
+                'item_id' => $transactin_item,
+                'item_qty_total' => $transactin_qty
+            );
+
             try {
                 $transactin_in = $this->transaction_in->insert($transactin_in_data);
                 $transactin_in_hrg = $this->transaction_in_hrg->insert($transactin_in_hrg_data);
+                $item_qty = $this->item_qty_model->insert($item_qty_data);
 
-                if ($transactin_in && $transactin_in_hrg) {
+                if (($transactin_in && $transactin_in_hrg) && $item_qty) {
                     foreach ($item_prd_ids as $item_prd_id) {
                         $transactin_in_detil_data = array(
                             'transactin_id' => $transactin_id,
@@ -125,7 +133,6 @@ class Transaction extends MY_Controller
                 // set session temp message
                 $this->pesan->gagal('ERROR : ' . $e);
             }
-//            var_dump($_POST['item_prd_id']);
             redirect('transaction/in/index');
         }
     }

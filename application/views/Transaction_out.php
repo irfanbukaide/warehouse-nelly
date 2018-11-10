@@ -1,3 +1,20 @@
+<?php if (isset($_SESSION['berhasil'])): ?>
+    <div id="message" class="alert alert-success alert-dismissible fade show mb-2" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+        <i class="fa fa-check mx-2"></i>
+        <?= $_SESSION['berhasil']; ?>
+    </div>
+<?php elseif (isset($_SESSION['gagal'])): ?>
+    <div id="message" class="alert alert-danger alert-dismissible fade show mb-2" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+        <i class="fa fa-times mx-2"></i>
+        <?= $_SESSION['gagal']; ?>
+    </div>
+<?php endif; ?>
 <div class="main-content-container container-fluid px-4 pb-4">
     <!-- Page Header -->
     <div class="page-header row no-gutters py-4">
