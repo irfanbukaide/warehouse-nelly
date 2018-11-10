@@ -46,7 +46,18 @@
             <?php foreach ($transaction_ins as $transaction_in): ?>
                 <tr>
                     <td><?= $transaction_in->transactin_id; ?></td>
-                    <td><?= $transaction_in->transactin_id; ?></td>
+                    <td><?= $transaction_in->item->item_code; ?></td>
+                    <td><?= $transaction_in->transactin_qty; ?></td>
+                    <td><?= $transaction_in->transaction_in_hrg->transactin_cost . ' / ' . $transaction_in->transaction_in_hrg->transactin_price; ?></td>
+                    <td><?= $transaction_in->transactin_date; ?></td>
+                    <td><?= $transaction_in->transactin_status; ?></td>
+                    <td class="file-manager__item-actions">
+                        <div class="btn-group btn-group-sm d-flex" role="group" aria-label="Table row actions">
+                            <button type="button" class="btn btn-white active-light">
+                                Approve
+                            </button>
+                        </div>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         <?php endif; ?>

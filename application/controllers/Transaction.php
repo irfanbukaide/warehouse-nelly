@@ -42,7 +42,7 @@ class Transaction extends MY_Controller
         $page = array();
         if ($mode == 'index') {
             $this->template->add_title_segment('List Transaction IN');
-            $transaction_ins = $this->transaction_in->with_transaction_in_hrg()->with_transaction_in_detil()->get_all();
+            $transaction_ins = $this->transaction_in->with_item()->with_transaction_in_hrg()->with_transaction_in_detil()->get_all();
             $page['transaction_ins'] = $transaction_ins;
 
 

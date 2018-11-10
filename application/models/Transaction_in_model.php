@@ -14,7 +14,7 @@ class Transaction_in_model extends MY_Model
             'foreign_model' => 'Item_model',
             'foreign_table' => 'item',
             'foreign_key' => 'item_id',
-            'local_key' => 'item'
+            'local_key' => 'item_id'
         );
         $this->has_one['transaction_in_hrg'] = array(
             'foreign_model' => 'Transaction_in_hrg_model',
