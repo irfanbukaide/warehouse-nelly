@@ -58,6 +58,7 @@ class MY_Controller extends CI_Controller
 
         // get session data profile
         $session_id = $this->session->userdata('user_id');
+
     }
 
     public function mod_akses($privileges = 'user')
@@ -82,7 +83,7 @@ class MY_Controller extends CI_Controller
 
     public function get_session_url()
     {
-        return $this->session->flashdata('url');
+        return $this->session->userdata('url');
     }
 
     public function save_session_url($value = '/')
@@ -93,9 +94,13 @@ class MY_Controller extends CI_Controller
 
         if ($hasil == 'save') {
             $value = str_replace('save', '', $value);
+        } elseif ($hasil == 'do') {
+            $value = str_replace('do', '', $value);
+        } elseif ($hasil == 'login') {
+            $value = str_replace('login', '', $value);
         }
 
-        return $this->session->set_flashdata('url', $value);
+        return $this->session->set_userdata('url', $value);
     }
 
 

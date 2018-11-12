@@ -1,20 +1,16 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Auth extends CI_Controller
+class Auth extends MY_Controller
 {
     public function __construct()
     {
         parent::__construct();
-        // load library
-        $this->load->library('session');
-        $this->load->library('pesan');
-
-        // load helper
-        $this->load->helper('url');
 
         // load model
         $this->load->model('User_model', 'user_model');
+
+        var_dump($this->get_session_url());
     }
 
     public function login($mode = 'index')
@@ -39,7 +35,12 @@ class Auth extends CI_Controller
                 );
 
                 $this->session->set_userdata($session_data);
-                redirect('/');
+
+                if ($this->get_session_url()) {
+                    redirect($this->get_session_url());
+                } else {
+                    redirect('/');
+                }
             } else {
                 $this->pesan->gagal('Username atau password salah.');
                 redirect('auth/login');
@@ -55,6 +56,8 @@ class Auth extends CI_Controller
     {
         $data_session = array('user_id', 'user_fullname', 'user_name', 'user_admin');
         $this->session->unset_userdata($data_session);
+
+        $this->pesan->berhasil('Anda telah berhasil logout.');
 
         redirect('auth/login');
     }

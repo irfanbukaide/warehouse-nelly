@@ -43,6 +43,23 @@
             <div class="main-content-container container-fluid px-4 my-auto h-100">
                 <div class="row no-gutters h-100">
                     <div class="col-lg-3 col-md-5 auth-form mx-auto my-auto">
+                        <?php if (isset($_SESSION['berhasil'])): ?>
+                            <div id="message" class="alert alert-success alert-dismissible fade show mb-2" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                                <i class="fa fa-check mx-2"></i>
+                                <?= $_SESSION['berhasil']; ?>
+                            </div>
+                        <?php elseif (isset($_SESSION['gagal'])): ?>
+                            <div id="message" class="alert alert-danger alert-dismissible fade show mb-2" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                                <i class="fa fa-times mx-2"></i>
+                                <?= $_SESSION['gagal']; ?>
+                            </div>
+                        <?php endif; ?>
                         <div class="card">
                             <div class="card-body">
                                 <img class="auth-form__logo d-table mx-auto mb-3"
