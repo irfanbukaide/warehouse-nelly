@@ -46,6 +46,16 @@ class Transaction extends MY_Controller
         if ($mode == 'index') {
             $this->template->add_title_segment('List Transaction IN');
             $transaction_ins = $this->transaction_in->with_item()->with_transaction_in_hrg()->with_transaction_in_detil()->get_all();
+            $transaction_ins = function () use ($transaction_ins) {
+                foreach ($transaction_ins as $tri) {
+                    if (isset($tri->item->item_code2) && $tri->item->item_code2 != NULL) {
+                        $tri->item_name = $tri->item->item_code . ' (' . $tri->item->item_code2 . ')';
+                    } else {
+                        $tri->item_name = $tri->item->item_code;
+                    }
+                }
+                return $transaction_ins;
+            }
             $page['transaction_ins'] = $transaction_ins;
 
 
@@ -143,7 +153,18 @@ class Transaction extends MY_Controller
             $this->template->add_title_segment('List Transaction OUT');
             
             $transaction_outs = $this->transaction_out->with_item()->with_customer()->get_all();
-            $page['transaction_outs'] = $transaction_outs;
+            $transaction_outs = function () use ($transaction_outs) {
+                foreach ($transaction_outs as $tro) {
+                    if (isset($tro->item->item_code2) && $tro->item->item_code2 != NULL) {
+                        $tro->item_name = $tro->item->item_code . ' (' . $tro->item->item_code2 . ')';
+                    } else {
+                        $tro->item_name = $tro->item->item_code;
+                    }
+                }
+
+                return $transaction_outs;
+            };
+            $page['transaction_outs'] = $transaction_outs();
 
 
             $this->template->render('Transaction_out', $page);

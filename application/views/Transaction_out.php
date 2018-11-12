@@ -64,7 +64,7 @@
                 <tr>
                     <td><?= $transaction_out->transactout_id; ?></td>
                     <td><?= $transaction_out->customer->customer_name; ?></td>
-                    <td><?= $transaction_out->item->item_code; ?></td>
+                    <td><?= $transaction_out->item_name; ?></td>
                     <td><?= $transaction_out->transactout_qty; ?></td>
                     <td><?= $transaction_out->transactout_date; ?></td>
                     <td><?= $transaction_out->transactout_status == 1 ? '<div class="text-success">OK</div>' : '<div class="text-danger">PENDING</div>'; ?></td>
