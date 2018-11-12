@@ -102,7 +102,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= site_url('in_out'); ?>">
+                        <a class="nav-link" href="<?= site_url('transaction/dorder'); ?>">
                             <i class="material-icons">local_shipping</i>
                             <span>Delivery Order</span>
                         </a>

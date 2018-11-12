@@ -276,7 +276,7 @@ class Transaction extends MY_Controller
         }
     }
 
-    public function doorder()
+    public function dorder()
     {
 
     }
