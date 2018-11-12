@@ -141,7 +141,8 @@ class Transaction extends MY_Controller
     {
         $page = array();
         if ($mode == 'index') {
-            $this->template->add_title_segment('List Transaction IN');
+            $this->template->add_title_segment('List Transaction OUT');
+            
             $transaction_outs = $this->transaction_out->with_item()->with_customer()->get_all();
             $page['transaction_outs'] = $transaction_outs;
 
@@ -149,38 +150,44 @@ class Transaction extends MY_Controller
             $this->template->render('Transaction_out', $page);
 
         } elseif ($mode == 'create') {
-            $this->template->add_title_segment('Create Transaction IN');
+            // add title
+            $this->template->add_title_segment('Create Transaction OUT');
+
+            // generate ID
             $id = 'OT-' . date('ymd-hi-s');
             $page['id'] = $id;
 
-            $items = $this->item_model->with_item_prd()->get_all();
-            $hasil = array();
-
-            if ($items) {
-                foreach ($items as $item) {
-                    $item_prd = $this->item_prd_model->where(array('item_id' => $item->item_id, 'item_prd_stokin' => 0))->get();
-
-                    if ($item_prd) {
-                        $hasil[] = $item;
-                    }
-                }
-                foreach ($hasil as $item) {
-                    if (isset($item->item_code2) && $item->item_code2) {
-                        $item->item_name = $item->item_code . ' (' . $item->item_code2 . ')';
+            // Items
+            $items = $this->item_model->with_transaction_in()->get_all();
+            $items = function () use ($items) {
+                $items = (array)$items;
+                foreach ($items as $k => $v) {
+                    if (!isset($v->transaction_in)) {
+                        unset($items[$k]);
                     } else {
-                        $item->item_name = $item->item_code;
+                        $v->item_qty = 0;
+
+                        if (isset($v->item_code2) && $v->item_code2 != NULL) {
+                            $v->item_name = $v->item_code . ' (' . $v->item_code2 . ')';
+                        } else {
+                            $v->item_name = $v->item_code;
+                        }
+                        foreach ($v->transaction_in as $tri) {
+                            $v->item_qty += $tri->transactin_qty;
+                        }
                     }
                 }
-            } else {
-                $hasil = NULL;
-            }
+                return $items;
+            };
+            $page['items'] = $items();
 
-            $customers = $this->customer_mode->get_all();
-
-            $page['items'] = $hasil;
+            // customers
+            $customers = $this->customer_model->get_all();
             $page['customers'] = $customers;
 
             $this->template->render('CRUD/CRUD_Out', $page);
+
+//            var_dump($items());
         } elseif ($mode == 'generate') {
             $transactin_id = $this->input->post('transaction_id');
             $transactin_date = $this->input->post('transaction_date');

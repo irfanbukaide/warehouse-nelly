@@ -93,7 +93,8 @@ $transaction_date = date('d/m/Y H:i');
                                     </div>
                                     <input type="hidden" id="transaction_qty" name="transaction_qty" value="0">
                                     <button type="submit" class="btn btn-accent">Generate</button>
-                                    <a href="<?= base_url('transaction'); ?>" class="btn btn-danger">Return to In &
+                                    <a href="<?= base_url('transaction/in/index'); ?>" class="btn btn-danger">Return to
+                                        In &
                                         Out</a>
                                 </form>
                             </div>
