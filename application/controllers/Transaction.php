@@ -83,7 +83,6 @@ class Transaction extends MY_Controller
             $this->template->render('CRUD/CRUD_In', $page);
         } elseif ($mode == 'generate') {
             $transactin_id = $this->input->post('transaction_id');
-            $transactin_date = $this->input->post('transaction_date');
             $transactin_item = $this->input->post('transaction_item');
             $transactin_qty = $this->input->post('transaction_qty');
 
@@ -91,7 +90,7 @@ class Transaction extends MY_Controller
 
             $transactin_in_data = array(
                 'transactin_id' => $transactin_id,
-                'transactin_date' => date_format(date_create($transactin_date), 'Y-m-d H:i'),
+                'transactin_date' => date('Y-m-d H:i:s'),
                 'item_id' => $transactin_item,
                 'transactin_qty' => $transactin_qty,
                 'transactin_status' => 0
@@ -189,52 +188,43 @@ class Transaction extends MY_Controller
 
 //            var_dump($items());
         } elseif ($mode == 'generate') {
-            $transactin_id = $this->input->post('transaction_id');
-            $transactin_date = $this->input->post('transaction_date');
-            $transactin_item = $this->input->post('transaction_item');
-            $transactin_qty = $this->input->post('transaction_qty');
+            $transactout_id = $this->input->post('transaction_id');
+            $transactout_item = $this->input->post('transaction_item');
+            $transactout_qty = $this->input->post('transaction_qty');
+            $customer_id = $this->input->post('transaction_customer');
 
-            $item_prd_ids = $this->input->post('item_prd_id');
-
-            $transactin_in_data = array(
-                'transactin_id' => $transactin_id,
-                'transactin_date' => date_format(date_create($transactin_date), 'Y-m-d H:i'),
-                'item_id' => $transactin_item,
-                'transactin_qty' => $transactin_qty,
-                'transactin_status' => 0
+            $transaction_out_data = array(
+                'transactout_id' => $transactout_id,
+                'transactout_date' => date('Y-m-d H:i:s'),
+                'item_id' => $transactout_item,
+                'customer_id' => $customer_id,
+                'transactout_qty' => $transactout_qty,
+                'transactout_status' => 0
             );
 
-            $transactin_in_hrg_data = array(
-                'transactin_id' => $transactin_id,
-                'transactin_cost' => 0,
-                'transactin_price' => 0,
+            $item_qty_data = array(
+                'transactout_id' => $transactout_id,
+                'item_id' => $transactout_item,
+                'item_qty_total' => $transactout_qty
             );
 
             try {
-                $transactin_in = $this->transaction_in->insert($transactin_in_data);
-                $transactin_in_hrg = $this->transaction_in_hrg->insert($transactin_in_hrg_data);
+                $transaction_out = $this->transaction_out->insert($transaction_out_data);
+                $item_qty = $this->item_qty_model->insert($item_qty_data);
 
-                if ($transactin_in && $transactin_in_hrg) {
-                    foreach ($item_prd_ids as $item_prd_id) {
-                        $transactin_in_detil_data = array(
-                            'transactin_id' => $transactin_id,
-                            'item_prd_id' => $item_prd_id,
-                            'transactin_detil_qty' => $item_prd_total = $this->item_prd_model->where('item_prd_id', $item_prd_id)->get()->item_prd_jahit
-                        );
-
-
-                        $this->transaction_in_detil->insert($transactin_in_detil_data);
-                        $this->item_prd_model->where('item_prd_id', $item_prd_id)->update(array('item_prd_stokin' => 1));
-                    }
+                if ($transaction_out && $item_qty) {
+                    $this->pesan->berhasil('Transaksi OUT telah berhasil');
+                } else {
+                    $this->pesan->gagal('Transaksi OUT gagal');
                 }
 
-                $this->pesan->berhasil('Transaksi IN telah berhasil');
+
             } catch (\Exception $e) {
                 // set session temp message
                 $this->pesan->gagal('ERROR : ' . $e);
             }
 //            var_dump($_POST['item_prd_id']);
-            redirect('transaction/in/index');
+            redirect('transaction/out/index');
         }
 
     }

@@ -43,12 +43,6 @@ $transaction_date = date('d/m/Y H:i');
                                                    id="transaction_id"
                                                    placeholder="ID" value="<?= $transaction_id; ?>">
                                         </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="transaction_date">Transaction Date</label>
-                                            <input type="text" class="form-control" name="transaction_date"
-                                                   id="transaction_date"
-                                                   placeholder="Date" value="<?= $transaction_date; ?>">
-                                        </div>
 
                                     </div>
                                     <div class="form-row">

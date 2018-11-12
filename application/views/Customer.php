@@ -41,6 +41,7 @@
             <th>Customer Name</th>
             <th>Customer Contact</th>
             <th>Customer Email</th>
+            <th>Customer PIC</th>
             <th>Province</th>
             <!--            <th>Created at</th>-->
             <!--            <th>Updated at</th>-->
@@ -54,6 +55,7 @@
                     <td><?= $customer->customer_name; ?></td>
                     <td><?= $customer->customer_contact; ?></td>
                     <td><?= $customer->customer_email; ?></td>
+                    <td><?= $customer->customer_pic; ?></td>
                     <td><?= $customer->provinces->name; ?></td>
                     <td>
                         <div class="btn-group btn-group-sm d-flex justify-content-center" role="group"

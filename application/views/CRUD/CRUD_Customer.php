@@ -5,6 +5,7 @@ if ($mode == 'create') {
     $customer_name = '';
     $customer_contact = '';
     $customer_email = '';
+    $customer_pic = '';
     $customer_address = '';
     $province_id = '';
 
@@ -13,6 +14,7 @@ if ($mode == 'create') {
     $customer_name = $customer->customer_name;
     $customer_contact = $customer->customer_contact;
     $customer_email = $customer->customer_email;
+    $customer_pic = $customer->customer_pic;
     $customer_address = $customer->customer_address;
     $province_id = $customer->province_id;
 }
@@ -48,6 +50,12 @@ if ($mode == 'create') {
                                         </div>
                                     </div>
                                     <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="customer_pic">Customer PIC</label>
+                                            <input type="text" class="form-control" name="customer_pic"
+                                                   id="customer_pic" placeholder="PIC"
+                                                   value="<?= $customer_pic; ?>">
+                                        </div>
                                         <div class="form-group col-md-6">
                                             <label for="customer_email">Customer E-mail</label>
                                             <input type="text" class="form-control" name="customer_email"

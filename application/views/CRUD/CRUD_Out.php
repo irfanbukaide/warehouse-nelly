@@ -28,13 +28,13 @@ $transaction_date = date('d/m/Y H:i');
 
     <!-- File Manager -->
     <div class="row">
-        <div class="col-lg-10">
+        <div class="col-lg-8">
             <div class="card card-small mb-4">
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item p-3">
                         <div class="row">
                             <div class="col">
-                                <form id="frmgenerate" action="<?= site_url('transaction/in/generate'); ?>"
+                                <form id="frmgenerate" action="<?= site_url('transaction/out/generate'); ?>"
                                       method="POST">
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
@@ -42,12 +42,6 @@ $transaction_date = date('d/m/Y H:i');
                                             <input type="text" class="form-control" name="transaction_id"
                                                    id="transaction_id"
                                                    placeholder="ID" value="<?= $transaction_id; ?>">
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="transaction_date">Transaction Date</label>
-                                            <input type="text" class="form-control" name="transaction_date"
-                                                   id="transaction_date"
-                                                   placeholder="Date" value="<?= $transaction_date; ?>">
                                         </div>
 
                                     </div>
