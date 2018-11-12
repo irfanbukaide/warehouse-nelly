@@ -27,6 +27,13 @@ class Item_model extends MY_Model{
             'foreign_key' => 'item_id',
             'local_key' => 'item_id'
         );
+
+        $this->has_many['item_qty'] = array(
+            'foreign_model' => 'Item_qty_model',
+            'foreign_table' => 'item_qty',
+            'foreign_key' => 'item_id',
+            'local_key' => 'item_id'
+        );
         $this->has_many['transaction_in'] = array(
             'foreign_model' => 'Transaction_in_model',
             'foreign_table' => 'transaction_in',

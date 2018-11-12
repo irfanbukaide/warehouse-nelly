@@ -10,7 +10,7 @@ class Item_qty_model extends MY_Model
         $this->protected = array('item_qty_id', 'created_at', 'update_at', 'deleted_at');
         $this->timestamps = FALSE;
         $this->soft_deletes = FALSE;
-        $this->has_many['item'] = array(
+        $this->has_one['item'] = array(
             'foreign_model' => 'Item_model',
             'foreign_table' => 'item',
             'foreign_key' => 'item_id',

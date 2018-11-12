@@ -77,7 +77,7 @@
                                 </button>
                             <?php else: ?>
                                 <a class="btn btn-success active-light"
-                                   href="<?php site_url('transaction/approve/out/' . $transaction_out->transactout_id . '/index'); ?>">
+                                   href="<?= site_url('transaction/approve/out/' . $transaction_out->transactout_id . '/index'); ?>">
                                     Approve
                                 </a>
                             <?php endif; ?>
