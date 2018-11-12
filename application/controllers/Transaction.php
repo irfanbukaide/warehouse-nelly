@@ -55,8 +55,8 @@ class Transaction extends MY_Controller
                     }
                 }
                 return $transaction_ins;
-            }
-            $page['transaction_ins'] = $transaction_ins;
+            };
+            $page['transaction_ins'] = $transaction_ins();
 
 
             $this->template->render('Transaction_in', $page);

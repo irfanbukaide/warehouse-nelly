@@ -37,7 +37,6 @@
     <table class="file-manager file-manager-list table-responsive">
         <thead>
         <tr>
-            <th>User ID</th>
             <th>User</th>
             <th>Username</th>
             <th>User Role</th>
@@ -50,7 +49,6 @@
         <?php if ($users != NULL): ?>
             <?php foreach ($users as $user): ?>
                 <tr>
-                    <td><?= $user->user_id; ?></td>
                     <td><?= $user->user_fullname; ?></td>
                     <td><?= $user->user_name; ?></td>
                     <td><?= $user->user_admin == 1 ? 'Admin' : 'User'; ?></td>

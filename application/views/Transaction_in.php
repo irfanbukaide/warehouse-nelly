@@ -63,7 +63,7 @@
             <?php foreach ($transaction_ins as $transaction_in): ?>
                 <tr>
                     <td><?= $transaction_in->transactin_id; ?></td>
-                    <td><?= $transaction_in->item->item_code; ?></td>
+                    <td><?= $transaction_in->item_name; ?></td>
                     <td><?= $transaction_in->transactin_qty; ?></td>
                     <td><?= $transaction_in->transaction_in_hrg->transactin_cost . ' / ' . $transaction_in->transaction_in_hrg->transactin_price; ?></td>
                     <td><?= date_format(date_create($transaction_in->transactin_date), 'd-m-Y H:i'); ?></td>
