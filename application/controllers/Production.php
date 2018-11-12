@@ -10,6 +10,14 @@ class Production extends MY_Controller
         // load library
         $this->load->model('Item_model', 'item_model');
         $this->load->model('Item_prd_model', 'item_prd_model');
+
+        // save session url
+        $this->save_session_url(current_url());
+
+
+        if (!isset($_SESSION['user_id'])) {
+            redirect('auth/login');
+        }
     }
 
     public function index()

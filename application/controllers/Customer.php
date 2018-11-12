@@ -14,6 +14,10 @@ class Customer extends MY_Controller
 
         // save session url
         $this->save_session_url(current_url());
+
+        if (!isset($_SESSION['user_id'])) {
+            redirect('auth/login');
+        }
     }
 
     public function index()

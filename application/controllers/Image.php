@@ -11,6 +11,11 @@ class Image extends MY_Controller
         $this->load->model('Item_model', 'item_model');
         $this->load->model('Item_img_model', 'item_img_model');
 
+
+        if (!isset($_SESSION['user_id'])) {
+            redirect('auth/login');
+        }
+
     }
 
     public function item_upload($id = NULL)

@@ -27,189 +27,18 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" id="main-stylesheet" data-version="1.2.0" href="styles/shards-dashboards.1.2.0.min.css">
-    <link rel="stylesheet" href="styles/extras.1.2.0.min.css">
+    <link rel="stylesheet" id="main-stylesheet" data-version="1.2.0"
+          href="<?= base_url('assets/styles/shards-dashboards.1.2.0.min.css'); ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/styles/extras.1.2.0.min.css'); ?>">
     <script async defer src="https://buttons.github.io/buttons.js"></script>
 </head>
 <body class="h-100">
-<div class="color-switcher animated">
-    <h5>Accent Color</h5>
-    <ul class="accent-colors">
-        <li class="accent-primary active" data-color="primary"><i class="material-icons">check</i></li>
-        <li class="accent-secondary" data-color="secondary"><i class="material-icons">check</i></li>
-        <li class="accent-success" data-color="success"><i class="material-icons">check</i></li>
-        <li class="accent-info" data-color="info"><i class="material-icons">check</i></li>
-        <li class="accent-warning" data-color="warning"><i class="material-icons">check</i></li>
-        <li class="accent-danger" data-color="danger"><i class="material-icons">check</i></li>
-        <li class="accent-royal-blue" data-color="royal-blue"><i class="material-icons">check</i></li>
-        <li class="accent-java" data-color="java"><i class="material-icons">check</i></li>
-        <li class="accent-salmon" data-color="salmon"><i class="material-icons">check</i></li>
-    </ul>
-    <div class="actions mb-4">
-        <a class="mb-2 btn btn-sm btn-primary w-100 d-table mx-auto extra-action"
-           href="https://designrevision.com/downloads/shards-dashboards"><i class="material-icons">shopping_cart</i>
-            Purchase Now</a>
-        <a class="mb-2 btn btn-sm btn-white w-100 d-table mx-auto extra-action"
-           href="https://designrevision.com/docs/shards-dashboards"><i class="material-icons">book</i> Documentation</a>
-    </div>
-    <div class="social-wrapper">
-        <div class="social-actions">
-            <h5 class="my-2">Help us Grow</h5>
-            <div class="inner-wrapper">
-                <a class="github-button" href="https://github.com/designrevision/shards-dashboards"
-                   data-icon="octicon-star" data-show-count="true"
-                   aria-label="Star DesignRevision/shards-dashboards on GitHub">Star</a>
-            </div>
-        </div>
-        <div id="social-share" data-url="https://designrevision.com/downloads/shards-dashboards"
-             data-text="🔥 Check out Shards Dashboard Pro, a premium Bootstrap 4 admin dashboard template pack!"
-             data-title="share"></div>
-        <div class="loading-overlay">
-            <div class="spinner"></div>
-        </div>
-    </div>
-    <div class="close"><i class="material-icons">close</i></div>
-</div>
 <!--<div class="color-switcher-toggle animated pulse infinite">-->
 <!--<i class="material-icons">settings</i>-->
 <!--</div>-->
 <div class="container-fluid icon-sidebar-nav h-100">
     <div class="row h-100">
-        <!-- Main Sidebar -->
-        <aside class="main-sidebar col-12 col-md-3 col-lg-2 px-0">
-            <div class="main-navbar">
-                <nav class="navbar align-items-stretch navbar-light bg-white flex-md-nowrap border-bottom p-0">
-                    <a class="navbar-brand w-100 mr-0" href="#" style="line-height: 25px;">
-                        <div class="d-table m-auto">
-                            <img id="main-logo" class="d-inline-block align-top mr-1" style="max-width: 25px;"
-                                 src="images/shards-dashboards-logo.svg" alt="Shards Dashboard">
-                        </div>
-                    </a>
-                    <a class="toggle-sidebar d-sm-inline d-md-none d-lg-none">
-                        <i class="material-icons">&#xE5C4;</i>
-                    </a>
-                </nav>
-            </div>
-            <form action="#" class="main-sidebar__search w-100 border-right d-sm-flex d-md-none d-lg-none">
-                <div class="input-group input-group-seamless ml-3">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <i class="fas fa-search"></i>
-                        </div>
-                    </div>
-                    <input class="navbar-search form-control" type="text" placeholder="Search for something..."
-                           aria-label="Search">
-                </div>
-            </form>
-            <div class="nav-wrapper">
-                <h6 class="main-sidebar__nav-title">Dashboards</h6>
-                <ul class="nav nav--no-borders flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link " href="index.html">
-                            <i class="material-icons">&#xE917;</i>
-                            <span>Analytics</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="ecommerce.html">
-                            <i class="material-icons">&#xE8D1;</i>
-                            <span>Online Store</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="blog-overview.html">
-                            <i class="material-icons">edit</i>
-                            <span>Personal Blog</span>
-                        </a>
-                    </li>
-                </ul>
-                <h6 class="main-sidebar__nav-title">Templates</h6>
-                <ul class="nav nav--no-borders flex-column">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle active" data-toggle="dropdown" href="#" role="button"
-                           aria-haspopup="true" aria-expanded="true">
-                            <i class="material-icons">&#xE7FD;</i>
-                            <span>User Account</span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-small">
-                            <a class="dropdown-item " href="user-profile.html">User Profile</a>
-                            <a class="dropdown-item " href="user-profile-lite.html">User Profile Lite</a>
-                            <a class="dropdown-item " href="edit-user-profile.html">Edit User Profile</a>
-                            <a class="dropdown-item active" href="login.html">Login</a>
-                            <a class="dropdown-item " href="register.html">Register</a>
-                            <a class="dropdown-item " href="forgot-password.html">Forgot Password</a>
-                            <a class="dropdown-item " href="change-password.html">Change Password</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle " data-toggle="dropdown" href="#" role="button"
-                           aria-haspopup="false" aria-expanded="false">
-                            <i class="material-icons">&#xE2C7;</i>
-                            <span>File Managers</span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-small">
-                            <a class="dropdown-item " href="file-manager-list.html">Files - List View</a>
-                            <a class="dropdown-item " href="file-manager-cards.html">Files - Cards View</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="transaction-history.html">
-                            <i class="material-icons">&#xE889;</i>
-                            <span>Transaction History</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="add-new-post.html">
-                            <i class="material-icons">note_add</i>
-                            <span>Add New Post</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="errors.html">
-                            <i class="material-icons">error</i>
-                            <span>Errors</span>
-                        </a>
-                    </li>
-                </ul>
-                <h6 class="main-sidebar__nav-title">Components</h6>
-                <ul class="nav nav--no-borders flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link " href="components-overview.html">
-                            <i class="material-icons">view_module</i>
-                            <span>Overview</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="tables.html">
-                            <i class="material-icons">table_chart</i>
-                            <span>Tables</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="components-blog-posts.html">
-                            <i class="material-icons">vertical_split</i>
-                            <span>Blog Posts</span>
-                        </a>
-                    </li>
-                </ul>
-                <h6 class="main-sidebar__nav-title">Layouts</h6>
-                <ul class="nav nav--no-borders flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link " href="header-navigation.html">
-                            <i class="material-icons">view_day</i>
-                            <span>Header Nav</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="icon-sidebar-nav.html">
-                            <i class="material-icons">&#xE251;</i>
-                            <span>Icon Sidebar</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </aside>
-        <!-- End Main Sidebar -->
+
         <main class="main-content col">
             <div class="main-content-container container-fluid px-4 my-auto h-100">
                 <div class="row no-gutters h-100">
@@ -217,26 +46,20 @@
                         <div class="card">
                             <div class="card-body">
                                 <img class="auth-form__logo d-table mx-auto mb-3"
-                                     src="images/shards-dashboards-logo.svg"
+                                     src="<?= base_url('assets/images/shards-dashboards-logo.svg'); ?>"
                                      alt="Shards Dashboards - Register Template">
-                                <h5 class="auth-form__title text-center mb-4">Storage Login</h5>
-                                <form>
+                                <h5 class="auth-form__title text-center mb-4">Fashion Garment</h5>
+                                <form action="<?= site_url('auth/login/do'); ?>" method="post">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Username</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1"
-                                               aria-describedby="emailHelp" placeholder="Username">
+                                        <label for="username">Username</label>
+                                        <input type="text" class="form-control" id="username" name="username"
+                                               aria-describedby="Username" placeholder="Username">
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputPassword1">Password</label>
-                                        <input type="password" class="form-control" id="exampleInputPassword1"
+                                        <label for="password">Password</label>
+                                        <input type="password" class="form-control" id="password" name="password"
                                                placeholder="Password">
                                     </div>
-                                    <!--<div class="form-group mb-3 d-table mx-auto">-->
-                                    <!--<div class="custom-control custom-checkbox mb-1">-->
-                                    <!--<input type="checkbox" class="custom-control-input" id="customCheck2">-->
-                                    <!--<label class="custom-control-label" for="customCheck2">Remember me for 30 days.</label>-->
-                                    <!--</div>-->
-                                    <!--</div>-->
                                     <button type="submit" class="btn btn-pill btn-accent d-table mx-auto">Login</button>
                                 </form>
                             </div>
@@ -262,7 +85,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
 <script src="https://unpkg.com/shards-ui@latest/dist/js/shards.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Sharrre/2.0.1/jquery.sharrre.min.js"></script>
-<script src="scripts/extras.1.2.0.min.js"></script>
-<script src="scripts/shards-dashboards.1.2.0.min.js"></script>
+<script src="<?= base_url('assets/scripts/extras.1.2.0.min.js'); ?>"></script>
+<script src="<?= base_url('assets/scripts/shards-dashboards.1.2.0.min.js'); ?>"></script>
 </body>
 </html>

@@ -17,12 +17,20 @@ class Transaction extends MY_Controller
         $this->load->model('Transaction_in_hrg_model', 'transaction_in_hrg');
         $this->load->model('Transaction_in_detil_model', 'transaction_in_detil');
 
+        // save session url
+        $this->save_session_url(current_url());
+
 
         // load js
 //        $this->template->add_js('https://cdn.datatables.net/select/1.2.7/js/dataTables.select.min.js');
 
         // load css
 //        $this->template->add_css('https://cdn.datatables.net/select/1.2.7/css/select.dataTables.min.css');
+
+
+        if (!isset($_SESSION['user_id'])) {
+            redirect('auth/login');
+        }
 
     }
 
