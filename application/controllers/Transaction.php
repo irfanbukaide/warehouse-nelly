@@ -251,7 +251,24 @@ class Transaction extends MY_Controller
     }
 
 
-    public function delivery_order()
+    public function approve($transaction, $id, $mode = 'index')
+    {
+        $page = array();
+        $page['id'] = $id;
+        $page['transaction'] = $transaction;
+
+        if ($transaction == 'in' && $mode == 'index') {
+            $page['url'] = site_url('transaction/approve/in/' . $id . '/index');
+        } elseif ($transaction == 'in' && $mode == 'generate') {
+            $page['url'] = site_url('transaction/approve/in/' . $id . '/generate');
+        } elseif ($transaction == 'out' && $mode == 'index') {
+            $page['url'] = site_url('transaction/approve/out/' . $id . '/index');
+        } elseif ($transaction == 'out' && $mode == 'generate') {
+            $page['url'] = site_url('transaction/approve/out/' . $id . '/generate');
+        }
+    }
+
+    public function doorder()
     {
 
     }
