@@ -152,12 +152,11 @@
                                role="button" aria-haspopup="true" aria-expanded="false">
                                 <img class="user-avatar rounded-circle mr-2"
                                      src="<?= base_url('assets/images/avatars/0.jpg'); ?>"
-                                     alt="User Avatar"> <span class="d-none d-md-inline-block">Admin Fashion</span>
+                                     alt="User Avatar"> <span
+                                        class="d-none d-md-inline-block"><?= $_SESSION['user_fullname']; ?></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-small">
-                                <a class="dropdown-item" href="user-profile.html"><i class="material-icons"></i>
-                                    Profile</a>
-                                <a class="dropdown-item text-danger" href="#"><i
+                                <a class="dropdown-item text-danger" href="<?= site_url('auth/logout'); ?>"><i
                                             class="material-icons text-danger"></i> Logout </a>
                             </div>
                         </li>
