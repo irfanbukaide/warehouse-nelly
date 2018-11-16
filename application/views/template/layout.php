@@ -183,6 +183,36 @@
 
 <?php echo $scripts_footer; ?>
 <script>
+    // ------------------------------------------------------ //
+    // Format Rupiah
+    // ------------------------------------------------------ //
+    var moneyFormat = wNumb({
+        mark: ',',
+        decimals: 0,
+        thousand: '.',
+        prefix: 'IDR ',
+        suffix: ''
+    });
+
+    // ------------------------------------------------------ //
+    // Data table users
+    // ------------------------------------------------------ //
+    $('.table').DataTable({
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Indonesian.json"
+        },
+        "fnDrawCallback": function (oSettings) {
+            // $(oSettings.nTHead).hide();
+            $('div[id="rupiah"]').each(function (index) {
+                var value = parseInt($(this).attr('value')),
+                    hasil = moneyFormat.to(value);
+
+                $(this).html(hasil);
+            });
+        }
+    });
+</script>
+<script>
     $(document).ready(function () {
         setTimeout(function () {
             $('#message').fadeOut();
