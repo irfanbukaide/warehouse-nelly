@@ -165,6 +165,10 @@ class Transaction extends MY_Controller
     public function out($mode = 'index')
     {
         $page = array();
+
+        // set akses
+        $page['akses_admin'] = $this->akses_admin;
+
         if ($mode == 'index') {
             $this->template->add_title_segment('List Transaction OUT');
             
@@ -283,13 +287,53 @@ class Transaction extends MY_Controller
             $page['url'] = site_url('transaction/approve/in/' . $id . '/generate');
             $page['id'] = $id;
 
-            $this->load->view('CRUD_In_approve', $page);
+            $this->load->view('CRUD/CRUD_In_approve', $page);
         } elseif ($transaction == 'in' && $mode == 'generate') {
+            $data = array(
+                'transactin_id' => $this->input->post('in_id'),
+                'transactin_cost' => $this->input->post('in_cost'),
+                'transactin_price' => $this->input->post('in_price')
+            );
 
+            $data_approve = array(
+                'transactin_id' => $this->input->post('in_id'),
+                'user_id' => $_SESSION['user_id']
+            );
+
+            try {
+                $this->transaction_in_hrg->update($data, 'transactin_id');
+                $this->transaction_in->where('transactin_id', $data['transactin_id'])->update(array('transactin_status' => 1));
+                $this->transaction_in_appr->insert($data_approve);
+
+                // set session temp message
+                $this->pesan->berhasil('Transaksi telah berhasil diverifikasi');
+            } catch (\Exception $e) {
+                // set session temp message
+                $this->pesan->gagal('ERROR : ' . $e);
+            }
+
+            redirect('transaction/in/index');
         } elseif ($transaction == 'out' && $mode == 'index') {
-            $page['url'] = site_url('transaction/approve/out/' . $id . '/index');
-        } elseif ($transaction == 'out' && $mode == 'generate') {
             $page['url'] = site_url('transaction/approve/out/' . $id . '/generate');
+        } elseif ($transaction == 'out' && $mode == 'generate') {
+            $data = array(
+                'transactin_id' => $this->input->post('in_id'),
+                'transactin_cost' => $this->input->post('in_cost'),
+                'transactin_price' => $this->input->post('in_price')
+            );
+
+            try {
+                $this->transaction_in_hrg->update($data, 'transactin_id');
+                $this->transaction_in->where('transactin_id', $data['transactin_id'])->update(array('transactin_status' => 1));
+
+                // set session temp message
+                $this->pesan->berhasil('Transaksi telah berhasil diverifikasi');
+            } catch (\Exception $e) {
+                // set session temp message
+                $this->pesan->gagal('ERROR : ' . $e);
+            }
+
+            redirect('transaction/out/index');
         }
     }
 

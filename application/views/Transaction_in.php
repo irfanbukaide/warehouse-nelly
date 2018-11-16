@@ -52,7 +52,8 @@
             <th>Transaction ID</th>
             <th>Item</th>
             <th>QTY</th>
-            <th>Cost / Price</th>
+            <th>Cost</th>
+            <th>Price</th>
             <th>Date</th>
             <th>Status</th>
             <th>Actions</th>
@@ -65,7 +66,8 @@
                     <td><?= $transaction_in->transactin_id; ?></td>
                     <td><?= $transaction_in->item_name; ?></td>
                     <td><?= $transaction_in->transactin_qty; ?></td>
-                    <td><?= $transaction_in->transaction_in_hrg->transactin_cost . ' / ' . $transaction_in->transaction_in_hrg->transactin_price; ?></td>
+                    <td><?= $akses_admin != 1 ? 'HIDDEN' : $transaction_in->transaction_in_hrg->transactin_cost; ?></td>
+                    <td><?= $transaction_in->transaction_in_hrg->transactin_price; ?></td>
                     <td><?= date_format(date_create($transaction_in->transactin_date), 'd-m-Y H:i'); ?></td>
                     <td><?= $transaction_in->transactin_status == 1 ? '<div class="text-success">OK</div>' : '<div class="text-danger">PENDING</div>'; ?></td>
                     <td class="file-manager__item-actions">
@@ -78,6 +80,7 @@
                             <?php else: ?>
                                 <button type="button" data-toggle="modal" data-target="#approve"
                                         class="btn btn-success active-light"
+                                        onclick="post_data($(this))"
                                         data-href="<?= site_url('transaction/approve/in/' . $transaction_in->transactin_id . '/index'); ?>">
                                     Approve
                                 </button>
@@ -121,3 +124,13 @@
         </div>
     </div>
 </div>
+
+<script>
+    function post_data(data) {
+        var d = data,
+            url = d.data('href'),
+            modal = $('#approve'),
+            modalbody = modal.find('.modal-body');
+        modalbody.load(url);
+    }
+</script>
