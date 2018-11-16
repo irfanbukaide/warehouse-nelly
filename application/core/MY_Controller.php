@@ -29,7 +29,7 @@ class MY_Controller extends CI_Controller
         $this->template->add_css('https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css');
         $this->template->add_css(base_url('assets/styles/shards-dashboards.1.2.0.min.css'));
         $this->template->add_css(base_url('assets/styles/extras.1.2.0.min.css'));
-        $this->template->add_css('https://cdn.datatables.net/responsive/2.2.1/css/responsive.dataTables.min.css');
+        $this->template->add_css(base_url('assets/vendor/datatable/css/responsive.dataTables.min.css'));
         $this->template->add_css(base_url('assets/vendor/select2/css/select2.min.css'));
         $this->template->add_css(base_url('assets/vendor/select2/css/select2-bootstrap4.min.css'));
         $this->template->add_css(base_url('assets/vendor/croppie/croppie.css'));
@@ -45,7 +45,7 @@ class MY_Controller extends CI_Controller
         $this->template->add_js('https://cdnjs.cloudflare.com/ajax/libs/Sharrre/2.0.1/jquery.sharrre.min.js', TRUE);
         $this->template->add_js(base_url('assets/scripts/extras.1.2.0.min.js'), TRUE);
         $this->template->add_js(base_url('assets/scripts/shards-dashboards.1.2.0.min.js'), TRUE);
-        $this->template->add_js('https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js', TRUE);
+        $this->template->add_js(base_url('assets/vendor/datatable/js/jquery.dataTables.min.js'), TRUE);
         $this->template->add_js(base_url('assets/vendor/datatable/js/dataTables.responsive.min.js'), TRUE);
         $this->template->add_js('https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.js', TRUE);
         $this->template->add_js(base_url('assets/vendor/select2/js/select2.min.js'));
