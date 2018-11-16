@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class MY_Controller extends CI_Controller
 {
     public $data;
-
+    public $akses_admin;
     public function __construct()
     {
         parent::__construct();
@@ -58,6 +58,12 @@ class MY_Controller extends CI_Controller
 
         // get session data profile
         $session_id = $this->session->userdata('user_id');
+
+        if (isset($_SESSION['user_admin']) && $_SESSION['user_admin'] == 1) {
+            $this->akses_admin = true;
+        } else {
+            $this->akses_admin = false;
+        }
 
     }
 

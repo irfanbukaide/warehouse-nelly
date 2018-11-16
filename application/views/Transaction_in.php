@@ -71,15 +71,16 @@
                     <td class="file-manager__item-actions">
                         <div class="btn-group btn-group-sm d-flex justify-content-center" role="group"
                              aria-label="Table row actions">
-                            <?php if ($transaction_in->transactin_status == 1): ?>
+                            <?php if ($transaction_in->transactin_status == 1 OR $akses_admin != 1): ?>
                                 <button disabled type="button" class="btn btn-white active-light">
                                     Approved
                                 </button>
                             <?php else: ?>
-                                <a class="btn btn-success active-light"
-                                   href="<?= site_url('transaction/approve/in/' . $transaction_in->transactin_id . '/index'); ?>">
+                                <button type="button" data-toggle="modal" data-target="#approve"
+                                        class="btn btn-success active-light"
+                                        data-href="<?= site_url('transaction/approve/in/' . $transaction_in->transactin_id . '/index'); ?>">
                                     Approve
-                                </a>
+                                </button>
                             <?php endif; ?>
                         </div>
                     </td>
@@ -104,4 +105,19 @@
         </tbody>
     </table>
     <!-- End File Manager -->
+</div>
+
+<div class="modal fade" id="approve" tabindex="-1" role="dialog" aria-labelledby="approveLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="approveLabel">Verifikasi Transaksi</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            </div>
+        </div>
+    </div>
 </div>

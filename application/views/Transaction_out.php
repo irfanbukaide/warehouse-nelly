@@ -71,7 +71,7 @@
                     <td class="file-manager__item-actions">
                         <div class="btn-group btn-group-sm d-flex justify-content-center" role="group"
                              aria-label="Table row actions">
-                            <?php if ($transaction_out->transactout_status == 1): ?>
+                            <?php if ($transaction_out->transactout_status == 1 OR $akses_admin != 1): ?>
                                 <button disabled type="button" class="btn btn-white active-light">
                                     Approved
                                 </button>

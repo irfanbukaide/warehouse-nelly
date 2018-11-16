@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Transaction extends MY_Controller
 {
+
     public function __construct()
     {
         parent::__construct();
@@ -32,6 +33,7 @@ class Transaction extends MY_Controller
             redirect('auth/login');
         }
 
+
     }
 
     public function index()
@@ -51,15 +53,21 @@ class Transaction extends MY_Controller
     {
 
         $page = array();
+
+        // set akses
+        $page['akses_admin'] = $this->akses_admin;
+
         if ($mode == 'index') {
             $this->template->add_title_segment('List Transaction IN');
             $transaction_ins = $this->transaction_in->with_item()->with_transaction_in_hrg()->with_transaction_in_detil()->get_all();
             $transaction_ins = function () use ($transaction_ins) {
-                foreach ($transaction_ins as $tri) {
-                    if (isset($tri->item->item_id_other) && $tri->item->item_id_other != NULL) {
-                        $tri->item_name = $tri->item->item_id . ' (' . $tri->item->item_id_other . ')';
-                    } else {
-                        $tri->item_name = $tri->item->item_id;
+                if ($transaction_ins) {
+                    foreach ($transaction_ins as $tri) {
+                        if (isset($tri->item->item_id_other) && $tri->item->item_id_other != NULL) {
+                            $tri->item_name = $tri->item->item_id . ' (' . $tri->item->item_id_other . ')';
+                        } else {
+                            $tri->item_name = $tri->item->item_id;
+                        }
                     }
                 }
                 return $transaction_ins;
@@ -264,13 +272,20 @@ class Transaction extends MY_Controller
     public function approve($transaction, $id, $mode = 'index')
     {
         $page = array();
+
+        // set akses
+        $page['akses_admin'] = $this->akses_admin;
+
         $page['id'] = $id;
         $page['transaction'] = $transaction;
 
         if ($transaction == 'in' && $mode == 'index') {
-            $page['url'] = site_url('transaction/approve/in/' . $id . '/index');
-        } elseif ($transaction == 'in' && $mode == 'generate') {
             $page['url'] = site_url('transaction/approve/in/' . $id . '/generate');
+            $page['id'] = $id;
+
+            $this->load->view('CRUD_In_approve', $page);
+        } elseif ($transaction == 'in' && $mode == 'generate') {
+
         } elseif ($transaction == 'out' && $mode == 'index') {
             $page['url'] = site_url('transaction/approve/out/' . $id . '/index');
         } elseif ($transaction == 'out' && $mode == 'generate') {
