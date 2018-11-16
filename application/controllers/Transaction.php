@@ -14,9 +14,11 @@ class Transaction extends MY_Controller
         $this->load->model('Item_prd_model', 'item_prd_model');
         $this->load->model('Item_qty_model', 'item_qty_model');
         $this->load->model('Transaction_out_model', 'transaction_out');
+        $this->load->model('Transaction_out_appr_model', 'transaction_out_appr');
         $this->load->model('Transaction_in_model', 'transaction_in');
         $this->load->model('Transaction_in_hrg_model', 'transaction_in_hrg');
         $this->load->model('Transaction_in_detil_model', 'transaction_in_detil');
+        $this->load->model('Transaction_in_appr_model', 'transaction_in_appr');
 
         // save session url
         $this->save_session_url(current_url());
@@ -315,16 +317,20 @@ class Transaction extends MY_Controller
             redirect('transaction/in/index');
         } elseif ($transaction == 'out' && $mode == 'index') {
             $page['url'] = site_url('transaction/approve/out/' . $id . '/generate');
+            $page['id'] = $id;
         } elseif ($transaction == 'out' && $mode == 'generate') {
             $data = array(
-                'transactin_id' => $this->input->post('in_id'),
-                'transactin_cost' => $this->input->post('in_cost'),
-                'transactin_price' => $this->input->post('in_price')
+                'transactout_id' => $this->input->post('out_id'),
+            );
+
+            $data_approve = array(
+                'transactout_id' => $this->input->post('out_id'),
+                'user_id' => $_SESSION['user_id']
             );
 
             try {
-                $this->transaction_in_hrg->update($data, 'transactin_id');
-                $this->transaction_in->where('transactin_id', $data['transactin_id'])->update(array('transactin_status' => 1));
+                $this->transaction_out->where('transactout_id', $data['transactout_id'])->update(array('transactout_status' => 1));
+                $this->transaction_out_appr->insert($data_approve);
 
                 // set session temp message
                 $this->pesan->berhasil('Transaksi telah berhasil diverifikasi');
