@@ -162,11 +162,13 @@ class Transaction extends MY_Controller
             
             $transaction_outs = $this->transaction_out->with_item()->with_customer()->get_all();
             $transaction_outs = function () use ($transaction_outs) {
-                foreach ($transaction_outs as $tro) {
-                    if (isset($tro->item->item_code2) && $tro->item->item_code2 != NULL) {
-                        $tro->item_name = $tro->item->item_code . ' (' . $tro->item->item_code2 . ')';
-                    } else {
-                        $tro->item_name = $tro->item->item_code;
+                if ($transaction_outs) {
+                    foreach ($transaction_outs as $tro) {
+                        if (isset($tro->item->item_code2) && $tro->item->item_code2 != NULL) {
+                            $tro->item_name = $tro->item->item_code . ' (' . $tro->item->item_code2 . ')';
+                        } else {
+                            $tro->item_name = $tro->item->item_code;
+                        }
                     }
                 }
 
