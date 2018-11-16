@@ -52,6 +52,7 @@ class Customer extends MY_Controller
             'customer_name' => $this->input->post('customer_name'),
             'customer_contact' => $this->input->post('customer_contact'),
             'customer_email' => $this->input->post('customer_email'),
+            'customer_pic' => $this->input->post('customer_pic'),
             'customer_address' => $this->input->post('customer_address'),
             'province_id' => $this->input->post('province_id')
         );
