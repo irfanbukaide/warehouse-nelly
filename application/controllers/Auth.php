@@ -9,8 +9,6 @@ class Auth extends MY_Controller
 
         // load model
         $this->load->model('User_model', 'user_model');
-
-        var_dump($this->get_session_url());
     }
 
     public function login($mode = 'index')

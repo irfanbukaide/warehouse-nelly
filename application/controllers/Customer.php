@@ -11,6 +11,8 @@ class Customer extends MY_Controller
         // load model
         $this->load->model('Customer_model', 'customer_model');
         $this->load->model('Provinces_model', 'provinces_model');
+        $this->load->model('Transaction_out_model', 'transaction_out');
+        $this->load->model('Transaction_in_model', 'transaction_in');
 
         // save session url
         $this->save_session_url(current_url());
@@ -155,6 +157,9 @@ class Customer extends MY_Controller
         // get data from param id
         $customer = $this->customer_model->where('customer_id', $id)->get();
 
+        $transaction_out = $this->transaction_out->where('customer_id', $id)->get();
+        $transaction_in = $this->transaction_in->where('customer_id', $id)->get();
+
         // cek if not exists
         if (!$customer) {
             // set session temp message
@@ -162,6 +167,15 @@ class Customer extends MY_Controller
 
             redirect('customer');
         }
+
+        if ($transaction_in OR $transaction_out) {
+            // set session temp message
+            $this->pesan->gagal('Mohon maaf data tidak dapat dihapus karena masih digunakan dalam transaksi lain.');
+
+            redirect('customer');
+        }
+
+
 
         try {
             // store proses kedalam variabel

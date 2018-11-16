@@ -13,6 +13,8 @@ class Item extends MY_Controller
         $this->load->model('Item_img_model', 'item_img_model');
         $this->load->model('Category_model', 'category_model');
         $this->load->model('Item_category_model', 'item_category_model');
+        $this->load->model('Transaction_out_model', 'transaction_out');
+        $this->load->model('Transaction_in_model', 'transaction_in');
 
         // save session url
         $this->save_session_url(current_url());
@@ -207,6 +209,8 @@ class Item extends MY_Controller
     {
         // get data from param id
         $item = $this->item_model->where('item_id', $id)->get();
+        $transaction_out = $this->transaction_out->where('item_id', $id)->get();
+        $transaction_in = $this->transaction_in->where('item_id', $id)->get();
 
         // cek if not exists
         if (!$item) {
@@ -215,6 +219,15 @@ class Item extends MY_Controller
 
             redirect('item');
         }
+
+        if ($transaction_in OR $transaction_out) {
+            // set session temp message
+            $this->pesan->gagal('Mohon maaf data tidak dapat dihapus karena masih digunakan dalam transaksi lain.');
+
+            redirect('item');
+        }
+
+
 
         try {
             // store proses kedalam variabel
