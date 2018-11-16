@@ -36,7 +36,7 @@ class MY_Controller extends CI_Controller
         $this->template->add_css(base_url('assets/vendor/fancy/jquery.fancybox.min.css'));
 
         // load js
-        $this->template->add_js('https://code.jquery.com/jquery-3.3.1.min.js');
+        $this->template->add_js(base_url('assets/vendor/jquery/jquery-3.3.1.min.js'));
         $this->template->add_js('https://buttons.github.io/buttons.js');
         $this->template->add_js('https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js', TRUE);
         $this->template->add_js('https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js', TRUE);
