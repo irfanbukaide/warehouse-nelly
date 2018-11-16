@@ -53,7 +53,7 @@ class MY_Controller extends CI_Controller
         $this->template->add_js(base_url('assets/vendor/fancy/jquery.fancybox.min.js'));
         $this->template->add_js(base_url('assets/vendor/wnumb/wNumb.js'));
         $this->template->add_js(base_url('assets/scripts/app/app-file-manager.1.2.0.min.js'), TRUE);
-        $this->template->add_js(base_url('assets/scripts/app/app-analytics-overview.1.2.0.min.js'), TRUE);
+//        $this->template->add_js(base_url('assets/scripts/app/app-analytics-overview.1.2.0.min.js'), TRUE);
         $this->template->add_js(base_url("assets/scripts/app/app-transaction-history.1.2.0.min.js"), TRUE);
 
         // get session data profile
