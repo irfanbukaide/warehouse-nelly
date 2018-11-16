@@ -71,3 +71,14 @@ application/logs/*
 !application/logs/.htaccess
 /vendor/
 
+.idea/deployment.xml
+.idea/inspectionProfiles/
+.idea/misc.xml
+.idea/modules.xml
+.idea/php.xml
+.idea/vcs.xml
+.idea/warehouse-nelly.iml
+.idea/webServers.xml
+assets/vendor/font-awesome/
+assets/vendor/jquery-sharre/
+uifix/.idea/inspectionProfiles/
