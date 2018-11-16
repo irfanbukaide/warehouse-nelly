@@ -183,6 +183,10 @@
 
 <?php echo $scripts_footer; ?>
 <script>
+    $(function () {
+        $('.idr').rupiah();
+        console.log(idr);
+    });
     $(document).ready(function () {
         setTimeout(function () {
             $('#message').fadeOut();

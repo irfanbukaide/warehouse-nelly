@@ -318,6 +318,8 @@ class Transaction extends MY_Controller
         } elseif ($transaction == 'out' && $mode == 'index') {
             $page['url'] = site_url('transaction/approve/out/' . $id . '/generate');
             $page['id'] = $id;
+
+            $this->load->view('CRUD/CRUD_Out_approve', $page);
         } elseif ($transaction == 'out' && $mode == 'generate') {
             $data = array(
                 'transactout_id' => $this->input->post('out_id'),

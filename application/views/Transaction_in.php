@@ -52,8 +52,8 @@
             <th>Transaction ID</th>
             <th>Item</th>
             <th>QTY</th>
-            <th>Cost</th>
-            <th>Price</th>
+            <th>Detail Cost</th>
+            <th>Detail Price</th>
             <th>Date</th>
             <th>Status</th>
             <th>Actions</th>
@@ -66,8 +66,27 @@
                     <td><?= $transaction_in->transactin_id; ?></td>
                     <td><?= $transaction_in->item_name; ?></td>
                     <td><?= $transaction_in->transactin_qty; ?></td>
-                    <td><?= $akses_admin != 1 ? 'HIDDEN' : $transaction_in->transaction_in_hrg->transactin_cost; ?></td>
-                    <td><?= $transaction_in->transaction_in_hrg->transactin_price; ?></td>
+                    <td>
+                        <div class="mb-2">
+                            <b>Cost :</b><br>
+                            <?= $akses_admin != 1 ? 'HIDDEN' : $transaction_in->transaction_in_hrg->transactin_cost; ?>
+                        </div>
+                        <div class="mb-2">
+                            <b>Total Cost :</b><br>
+                            <?= $akses_admin != 1 ? 'HIDDEN' : $transaction_in->transactin_qty * $transaction_in->transaction_in_hrg->transactin_cost; ?>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="mb-2">
+                            <b>Price :</b><br>
+                            <?= $transaction_in->transaction_in_hrg->transactin_price; ?>
+                        </div>
+
+                        <div class="mb-2">
+                            <b>Total Price :</b><br>
+                            <?= $transaction_in->transactin_qty * $transaction_in->transaction_in_hrg->transactin_price; ?>
+                        </div>
+                    </td>
                     <td><?= date_format(date_create($transaction_in->transactin_date), 'd-m-Y H:i'); ?></td>
                     <td><?= $transaction_in->transactin_status == 1 ? '<div class="text-success">OK</div>' : '<div class="text-danger">PENDING</div>'; ?></td>
                     <td class="file-manager__item-actions">
