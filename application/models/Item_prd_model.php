@@ -39,7 +39,7 @@ class Item_prd_model extends MY_Model
 
     public function counters()
     {
-        $query = $this->db->query('select item_prd_date, item.item_code, item.item_code2, sum(item_prd_bahan) as item_prd_bahan, sum(item_prd_sablon) as item_prd_sablon, sum(item_prd_jahit) as item_prd_jahit
+        $query = $this->db->query('select item_prd_date, item.item_id, item.item_id_other, sum(item_prd_bahan) as item_prd_bahan, sum(item_prd_sablon) as item_prd_sablon, sum(item_prd_jahit) as item_prd_jahit
                           from item_prd
                           left join item
                           on item_prd.item_id = item.item_id

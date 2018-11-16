@@ -75,8 +75,8 @@ class Item extends MY_Controller
         // store post[] into array
         $item_data = array(
             'item_id' => $id,
-            'item_code' => $this->input->post('item_code'),
-            'item_code2' => $this->input->post('item_code2') == '' ? '' : $this->input->post('item_code2'),
+            'item_id' => $this->input->post('item_id'),
+            'item_id_other' => $this->input->post('item_id_other') == '' ? '' : $this->input->post('item_id_other'),
             'item_status' => $this->input->post('item_status'),
             'item_description' => $this->input->post('item_description'),
         );
@@ -161,7 +161,6 @@ class Item extends MY_Controller
         $categories = $this->category_model->get_all();
 
         // inisialisasi struktur
-        $page['id'] = $id;
         $page['categories'] = $categories;
 
         // return to view

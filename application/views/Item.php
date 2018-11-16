@@ -56,7 +56,7 @@
                     <td class="lo-stats__image">
                         <?php if ($item->item_image != NULL): ?>
                             <a id="btnshowimage" href="<?= $item->item_image; ?>" data-fancybox
-                               data-caption="<?= $item->item_code; ?>">
+                               data-caption="<?= $item->item_id; ?>">
                                 <img class="border rounded" src="<?= $item->item_image; ?>">
                             </a>
                         <?php else: ?>
@@ -64,8 +64,8 @@
                         <?php endif; ?>
 
                     </td>
-                    <td><?= $item->item_code; ?></td>
-                    <td><?= isset($item->item_code2) && $item->item_code2 != '' ? $item->item_code2 : '-'; ?></td>
+                    <td><?= $item->item_id; ?></td>
+                    <td><?= isset($item->item_id_other) && $item->item_id_other != '' ? $item->item_id_other : '-'; ?></td>
                     <td><?= isset($item->category) ? $item->category : '-'; ?></td>
                     <td><?= $item->item_status == 1 ? '<div class="text-success">Available</div>' : '<div class="text-danger">Disabled</div>'; ?></td>
                     <td class="file-manager__item-actions">

@@ -1,16 +1,14 @@
 <?php
 // inisialisasi
 if ($mode == 'create') {
-    $item_id = $id;
-    $item_code = '';
-    $item_code2 = '';
+    $item_id = '';
+    $item_id_other = '';
     $item_status = 'checked="checked"';
     $item_description = '';
     $category_id = '';
 } elseif ($mode == 'edit') {
     $item_id = $item->item_id;
-    $item_code = $item->item_code;
-    $item_code2 = $item->item_code2;
+    $item_id_other = $item->item_id_other;
     $item_status = $item->item_status == 1 ? 'checked="checked"' : '';
     $item_description = $item->item_description;
     $category_id = isset($item->category_id) ? $item->category_id : '';
@@ -38,19 +36,18 @@ if ($mode == 'create') {
                         <div class="row">
                             <div class="col">
                                 <form action="<?= site_url('item/save'); ?>" method="post">
-                                    <input type="hidden" name="item_id" value="<?= $item_id; ?>">
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label for="item_code">Item Code</label>
-                                            <input maxlength="10" type="text" class="form-control" name="item_code"
-                                                   id="item_code"
-                                                   placeholder="Item Code" value="<?= $item_code; ?>">
+                                            <label for="item_id">Item ID</label>
+                                            <input maxlength="10" type="text" class="form-control" name="item_id"
+                                                   id="item_id"
+                                                   placeholder="Item Code" value="<?= $item_id; ?>">
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="item_code2">Item Code2</label>
-                                            <input maxlength="10" type="text" class="form-control" name="item_code2"
-                                                   id="item_code2"
-                                                   placeholder="Item Code2" value="<?= $item_code2; ?>">
+                                            <label for="item_id_other">Item ID2</label>
+                                            <input maxlength="10" type="text" class="form-control" name="item_id_other"
+                                                   id="item_id_other"
+                                                   placeholder="Item Code2" value="<?= $item_id_other; ?>">
                                         </div>
                                     </div>
                                     <div class="form-row">
@@ -106,7 +103,7 @@ if ($mode == 'create') {
             theme: 'bootstrap4'
         });
 
-        $('#item_code2').select2({
+        $('#item_id_other').select2({
             theme: 'bootstrap4'
         });
     })

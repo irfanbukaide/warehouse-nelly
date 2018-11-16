@@ -56,10 +56,10 @@ class Transaction extends MY_Controller
             $transaction_ins = $this->transaction_in->with_item()->with_transaction_in_hrg()->with_transaction_in_detil()->get_all();
             $transaction_ins = function () use ($transaction_ins) {
                 foreach ($transaction_ins as $tri) {
-                    if (isset($tri->item->item_code2) && $tri->item->item_code2 != NULL) {
-                        $tri->item_name = $tri->item->item_code . ' (' . $tri->item->item_code2 . ')';
+                    if (isset($tri->item->item_id_other) && $tri->item->item_id_other != NULL) {
+                        $tri->item_name = $tri->item->item_id . ' (' . $tri->item->item_id_other . ')';
                     } else {
-                        $tri->item_name = $tri->item->item_code;
+                        $tri->item_name = $tri->item->item_id;
                     }
                 }
                 return $transaction_ins;
@@ -86,10 +86,10 @@ class Transaction extends MY_Controller
                     }
                 }
                 foreach ($hasil as $item) {
-                    if (isset($item->item_code2) && $item->item_code2) {
-                        $item->item_name = $item->item_code . ' (' . $item->item_code2 . ')';
+                    if (isset($item->item_id_other) && $item->item_id_other) {
+                        $item->item_name = $item->item_id . ' (' . $item->item_id_other . ')';
                     } else {
-                        $item->item_name = $item->item_code;
+                        $item->item_name = $item->item_id;
                     }
                 }
             } else {
@@ -164,10 +164,10 @@ class Transaction extends MY_Controller
             $transaction_outs = function () use ($transaction_outs) {
                 if ($transaction_outs) {
                     foreach ($transaction_outs as $tro) {
-                        if (isset($tro->item->item_code2) && $tro->item->item_code2 != NULL) {
-                            $tro->item_name = $tro->item->item_code . ' (' . $tro->item->item_code2 . ')';
+                        if (isset($tro->item->item_id_other) && $tro->item->item_id_other != NULL) {
+                            $tro->item_name = $tro->item->item_id . ' (' . $tro->item->item_id_other . ')';
                         } else {
-                            $tro->item_name = $tro->item->item_code;
+                            $tro->item_name = $tro->item->item_id;
                         }
                     }
                 }
@@ -197,10 +197,10 @@ class Transaction extends MY_Controller
                     } else {
                         $v->item_qty = 0;
 
-                        if (isset($v->item_code2) && $v->item_code2 != NULL) {
-                            $v->item_name = $v->item_code . ' (' . $v->item_code2 . ')';
+                        if (isset($v->item_id_other) && $v->item_id_other != NULL) {
+                            $v->item_name = $v->item_id . ' (' . $v->item_id_other . ')';
                         } else {
-                            $v->item_name = $v->item_code;
+                            $v->item_name = $v->item_id;
                         }
                         foreach ($v->transaction_in as $tri) {
                             $v->item_qty += $tri->transactin_qty;
@@ -305,7 +305,7 @@ class Transaction extends MY_Controller
                 $item = $this->item_model->where('item_id', $production->item_id)->get();
 
                 if ($item) {
-                    $production->item_name = isset($item->item_code2) && $item->item_code2 != '' ? $item->item_code . ' (' . $item->item_code2 . ')' : $item->item_code;
+                    $production->item_name = isset($item->item_id_other) && $item->item_id_other != '' ? $item->item_id . ' (' . $item->item_id_other . ')' : $item->item_id;
                 }
                 $production->sablon_rusak = $production->item_prd_bahan - $production->item_prd_sablon;
                 $production->jahit_rusak = $production->item_prd_sablon - $production->item_prd_jahit;
