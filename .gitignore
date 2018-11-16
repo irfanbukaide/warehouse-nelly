@@ -79,6 +79,4 @@ application/logs/*
 .idea/vcs.xml
 .idea/warehouse-nelly.iml
 .idea/webServers.xml
-assets/vendor/font-awesome/
-assets/vendor/jquery-sharre/
 uifix/.idea/inspectionProfiles/
